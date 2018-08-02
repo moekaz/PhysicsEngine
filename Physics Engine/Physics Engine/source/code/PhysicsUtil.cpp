@@ -151,10 +151,10 @@ namespace PhysicsUtil
 	float MinDistanceSquaredPointRay(glm::vec3& point, glm::vec3& startPointRay, glm::vec3& rayDirection, glm::vec3& closestPoint)
 	{
 		float minDistance = 0;	// the minimum distance
-		glm::vec3 startPointRay = point - startPointRay;	// Vector from the point to the starting point of the ray
+		glm::vec3 startPointToRay = point - startPointRay;	// Vector from the point to the starting point of the ray
 
-		float dot = glm::dot(startPointRay , rayDirection);	// Find the dot product of the ray and the point to start point vector
-		float distanceSquaredPointRay = glm::dot(startPointRay, startPointRay);	// Squared magnitude of start point of the ray and the point
+		float dot = glm::dot(startPointToRay , rayDirection);	// Find the dot product of the ray and the point to start point vector
+		float distanceSquaredPointRay = glm::dot(startPointToRay, startPointToRay);	// Squared magnitude of start point of the ray and the point
 
 		if (dot < 0)
 		{
