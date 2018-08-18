@@ -228,12 +228,11 @@ namespace PhysicsUtil
 					break;
 				}
 			}
-			if (found) continue;
 
+			if (found) continue;
 			if (iter->second.RaycastCollision(ray)) return &(iter->second);		// Do the raycast and check for that
 		}
 
 		return NULL;
 	}
-
 }
