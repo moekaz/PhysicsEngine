@@ -28,6 +28,7 @@ public:
 
 	void Update(const glm::vec3&);													// Update collider values
 	bool CheckCollision(Collider&);													// Sphere collision detection
+	bool RaycastCollision(Ray&);													// Raycast collision
 
 	friend std::ostream& operator<<(std::ostream&, const SphereCollider&);			// Print out values of the collider
 

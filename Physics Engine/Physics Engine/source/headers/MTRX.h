@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <glm/vec3.hpp>
 
 #include "Collider.h"
@@ -18,7 +19,7 @@
 class MTRX
 {
 public:
-	std::vector<Collider> collider;		// Store the colliders that we want to run through
+	std::map<int , Collider> collider;		// Store the colliders that we want to run through
 
 	MTRX();								// Constructor
 	~MTRX();							// Destructor

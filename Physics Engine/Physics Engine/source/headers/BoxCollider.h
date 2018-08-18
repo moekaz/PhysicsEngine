@@ -31,6 +31,7 @@ public:
 
 	void Update(glm::vec3&);												// Update the values of the collider
 	bool CheckCollision(Collider&);											// Check collision with box collider 
+	bool RaycastCollision(Ray&);											// Raycast collision
 	void RecomputeMinsMaxes();												// Recalculates the min and max values of the vertices 
 
 	friend std::ostream& operator<<(std::ostream& os , const BoxCollider&);	// Print out the values of th collider

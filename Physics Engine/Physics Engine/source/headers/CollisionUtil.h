@@ -38,7 +38,7 @@ namespace CollisionUtil
 	bool MeshMeshCollision();
 	bool ConvexShapeCollision(ConvexShapeCollider& , ConvexShapeCollider&);		// Collision detection between convex shaped colliders
 	bool RaySphereCollision(glm::vec3& sphereCenter, float sphereRadius, glm::vec3& startPointRay, glm::vec3& rayDirection);
-	bool RayBoxCollision();
+	bool RayBoxCollision(glm::vec3& rayStartPosition, glm::vec3& rayDirection, glm::vec3& boxCenter, glm::vec3& boxMin, glm::vec3& boxMax, std::vector<glm::vec3>& axes, glm::vec3& halfExtents);
 	bool RayCapsuleCollision(glm::vec3& startPositionRay, glm::vec3& direction, glm::vec3& A, glm::vec3& B, float capsRadius);
 	bool RayMeshCollision();
 	bool LineSegmentRayCollision(glm::vec3&, glm::vec3&, glm::vec3&, glm::vec3&);

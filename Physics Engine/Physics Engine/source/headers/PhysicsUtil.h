@@ -9,10 +9,13 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
+#include "Ray.h"
 
 #include "CollisionUtil.h"
+#include "Collider.h"
 
 namespace PhysicsUtil
 {

@@ -92,6 +92,18 @@ bool BoxCollider::CheckCollision(Collider& col)
 	return collision;
 }
 
+// Raycast with box colliders
+bool BoxCollider::RaycastCollision(Ray& ray)
+{
+	// CHANGE THISSSSSS TO USE AN ARRAY
+	std::vector<glm::vec3> axes;
+	axes.push_back(sideDirection);
+	axes.push_back(upDirection);
+	axes.push_back(forwardDirection);
+
+	return CollisionUtil::RayBoxCollision(ray.startPosition, ray.direction, center, min, max, axes, halfExtents);
+}
+
 // Recalculate the mins and maxes again
 void BoxCollider::RecomputeMinsMaxes()
 {

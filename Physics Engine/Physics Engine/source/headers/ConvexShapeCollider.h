@@ -25,6 +25,7 @@ public:
 	glm::vec3& FarthestPointInDirection(glm::vec3&);					// Farthest point within a certain direction
 
 	bool CheckCollision(Collider&);								    // Does collision detection checks
+	bool RaycastCollision(Ray&) = 0;											// Raycast collision
     virtual void Update(const glm::vec3&);							// Updates the values of the collider
 
 private:

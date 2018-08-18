@@ -196,4 +196,44 @@ namespace PhysicsUtil
 
 		return minDistance;
 	}
+	
+	// Do a raycast without checking for colliders 
+	Collider* RaycastUnfiltered(std::map<int , Collider>& colliders , glm::vec3& rayStartPosition, glm::vec3& rayDirection)
+	{
+		Ray ray = Ray(rayStartPosition , rayDirection);		// Create a ray in the direction
+		std::map<int, Collider>::iterator iter;
+		
+		for (iter = colliders.begin(); iter != colliders.end(); ++iter)
+		{
+			if (iter->second.RaycastCollision(ray)) return &(iter->second);		// Do the raycast and check for that 
+		}
+
+		return NULL;
+	}
+
+	// Do a raycast with some collider checks
+	Collider* RaycastFiltered(std::map<int, Collider>& colliders, std::vector<Collider*>& filterColliders, glm::vec3& rayStartPosition, glm::vec3& rayDirection)
+	{
+		Ray ray = Ray(rayStartPosition, rayDirection);		// Create a ray in the direction
+		std::map<int, Collider>::iterator iter;
+
+		for (iter = colliders.begin(); iter != colliders.end(); ++iter)
+		{
+			bool found = false;
+			for (int i = 0; i < filterColliders.size(); i++)
+			{
+				if (colliders.find(filterColliders[i]->colliderId) != colliders.end())
+				{
+					found = true; 
+					break;
+				}
+			}
+			if (found) continue;
+
+			if (iter->second.RaycastCollision(ray)) return &(iter->second);		// Do the raycast and check for that
+		}
+
+		return NULL;
+	}
+
 }

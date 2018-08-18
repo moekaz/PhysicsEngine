@@ -71,6 +71,12 @@ bool SphereCollider::CheckCollision(Collider& col)
 	return isColliding;
 }
 
+// Raycast with spheres
+bool SphereCollider::RaycastCollision(Ray& ray)
+{
+	return CollisionUtil::RaySphereCollision(center , radius, ray.startPosition, ray.direction);
+}
+
 // Print out values of the collider
 std::ostream& operator<<(std::ostream& os , const SphereCollider& sphCollider)
 {

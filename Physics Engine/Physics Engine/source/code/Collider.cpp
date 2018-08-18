@@ -5,9 +5,13 @@
 
 #include "../headers/Collider.h"
 
+static int id = 0;
+
 /* Constructor */
 Collider::Collider(const glm::vec3& vec)
 {	
+	++id;
+	colliderId = id;															// Collider id for map hashing
 	enabled = true;																// Is the collider turned on 
 	trigger = false;															// Is it a trigger collider
 	isColliding = false;														// Is colliding with another collider
@@ -24,7 +28,7 @@ Collider::Collider(const glm::vec3& vec)
 Collider::~Collider() 
 {
 	// Delete the vertices
-	for (int i = 0; i < vertices.size(); i++)
+	for (int i = 0; i < vertices.size(); ++i)
 	{
 		delete vertices[i];
 	}

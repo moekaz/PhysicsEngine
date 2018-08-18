@@ -69,6 +69,12 @@ bool CapsuleCollider::CheckCollision(Collider& col)
 	return collision;
 }
 
+// Raycast collision with capsule
+bool CapsuleCollider::RaycastCollision(Ray& ray)
+{
+	return CollisionUtil::RayCapsuleCollision(ray.startPosition , ray.direction, A , B , radii);
+}
+
 // Update values of the collider
 void CapsuleCollider::Update(const glm::vec3& newCenter)
 {

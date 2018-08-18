@@ -27,6 +27,7 @@ public:
 	~CapsuleCollider();																	// Destructor
 
 	bool CheckCollision(Collider&);														// Function for checking collision
+	bool RaycastCollision(Ray&);														// Raycast collision
 	void Update(const glm::vec3&);																// Updating the values of the collider
 
 	friend std::ostream& operator<<(std::ostream&, const CapsuleCollider&);				// Print out the values of the collider

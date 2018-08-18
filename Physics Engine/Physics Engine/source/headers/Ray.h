@@ -8,7 +8,7 @@
 class Ray
 {
 public:
-	Ray();
+	Ray(const glm::vec3& startpos = glm::vec3(), const glm::vec3& rayDirection = glm::vec3());
 	~Ray();
 
 	glm::vec3 startPosition;	// The position where the ray starts at
