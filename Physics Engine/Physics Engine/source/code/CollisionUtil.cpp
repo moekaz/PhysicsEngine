@@ -72,7 +72,7 @@ namespace CollisionUtil
 		glm::vec3 closestPoint;
 		PhysicsUtil::MinDistanceSquaredPointSegment(A, B, center1, closestPoint);
 
-		return SphereBoxCollision(center2, center1, radius, min, max, axes, halfExtents);
+		return SphereBoxCollision(closestPoint, center1, radius, min, max, axes, halfExtents);
 	}
 
 	// Box Mesh collision detection
