@@ -28,6 +28,9 @@ public:
 	
 	void NarrowPhase();					// Narrow phase collision detection checks
 	void BroadPhase();					// Broad phase collision detection checks
+
+	Collider* Raycast();				// Raycast without any filtering of colliders
+	Collider* RaycastFiltered();		// Raycast with filtering out some colliders
 private:
 protected:
 };
