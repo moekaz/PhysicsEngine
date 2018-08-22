@@ -219,6 +219,7 @@ namespace PhysicsUtil
 
 		for (iter = colliders.begin(); iter != colliders.end(); ++iter)
 		{
+			// Change this to store a map of the colliders 
 			bool found = false;
 			for (int i = 0; i < filterColliders.size(); i++)
 			{
