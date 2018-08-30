@@ -166,6 +166,7 @@ bool GJK::TetrahedronSimplexUpdate(Simplex& simplex, glm::vec3& direction, glm::
 	}
 
 	std::cout << "degenerate simplex something went wrong" << std::endl;
+	return true;
 }
 
 bool GJK::TetrahedronChecks(Simplex& simplex, glm::vec3& AO, glm::vec3& AB, glm::vec3& AC, glm::vec3& ABC, glm::vec3& direction, glm::vec3& a)

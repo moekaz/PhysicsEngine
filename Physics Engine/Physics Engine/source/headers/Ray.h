@@ -3,6 +3,10 @@
 	Description: A ray that will be used for raycasting
 */
 
+#pragma once
+#ifndef RAY_H
+#define RAY_H
+
 #include <glm/vec3.hpp>
 
 class Ray
@@ -17,3 +21,4 @@ public:
 private:
 protected:
 };
+#endif // !RAY_H

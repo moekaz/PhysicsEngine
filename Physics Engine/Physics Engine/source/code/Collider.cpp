@@ -5,7 +5,7 @@
 
 #include "../headers/Collider.h"
 
-static int id = 0;
+int Collider::id = 0;	// Set the value of the static int id 
 
 /* Constructor */
 Collider::Collider(const glm::vec3& vec)
@@ -28,13 +28,18 @@ Collider::Collider(const glm::vec3& vec)
 Collider::~Collider() 
 {
 	// Delete the vertices
-	for (int i = 0; i < vertices.size(); ++i)
+	for (unsigned int i = 0; i < vertices.size(); ++i)
 	{
 		delete vertices[i];
 	}
 }
 
 /* Functions */
+
+// Direction vectors
+glm::vec3& Collider::GetForward() { return forwardDirection; }
+glm::vec3& Collider::GetSide() { return sideDirection; }
+glm::vec3& Collider::GetUp() { return upDirection; }
 
 // Update collision info 
 void Collider::UpdateCollisionInfo()

@@ -35,4 +35,4 @@ public:
 private:
 protected:
 };
-#endif // SPHERECOLLIDER_H
+#endif // !SPHERECOLLIDER_H

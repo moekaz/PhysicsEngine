@@ -13,7 +13,7 @@ ConvexShapeCollider::ConvexShapeCollider(const glm::vec3& center) : Collider(cen
 ConvexShapeCollider::~ConvexShapeCollider(){}
 
 // Used for GJK collision
-glm::vec3& ConvexShapeCollider::Support(ConvexShapeCollider& convexCollider , glm::vec3& direction)
+glm::vec3 ConvexShapeCollider::Support(ConvexShapeCollider& convexCollider , glm::vec3& direction)
 {
 	glm::vec3& p1 = FarthestPointInDirection(direction);
 	glm::vec3 neg = -direction;
@@ -28,7 +28,7 @@ glm::vec3& ConvexShapeCollider::FarthestPointInDirection(glm::vec3& direction)
 	float maxDot = -std::numeric_limits<float>::infinity();	// Max dot vector
 	glm::vec3 *farthest = NULL;	// Farthest vector
 
-	for (int i = 0; i < vertices.size(); i++)
+	for (unsigned int i = 0; i < vertices.size(); i++)
 	{
 		float dot = glm::dot(*vertices[i] , direction); //vertices[i]->DotProduct(direction);
 		if (dot > maxDot)

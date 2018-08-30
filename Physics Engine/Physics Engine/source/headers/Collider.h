@@ -15,6 +15,7 @@
 
 #include "Rigidbody.h"
 #include "Defs.h"
+#include "Ray.h"
 
 class Collider
 {
@@ -31,7 +32,7 @@ public:
 	glm::vec3 forwardDirection;												// The forward direction of the collider
 	glm::vec3 upDirection;													// The Upwards direction of the collider
 	glm::vec3 sideDirection;												// The Side direction of the collider
-	Rigidbody* physicalValues;												// Values that might be needed are here
+	Rigidbody* rigidbody;												    // Values that might be needed are here
 	std::vector<glm::vec3*> vertices;										// Store the vertices of the collider
 
 	Collider(const glm::vec3& vec = glm::vec3());							// Constructor
@@ -59,4 +60,4 @@ private:
 protected:
 	bool isColliding;														// For checking if the collider is colliding with another collider
 };
-#endif // COLLIDER_H
+#endif // !COLLIDER_H

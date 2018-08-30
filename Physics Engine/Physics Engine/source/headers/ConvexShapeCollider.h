@@ -21,11 +21,11 @@ public:
 	ConvexShapeCollider(const glm::vec3& = glm::vec3());			// Constructor
 	~ConvexShapeCollider();											// Destructor
 
-	glm::vec3& Support(ConvexShapeCollider& , glm::vec3&);			// Support is used to build a simplex as it will return a point on the minkowski sum (or difference depending on naming) 
-	glm::vec3& FarthestPointInDirection(glm::vec3&);					// Farthest point within a certain direction
+	glm::vec3 Support(ConvexShapeCollider& , glm::vec3&);			// Support is used to build a simplex as it will return a point on the minkowski sum (or difference depending on naming) 
+	glm::vec3& FarthestPointInDirection(glm::vec3&);				// Farthest point within a certain direction
 
 	bool CheckCollision(Collider&);								    // Does collision detection checks
-	bool RaycastCollision(Ray&) = 0;											// Raycast collision
+	virtual bool RaycastCollision(Ray&) = 0;						// Raycast collision
     virtual void Update(const glm::vec3&);							// Updates the values of the collider
 
 private:

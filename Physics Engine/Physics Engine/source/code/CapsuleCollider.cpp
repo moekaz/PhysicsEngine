@@ -39,8 +39,7 @@ bool CapsuleCollider::CheckCollision(Collider& col)
 		{
 			std::cout << "Capsule Box collision detection" << std::endl;
 			BoxCollider& collider = static_cast<BoxCollider&>(col);
-			std::vector<glm::vec3> axes = { collider.sideDirection , collider.upDirection , collider.forwardDirection };
-			collision = CollisionUtil::BoxCapsuleCollision(collider.center, center, A, B, radii, collider.min, collider.max, axes, collider.halfExtents);
+			collision = CollisionUtil::BoxCapsuleCollision(collider.center, center, A, B, radii, collider.min, collider.max, collider.axes, collider.halfExtents);
 			break;
 		}
 		case ColliderType::Capsule:
@@ -84,7 +83,7 @@ void CapsuleCollider::Update(const glm::vec3& newCenter)
 // Print out the values of the collider
 std::ostream& operator<<(std::ostream& os , const CapsuleCollider& caps)
 {
-	os << "Capsule Collider:" << std::endl
+	return os << "Capsule Collider:" << std::endl
 		<< "-----------------" << std::endl
 		<< "Center: " << std::endl
 		<< "x: " << caps.center.x << std::endl
@@ -92,7 +91,5 @@ std::ostream& operator<<(std::ostream& os , const CapsuleCollider& caps)
 		<< "z: " << caps.center.z << std::endl
 		<< "Radii: " << caps.radii << std::endl
 		<< "Height: " << caps.height;
-
-	return os;
 }
 
