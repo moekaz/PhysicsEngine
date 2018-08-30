@@ -7,6 +7,7 @@
 
 ConvexShapeCollider::ConvexShapeCollider(const glm::vec3& center) : Collider(center)
 {
+	type = ColliderType::ConvexShape;	// This is a convex shape
 	isConvexShape = true;
 }
 
@@ -45,6 +46,7 @@ glm::vec3& ConvexShapeCollider::FarthestPointInDirection(glm::vec3& direction)
 bool ConvexShapeCollider::CheckCollision(Collider& col)
 {
 	ConvexShapeCollider& collider = static_cast<ConvexShapeCollider&>(col);
+
 	if (col.isConvexShape) 
 	{
 		UpdateCollisionInfo();
@@ -58,3 +60,6 @@ void ConvexShapeCollider::Update(const glm::vec3& center)
 {
 	this->center = center;
 }
+
+// We do not have an implementation of this
+bool ConvexShapeCollider::RaycastCollision(Ray& ray) { return false; }

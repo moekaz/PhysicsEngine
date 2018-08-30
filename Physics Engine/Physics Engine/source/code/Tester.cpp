@@ -244,10 +244,10 @@ void SphereColliderTesting()
 		new glm::vec3(12 , 7 , 0)
 	};
 
-	//ConvexShapeCollider col1 = ConvexShapeCollider();
-	//ConvexShapeCollider col2 = ConvexShapeCollider();
-	//col1.vertices = vertices1;
-	//col2.vertices = vertices2;
+	ConvexShapeCollider col1 = ConvexShapeCollider();
+	ConvexShapeCollider col2 = ConvexShapeCollider();
+	col1.vertices = vertices1;
+	col2.vertices = vertices2;
 
 	/*
 	for (int i = 0; i < 10000; i++)
@@ -256,7 +256,7 @@ void SphereColliderTesting()
 	}
 	*/
 
-	//std::cout << "Collision of convex shapes: " << col1.CheckCollision(col2) << std::endl;
+	std::cout << "Collision of convex shapes: " << col1.CheckCollision(col2) << std::endl;
 
 	/*
 	glm::vec3 A = glm::vec3(0, 0, 0);
