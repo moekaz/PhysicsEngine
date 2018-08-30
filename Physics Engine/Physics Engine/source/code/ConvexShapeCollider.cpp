@@ -5,12 +5,14 @@
 
 #include "../headers/ConvexShapeCollider.h"
 
+// Constructor
 ConvexShapeCollider::ConvexShapeCollider(const glm::vec3& center) : Collider(center)
 {
 	type = ColliderType::ConvexShape;	// This is a convex shape
 	isConvexShape = true;
 }
 
+//Destructor
 ConvexShapeCollider::~ConvexShapeCollider(){}
 
 // Used for GJK collision
@@ -62,4 +64,12 @@ void ConvexShapeCollider::Update(const glm::vec3& center)
 }
 
 // We do not have an implementation of this
-bool ConvexShapeCollider::RaycastCollision(Ray& ray) { return false; }
+bool ConvexShapeCollider::RaycastCollision(Ray& ray) 
+{
+	// A ray is a convex shape if we use it as a line
+	glm::vec3 rayEndPoint = glm::normalize(ray.direction) * std::numeric_limits<float>::infinity();	// Get the end point of the ray
+	ConvexShapeCollider convexLine = ConvexShapeCollider(rayEndPoint - ray.startPosition);	// Setup the convex shape
+	convexLine.vertices = { &ray.startPosition , &rayEndPoint };	// Set the vertices to be the 2 points of the ray
+
+	return CollisionUtil::ConvexShapeCollision(*this , convexLine);	// Check with GJK 
+}

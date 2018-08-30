@@ -12,8 +12,8 @@
 #include <map>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
-#include "Ray.h"
 
+#include "Ray.h"
 #include "CollisionUtil.h"
 #include "Collider.h"
 
