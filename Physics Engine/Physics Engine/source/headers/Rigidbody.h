@@ -19,6 +19,8 @@ class Rigidbody
 public:
 	static float gravity;	// The value of gravity for the world
 	float mass;	// Mass of the rigid body
+	float airResistance;	// The value of drag
+	float angularDrag;	// Angular drag
 	bool isKinematic;	// Check for whether the body is on the floor or not 
 	Collider* collider;	// Current collider that we are using (DO WE WANT AN ARRAY OF THEM JUST IN CASE???)
 	glm::vec3 position;	// Position of the rigidbody

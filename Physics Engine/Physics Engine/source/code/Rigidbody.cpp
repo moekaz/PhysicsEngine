@@ -34,6 +34,8 @@ void Rigidbody::Update()
 
 	// Move the position of the rigidbody with some delta time multiplication
 	position += velocity * GameTime::deltaTime;
+
+	// Reset the velocity values
 	velocity.x = 0;
 	velocity.y = 0;
 	velocity.z = 0;
@@ -56,4 +58,3 @@ void Rigidbody::Rotate(glm::quat& rotation)
 {
 	orientation = rotation * orientation;
 }
-

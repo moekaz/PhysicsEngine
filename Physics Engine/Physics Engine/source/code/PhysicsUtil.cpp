@@ -248,7 +248,7 @@ namespace PhysicsUtil
 	// Easing a value according to a sin curve (in this case at least)
 	float Ease(float t)
 	{
-		// DO i need to check the bounds of t
+		// DO I NEED TO CHECK THE BOUNDS OF t ???
 		if (!t) return NULL;
 		return (sin(t * pi - pi / 2.0f) + 1.0f) / 2.0f;
 	}
