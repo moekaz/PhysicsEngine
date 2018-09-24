@@ -10,7 +10,12 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <glm/glm.hpp>
+#include <math.h>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/norm.hpp>
+#include <glm\glm.hpp>
 #include <glm/vec3.hpp>
 
 #include "Ray.h"
@@ -27,5 +32,8 @@ namespace PhysicsUtil
 	float MinDistanceSquaredLineSegmentRay(glm::vec3&, glm::vec3&, glm::vec3&, glm::vec3&);
 	Collider* RaycastFiltered(std::map<int, Collider*>& colliders, std::vector<Collider*>& filterColliders, glm::vec3& rayStartPosition, glm::vec3& rayDirection);
 	Collider* RaycastUnfiltered(std::map<int, Collider*>& colliders, glm::vec3& rayStartPosition, glm::vec3& rayDirection);
+	glm::quat Slerp(const glm::quat& firstRotation, const glm::quat& secondRotation, float t);
+	glm::vec3 Lerp(const glm::vec3& startingPosition, const glm::vec3& destination, float t);
+	float Ease(float t);
 }
 #endif // !PHYSICSUTIL_H

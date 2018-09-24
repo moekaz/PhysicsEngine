@@ -123,9 +123,11 @@
     <ClCompile Include="source\code\CollisionUtil.cpp" />
     <ClCompile Include="source\code\ConvexShapeCollider.cpp" />
     <ClCompile Include="source\code\EPA.cpp" />
+    <ClCompile Include="source\code\GameTime.cpp" />
     <ClCompile Include="source\code\GJK.cpp" />
     <ClCompile Include="source\code\Mat3.cpp" />
     <ClCompile Include="source\code\Ray.cpp" />
+    <ClCompile Include="source\code\Rigidbody.cpp" />
     <ClCompile Include="source\code\Simplex.cpp" />
     <ClCompile Include="source\code\SphereCollider.cpp" />
     <ClCompile Include="source\code\Tester.cpp" />
@@ -140,6 +142,7 @@
     <ClInclude Include="source\headers\ConvexShapeCollider.h" />
     <ClInclude Include="source\headers\Defs.h" />
     <ClInclude Include="source\headers\EPA.h" />
+    <ClInclude Include="source\headers\GameTime.h" />
     <ClInclude Include="source\headers\GJK.h" />
     <ClInclude Include="source\headers\Mat3.h" />
     <ClInclude Include="source\headers\MTRX.h" />

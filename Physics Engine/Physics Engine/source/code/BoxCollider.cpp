@@ -45,7 +45,6 @@ BoxCollider::~BoxCollider() {}
 void BoxCollider::Update(const glm::vec3& center)
 {
 	this->center = center;
-	// RecomputeMinsMaxes();
 }
 
 // Gives us whether there is a collision occurring

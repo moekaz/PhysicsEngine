@@ -22,8 +22,6 @@ namespace PhysicsUtil
 		glm::vec3 l1 = B - A;	// First direction vector 
 		glm::vec3 l2 = D - C;	// Second direction vector
 
-		//glm::vec3 P = l1 / 2;
-		//glm::vec3 Q = l2 / 2;
 		glm::vec3 normalPlane = glm::normalize(glm::cross(l1, l2));
 
 		if (normalPlane == glm::vec3())
@@ -32,8 +30,6 @@ namespace PhysicsUtil
 			glm::vec3 newVec = l2 + glm::vec3(1, 1, 1);
 			normalPlane = glm::cross(l1, newVec);	// If the normal vector is (0,0,0) choose one of the 2 
 		}
-
-		//std::cout << normalPlane << std::endl;
 
 		return abs(glm::dot(C - A , normalPlane));
 	}
@@ -231,5 +227,29 @@ namespace PhysicsUtil
 		}
 
 		return NULL;
+	}
+
+	// Slerp implementation which allows for linear interpolation of rotations
+	glm::quat Slerp(const glm::quat& firstRotation, const glm::quat& secondRotation, float t)
+	{
+		// if the factor is bad then return an identity quaternion
+		if (t < 0 || t > 1) return glm::quat();
+		return glm::mix(firstRotation, secondRotation, t);
+	}
+
+	// Lerping which is linear interpolation between 2 points 
+	glm::vec3 Lerp(const glm::vec3& startingPosition, const glm::vec3& destination, float t)
+	{
+		// If the factor is wrong return the destination
+		if (t < 0 || t > 1) return destination;
+		return (1 - t) * startingPosition + t * destination;
+	}
+
+	// Easing a value according to a sin curve (in this case at least)
+	float Ease(float t)
+	{
+		// DO i need to check the bounds of t
+		if (!t) return NULL;
+		return (sin(t * pi - pi / 2.0f) + 1.0f) / 2.0f;
 	}
 }
