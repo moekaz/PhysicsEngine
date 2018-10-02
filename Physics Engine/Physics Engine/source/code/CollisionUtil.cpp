@@ -8,7 +8,6 @@
 #include "../headers/BoxCollider.h"
 #include "../headers/SphereCollider.h"
 #include "../headers/CapsuleCollider.h"
-//#include "../headers/MeshCollider.h"
 #include "../headers/ConvexShapeCollider.h"
 
 namespace CollisionUtil
@@ -145,5 +144,4 @@ namespace CollisionUtil
 		// Check for an intersection 
 		return PhysicsUtil::MinDistanceSquaredTwoSegments(A, B, rayStartPoint, rayEndPoint) == std::numeric_limits<float>::epsilon();
 	}
-
 }

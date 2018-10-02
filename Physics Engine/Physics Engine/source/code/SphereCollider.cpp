@@ -6,7 +6,6 @@
 #include "../headers/SphereCollider.h"
 #include "../headers/BoxCollider.h"
 #include "../headers/CapsuleCollider.h"
-//#include "../headers/MeshCollider"
 
 /* Constructor */
 SphereCollider::SphereCollider(const glm::vec3& center , float radius) : Collider(center)
@@ -21,9 +20,8 @@ SphereCollider::~SphereCollider() {}
 /* Functions */
 
 // Update the values of the collider
-void SphereCollider::Update(const glm::vec3& newCenter) 
+void SphereCollider::PhysicsUpdate() 
 {
-	center = newCenter;
 }
 
 // Checking for collision since this is going to be polymorphic it would make sense to use a general collider and work from there
@@ -35,27 +33,26 @@ bool SphereCollider::CheckCollision(Collider& col)
 		{
 			std::cout << "SPHERE SPHERE COLLISON DETECTION" << std::endl;
 			SphereCollider& collider = static_cast<SphereCollider&>(col);
-			isColliding = CollisionUtil::SphereSphereCollision(center , collider.center , radius , collider.radius);
+			isColliding = CollisionUtil::SphereSphereCollision(center , collider.GetPosition() , radius , collider.radius);
 			break;
 		}
 		case ColliderType::Box:
 		{
 			std::cout << "SPHERE BOX COLLISION DETECTION" << std::endl;
 			BoxCollider& collider = static_cast<BoxCollider&>(col);
-			isColliding = CollisionUtil::SphereBoxCollision(center , collider.center , radius , collider.min , collider.max , collider.axes , collider.halfExtents);
+			isColliding = CollisionUtil::SphereBoxCollision(center , collider.GetPosition() , radius , collider.min , collider.max , collider.axes , collider.halfExtents);
 			break;
 		}
 		case ColliderType::Capsule:
 		{
 			std::cout << "SPHERE CAPSULE COLLISION DETECTION" << std::endl;
 			CapsuleCollider& collider = static_cast<CapsuleCollider&>(col);
-			isColliding = CollisionUtil::SphereCapsuleCollision(center , collider.center , radius , collider.radii , collider.A , collider.B);
+			isColliding = CollisionUtil::SphereCapsuleCollision(center , collider.GetPosition() , radius , collider.radii , collider.A , collider.B);
 			break;
 		}
 		case ColliderType::Mesh:
 		{
 			std::cout << "SPHERE MESH COLLISION DETECTION" << std::endl;
-			isColliding = CollisionUtil::SphereMeshCollision();
 			break;
 		}
 		default:

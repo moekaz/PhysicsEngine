@@ -116,5 +116,8 @@
     <ClInclude Include="source\headers\GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\headers\IUpdateable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

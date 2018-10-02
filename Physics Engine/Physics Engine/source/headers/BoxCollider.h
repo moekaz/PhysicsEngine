@@ -30,7 +30,7 @@ public:
 	BoxCollider(const glm::vec3& = glm::vec3());							// Constructor
 	~BoxCollider();															// Destrutor
 
-	void Update(const glm::vec3&);											// Update the values of the collider
+	void PhysicsUpdate();
 	bool CheckCollision(Collider&);											// Check collision with box collider 
 	bool RaycastCollision(Ray&);											// Raycast collision
 	void RecomputeMinsMaxes();												// Recalculates the min and max values of the vertices 

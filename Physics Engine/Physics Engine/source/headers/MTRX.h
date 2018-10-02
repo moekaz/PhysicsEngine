@@ -13,10 +13,11 @@
 #include <map>
 #include <glm/vec3.hpp>
 
+#include "IUpdateable.h"
 #include "Collider.h"
 #include "Mat3.h"
 
-class MTRX
+class MTRX : public IUpdateable
 {
 public:
 	std::map<int , Collider> collider;		// Store the colliders that we want to run through
@@ -24,8 +25,7 @@ public:
 	MTRX();								// Constructor
 	~MTRX();							// Destructor
 
-	void Update();						// Update the game engine values
-	
+	void PhysicsUpdate();				// Update the game engine values
 	void NarrowPhase();					// Narrow phase collision detection checks
 	void BroadPhase();					// Broad phase collision detection checks
 

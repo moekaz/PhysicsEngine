@@ -144,6 +144,7 @@
     <ClInclude Include="source\headers\EPA.h" />
     <ClInclude Include="source\headers\GameTime.h" />
     <ClInclude Include="source\headers\GJK.h" />
+    <ClInclude Include="source\headers\IUpdateable.h" />
     <ClInclude Include="source\headers\Mat3.h" />
     <ClInclude Include="source\headers\MTRX.h" />
     <ClInclude Include="source\headers\Ray.h" />

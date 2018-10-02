@@ -23,10 +23,10 @@ class SphereCollider : public Collider
 public:
 	float radius;																	// Radius of a sphere collider
 
-	SphereCollider(const glm::vec3& vec = glm::vec3(), float radius = 0.5);		// Constructor 
+	SphereCollider(const glm::vec3& vec = glm::vec3(), float radius = 0.5);			// Constructor 
 	~SphereCollider();																// Destructor
-
-	void Update(const glm::vec3&);													// Update collider values
+	
+	void PhysicsUpdate();
 	bool CheckCollision(Collider&);													// Sphere collision detection
 	bool RaycastCollision(Ray&);													// Raycast collision
 

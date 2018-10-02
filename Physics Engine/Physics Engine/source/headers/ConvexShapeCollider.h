@@ -24,7 +24,7 @@ public:
 
 	bool CheckCollision(Collider&);								    // Does collision detection checks
 	virtual bool RaycastCollision(Ray&);							// Raycast collision
-    virtual void Update(const glm::vec3&);							// Updates the values of the collider
+	virtual void PhysicsUpdate();
 
 private:
 protected:

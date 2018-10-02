@@ -193,7 +193,7 @@ namespace PhysicsUtil
 		return minDistance;
 	}
 	
-	// Do a raycast without checking for colliders 
+	// Do a raycast without checking for filtered colliders 
 	Collider* RaycastUnfiltered(std::map<int , Collider*>& colliders , glm::vec3& rayStartPosition, glm::vec3& rayDirection)
 	{
 		Ray ray = Ray(rayStartPosition , rayDirection);		// Create a ray in the direction
@@ -207,23 +207,24 @@ namespace PhysicsUtil
 		return NULL;
 	}
 
-	// Do a raycast with some collider checks
+	// Do a raycast with some filtering of certain user defined filtered colliders 
 	Collider* RaycastFiltered(std::map<int, Collider*>& colliders, std::vector<Collider*>& filterColliders, glm::vec3& rayStartPosition, glm::vec3& rayDirection)
 	{
-		Ray ray = Ray(rayStartPosition, rayDirection);		// Create a ray in the direction
+		Ray ray = Ray(rayStartPosition, rayDirection);	// Create a ray in the direction
 		std::map<int, Collider*> filterCollidersMap;	// Map of the filtered colliders
 		std::map<int, Collider*>::iterator iter;	// Iterator of the collider map
 		
-		// Store the vector in a map for quick access
+		// Store the vector in a map for quick access (makes filtering much more efficient)
 		for (unsigned int i = 0; i < filterColliders.size(); i++)
 		{
 			filterCollidersMap[filterColliders[i]->colliderId] = filterColliders[i];
 		}
 
+		// Go through the colliders checking for raycast collisions after filtering out the ones we don't want 
 		for (iter = colliders.begin(); iter != colliders.end(); ++iter)
 		{
 			if (filterCollidersMap.find(iter->first) != filterCollidersMap.end()) continue;	// If it is filtered then skip the collision check 
-			if (iter->second->RaycastCollision(ray)) return iter->second;		// Do the raycast and check for that
+			if (iter->second->RaycastCollision(ray)) return iter->second;	// Do the raycast and check for that
 		}
 
 		return NULL;
@@ -248,7 +249,6 @@ namespace PhysicsUtil
 	// Easing a value according to a sin curve (in this case at least)
 	float Ease(float t)
 	{
-		// DO I NEED TO CHECK THE BOUNDS OF t ???
 		if (!t) return NULL;
 		return (sin(t * pi - pi / 2.0f) + 1.0f) / 2.0f;
 	}

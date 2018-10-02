@@ -6,7 +6,6 @@
 #include "../headers/BoxCollider.h"
 #include "../headers/SphereCollider.h"
 #include "../headers/CapsuleCollider.h"
-//#include "../headers/MeshCollider"
 
 /* Constructor */
 BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(center)
@@ -42,9 +41,9 @@ BoxCollider::~BoxCollider() {}
 /* Functions */
 
 // Update values of the collider
-void BoxCollider::Update(const glm::vec3& center)
+void BoxCollider::PhysicsUpdate()
 {
-	this->center = center;
+
 }
 
 // Gives us whether there is a collision occurring
@@ -56,30 +55,28 @@ bool BoxCollider::CheckCollision(Collider& col)
 	{
 		case ColliderType::Sphere:
 		{
-			std::cout << "box sphere collision detection" << std::endl;
+			std::cout << "Box Sphere collision detection" << std::endl;
 			SphereCollider& collider = static_cast<SphereCollider&>(col);
-			collision = CollisionUtil::SphereBoxCollision(collider.center , center , collider.radius , min , max , axes , halfExtents);
+			collision = CollisionUtil::SphereBoxCollision(collider.GetPosition() , center , collider.radius , min , max , axes , halfExtents);
 			break;
 		}
 		case ColliderType::Box:
 		{
-			std::cout << "box box collision detection" << std::endl;
+			std::cout << "Box Box collision detection" << std::endl;
 			BoxCollider& collider = static_cast<BoxCollider&>(col);
 			collision = CollisionUtil::BoxBoxCollision(*this , collider);
 			break;
 		}
 		case ColliderType::Capsule:
 		{
-			std::cout << "box capsule collision detection" << std::endl;
+			std::cout << "Box Capsule collision detection" << std::endl;
 			CapsuleCollider& collider = static_cast<CapsuleCollider&>(col);
-			collision = CollisionUtil::BoxCapsuleCollision(center, collider.center, collider.A, collider.B, collider.radii, min, max, axes, halfExtents); 
+			collision = CollisionUtil::BoxCapsuleCollision(center, collider.GetPosition(), collider.A, collider.B, collider.radii, min, max, axes, halfExtents); 
 			break;
 		}
 		case ColliderType::Mesh:
 		{
-			std::cout << "box mesh collision detection" << std::endl;
-			//SphereCollider& collider = static_cast<SphereCollider&>(col);
-			//collision = CollisionUtil::SphereBoxCollision(collider.center, center, collider.radius, min, max, axes, halfExtents);
+			std::cout << "Box Mesh collision detection" << std::endl;
 			break;
 		}
 		default:

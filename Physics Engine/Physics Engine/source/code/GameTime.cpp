@@ -6,12 +6,13 @@
 #include "../headers/GameTime.h"
 
 // Setup the main values needed 
-static const float startTime = time(0);
-static float currentTime = startTime;
-static float prevCurrentTime = NULL;
+const float GameTime::startTime = time(0);
+float GameTime:: currentTime = startTime;
+float GameTime::prevCurrentTime = NULL;
+float GameTime::deltaTime = 0;
 
 // Update 
-void GameTime::Update()
+void GameTime::PhysicsUpdate()
 {
 	// Set the previous to the current
 	prevCurrentTime = currentTime;

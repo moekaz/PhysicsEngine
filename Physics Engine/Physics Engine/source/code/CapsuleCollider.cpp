@@ -6,7 +6,6 @@
 #include "../headers/CapsuleCollider.h"
 #include "../headers/BoxCollider.h"
 #include "../headers/SphereCollider.h"
-//#include "../headers/MeshCollider.h"
 
 // Constructor
 CapsuleCollider::CapsuleCollider(const glm::vec3& center , float radii , float height) : Collider(center)
@@ -39,7 +38,7 @@ bool CapsuleCollider::CheckCollision(Collider& col)
 		{
 			std::cout << "Capsule Box collision detection" << std::endl;
 			BoxCollider& collider = static_cast<BoxCollider&>(col);
-			collision = CollisionUtil::BoxCapsuleCollision(collider.center, center, A, B, radii, collider.min, collider.max, collider.axes, collider.halfExtents);
+			collision = CollisionUtil::BoxCapsuleCollision(collider.GetPosition(), center, A, B, radii, collider.min, collider.max, collider.axes, collider.halfExtents);
 			break;
 		}
 		case ColliderType::Capsule:
@@ -75,9 +74,8 @@ bool CapsuleCollider::RaycastCollision(Ray& ray)
 }
 
 // Update values of the collider
-void CapsuleCollider::Update(const glm::vec3& newCenter)
+void CapsuleCollider::PhysicsUpdate()
 {
-	center = newCenter;
 }
 
 // Print out the values of the collider

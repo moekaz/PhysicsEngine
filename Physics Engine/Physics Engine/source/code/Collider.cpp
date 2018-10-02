@@ -40,6 +40,9 @@ Collider::~Collider()
 glm::vec3& Collider::GetForward() { return forwardDirection; }
 glm::vec3& Collider::GetSide() { return sideDirection; }
 glm::vec3& Collider::GetUp() { return upDirection; }
+glm::vec3& Collider::GetPosition() { return this->center; }
+
+void Collider::SetPosition(const glm::vec3& center) { this->center = center; }
 
 // Update collision info 
 void Collider::UpdateCollisionInfo()

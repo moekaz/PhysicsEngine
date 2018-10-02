@@ -8,13 +8,14 @@
 #define GAMETIME_H
 
 #include <time.h>
+#include "IUpdateable.h"
 
-static class GameTime
+static class GameTime : public IUpdateable
 {
 public:
 	static float deltaTime;	// The delta time between frames
 
-	static void Update();	// Update the time values
+	static void PhysicsUpdate();	// Update the time values
 	static float GetStartTime();	// Get the start time
 	static float GetCurrentTime();	// Get the current time
 

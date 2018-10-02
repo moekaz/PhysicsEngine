@@ -6,6 +6,7 @@
 #pragma once
 #ifndef COLLISIONUTIL_H
 #define COLLISIONUTIL_H
+#define GLM_ENABLE_EXPERIMENTAL
 
 #include <iostream>
 #include <vector>

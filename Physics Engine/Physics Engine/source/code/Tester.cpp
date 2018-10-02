@@ -304,7 +304,7 @@ int main()
 	MatrixTesting();
 	SphereColliderTesting();
 
-	//just to hold the console open in vs studio
+	// Just to hold the console open in vs studio
 	while (true) {}
 	return 0;
 }

@@ -58,9 +58,8 @@ bool ConvexShapeCollider::CheckCollision(Collider& col)
 }
 
 // Updating the values of a convex shape
-void ConvexShapeCollider::Update(const glm::vec3& center)
+void ConvexShapeCollider::PhysicsUpdate()
 {
-	this->center = center;
 }
 
 // We do not have an implementation of this

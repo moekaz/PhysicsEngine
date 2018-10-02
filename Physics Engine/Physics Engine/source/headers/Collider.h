@@ -7,17 +7,19 @@
 #pragma once
 #ifndef COLLIDER_H
 #define COLLIDER_H
+#define GLM_ENABLE_EXPERIMENTAL
 
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 
+#include "IUpdateable.h"
 #include "Rigidbody.h"
 #include "Defs.h"
 #include "Ray.h"
 
-class Collider
+class Collider : public IUpdateable
 {
 public:
 	int colliderId;															// Collider id
@@ -28,7 +30,6 @@ public:
 	bool enteredCollision;													// Entered collision
 	bool exitedCollision;													// Exited collision	
 	bool isConvexShape;														// Is the collider a convex shape
-	glm::vec3 center;														// The center position of the collider
 	glm::vec3 forwardDirection;												// The forward direction of the collider
 	glm::vec3 upDirection;													// The Upwards direction of the collider
 	glm::vec3 sideDirection;												// The Side direction of the collider
@@ -38,7 +39,7 @@ public:
 	Collider(const glm::vec3& vec = glm::vec3());							// Constructor
 	~Collider();															// Destructor
 
-	virtual void Update(const glm::vec3&) = 0;								// Update the values of the collider
+	virtual void PhysicsUpdate() = 0;										// Physics update
 	virtual void UpdateCollisionInfo();										// Updates info on entering exiting staying in collision etc...
 
 	// MIGHT NEED TO ADD A REFERENCE TO A REBOUND VECTOR THAT MIGHT HELP IN THE RESPONSE
@@ -51,6 +52,8 @@ public:
 	glm::vec3& GetForward();												// Get the forward direction according to our transformation matrix
 	glm::vec3& GetSide();													// Get the side direction according to our transformation matrix
 	glm::vec3& GetUp();														// Get the up direction according to our transformation matrix
+	void SetPosition(const glm::vec3& center);								// Set a new position for the collider
+	glm::vec3& GetPosition();												// Get the position of the collider
 
 	friend std::ostream& operator<<(std::ostream& , const Collider&);		// Print values of the collider
 
@@ -59,5 +62,6 @@ private:
 
 protected:
 	bool isColliding;														// For checking if the collider is colliding with another collider
+	glm::vec3 center;														// The center position of the collider
 };
 #endif // !COLLIDER_H
