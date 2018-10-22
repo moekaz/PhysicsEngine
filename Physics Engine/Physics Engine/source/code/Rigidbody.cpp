@@ -6,6 +6,7 @@
 #include "../headers/Rigidbody.h"
 
 // MIGHT WANT TO READ UP ON SOME TORQUE AND ROTATIONAL FORCES
+// MIGHT WANT TO ADD SOME FRICTIONAL FORCES
 
 // Set the value of gravity that will be used for gravity calculations 
 float Rigidbody::gravity = 9.81;
@@ -17,6 +18,7 @@ Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, fl
 	this->isKinematic = isKinematic;
 	this->position = position;
 	this->maxSpeed = maxSpeed;
+	previousPosition = glm::vec3();
 	velocity = glm::vec3();
 	acceleration - glm::vec3();
 	orientation = glm::quat();
@@ -37,22 +39,25 @@ void Rigidbody::SetPosition(const glm::vec3& position) { this->position = positi
 // Update the values of the rigid body
 void Rigidbody::PhysicsUpdate()
 {
-	// Check for gravity 
+	// Check for gravity (Weight = mg so we don't need to divide by mass when we add that force)
 	if (isKinematic) acceleration.y -= gravity;
 
 	// A = V / T => V = A * T
-	velocity = acceleration * GameTime::deltaTime;
+	//velocity = acceleration * GameTime::deltaTime;
 	
-	// Create a rotation from the position u r at to the new position we are at using the forward vector
-	LookAt(position + velocity);
+	// Store temporary position
+	glm::vec3& temp = position;
 
-	// Move the position of the rigidbody
-	position += velocity;
+	// Move the position of the rigidbody (verlet integeration)
+	position += (position - previousPosition) + acceleration * GameTime::deltaTime * GameTime::deltaTime;
+
+	// Store Previous position
+	previousPosition = temp;
 
 	// Reset the velocity values
-	velocity.x = 0;
-	velocity.y = 0;
-	velocity.z = 0;
+	//velocity.x = 0;
+	//velocity.y = 0;
+	//velocity.z = 0;
 	
 	// Reset acceleration values
 	acceleration.x = 0;
@@ -64,6 +69,7 @@ void Rigidbody::PhysicsUpdate()
 void Rigidbody::ApplyForce(const glm::vec3& force)
 {
 	acceleration += force / mass;	// Newtonian physics (SUM OF FORCES = MASS * ACCELERATION)
+	// Check for torsional and torque forces induced
 }
 
 // Rotate a rigidbody with a certain rotation quaternion

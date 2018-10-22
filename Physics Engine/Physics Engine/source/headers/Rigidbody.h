@@ -23,10 +23,8 @@ public:
 	float airResistance;	// The value of drag
 	float angularDrag;	// Angular drag
 	float maxSpeed;	// Maximum speed 
-	bool isKinematic;	// Check for whether the body is on the floor or not 
-	glm::vec3 position;	// Position of the rigidbody
-	glm::vec3 velocity; // Velocity of the rigidbody
-	glm::vec3 acceleration;	// Acceleration of the rigidbody
+	bool isKinematic;	// Check for whether the body is on the floor or not
+
 	glm::vec3 forward;	// forward vector
 	glm::vec3 side;	// Side vector
 	glm::vec3 up;	// Up vector
@@ -43,6 +41,10 @@ public:
 	void SetPosition(const glm::vec3& position);	// Set the position of the rigidbody
 
 private:
+	glm::vec3 position;	// Position of the rigidbody
+	glm::vec3 previousPosition;	// Previous position used for verlet integration
+	glm::vec3 velocity; // Velocity of the rigidbody
+	glm::vec3 acceleration;	// Acceleration of the rigidbody
 protected:
 };
 #endif // !RIGIDBODY_H

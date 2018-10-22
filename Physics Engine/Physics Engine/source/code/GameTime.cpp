@@ -28,7 +28,7 @@ float GameTime::GetCurrentTime()
 	return currentTime;
 }
 
-// Get the start time of the application (mostly for loggin and stuff like that)
+// Get the start time of the application (mostly for logging and stuff like that)
 float GameTime::GetStartTime()
 {
 	return startTime;
