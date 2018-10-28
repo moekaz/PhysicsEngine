@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef IUPDATEABLE_H
-#define IUPDATEABLE_H
 
 class IUpdateable
 {
@@ -15,5 +13,3 @@ public:
 private:
 protected:
 };
-#endif // !IUPDATEABLE_H
-

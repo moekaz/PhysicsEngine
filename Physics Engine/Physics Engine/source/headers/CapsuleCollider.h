@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef CAPSULECOLLIDER_H
-#define CAPSULECOLLIDER_H
 
 #include <iostream>
 #include <glm/vec3.hpp>
@@ -26,8 +24,8 @@ public:
 	CapsuleCollider(const glm::vec3& = glm::vec3() , float = 0.25f , float = 0.5f);		// Constructor
 	~CapsuleCollider();																	// Destructor
 
-	bool CheckCollision(Collider&);														// Function for checking collision
-	bool RaycastCollision(Ray&);														// Raycast collision
+	bool CheckCollision(const Collider&);														// Function for checking collision
+	bool RaycastCollision(const Ray&);														// Raycast collision
 	void PhysicsUpdate();
 
 	friend std::ostream& operator<<(std::ostream&, const CapsuleCollider&);				// Print out the values of the collider
@@ -35,4 +33,3 @@ public:
 private:
 protected:
 };
-#endif // !CAPSULECOLLIDER_H

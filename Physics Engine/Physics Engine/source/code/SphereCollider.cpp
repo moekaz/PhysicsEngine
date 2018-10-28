@@ -22,28 +22,28 @@ void SphereCollider::PhysicsUpdate()
 }
 
 // Checking for collision since this is going to be polymorphic it would make sense to use a general collider and work from there
-bool SphereCollider::CheckCollision(Collider& col)
+bool SphereCollider::CheckCollision(const Collider& col)
 {
 	switch (col.type)
 	{
 		case ColliderType::Sphere:
 		{
 			std::cout << "SPHERE SPHERE COLLISON DETECTION" << std::endl;
-			SphereCollider& collider = static_cast<SphereCollider&>(col);
+			const SphereCollider& collider = static_cast<const SphereCollider&>(col);
 			isColliding = CollisionUtil::SphereSphereCollision(center , collider.GetPosition() , radius , collider.radius);
 			break;
 		}
 		case ColliderType::Box:
 		{
 			std::cout << "SPHERE BOX COLLISION DETECTION" << std::endl;
-			BoxCollider& collider = static_cast<BoxCollider&>(col);
-			isColliding = CollisionUtil::SphereBoxCollision(center , collider.GetPosition() , radius , collider.min , collider.max , collider.axes , collider.halfExtents);
+			const BoxCollider& collider = static_cast<const BoxCollider&>(col);
+			isColliding = CollisionUtil::SphereBoxCollision(center , collider.GetPosition() , radius , collider.min , collider.max , collider.GetAxes() , collider.halfExtents);
 			break;
 		}
 		case ColliderType::Capsule:
 		{
 			std::cout << "SPHERE CAPSULE COLLISION DETECTION" << std::endl;
-			CapsuleCollider& collider = static_cast<CapsuleCollider&>(col);
+			const CapsuleCollider& collider = static_cast<const CapsuleCollider&>(col);
 			isColliding = CollisionUtil::SphereCapsuleCollision(center , collider.GetPosition() , radius , collider.radii , collider.A , collider.B);
 			break;
 		}
@@ -65,7 +65,7 @@ bool SphereCollider::CheckCollision(Collider& col)
 }
 
 // Raycast with spheres
-bool SphereCollider::RaycastCollision(Ray& ray)
+bool SphereCollider::RaycastCollision(const Ray& ray)
 {
 	return CollisionUtil::RaySphereCollision(center , radius, ray.startPosition, ray.direction);
 }

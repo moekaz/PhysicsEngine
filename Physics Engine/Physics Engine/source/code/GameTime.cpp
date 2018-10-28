@@ -6,7 +6,7 @@
 #include "../headers/GameTime.h"
 
 // Setup the main values needed 
-const float GameTime::startTime = time(0);
+const float GameTime::startTime = (float)time(0);
 float GameTime:: currentTime = startTime;
 float GameTime::prevCurrentTime = NULL;
 float GameTime::deltaTime = 0;
@@ -37,7 +37,7 @@ float GameTime::GetStartTime()
 // Gets what time it is right now
 float GameTime::GetTime()
 {
-	return time(0);
+	return (float)time(0);
 }
 
 // Calculate delta time

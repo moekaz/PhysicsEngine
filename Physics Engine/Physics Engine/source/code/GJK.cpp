@@ -7,7 +7,7 @@
 #include "../headers/ConvexShapeCollider.h"
 
 // Gilbert-Johnson-Keerthi collision detection algorithm for collision
-bool GJK::GJKCollision(ConvexShapeCollider& convexCollider1, ConvexShapeCollider& convexCollider2)
+bool GJK::GJKCollision(const ConvexShapeCollider& convexCollider1, const ConvexShapeCollider& convexCollider2)
 {
 	Simplex simplex;	// Simplex holds the points in minkowski space that we are attempting to check for
 	glm::vec3 searchDirection = glm::vec3(-1, 0, 0);	// Direction of the search within the convex shape

@@ -4,13 +4,11 @@
 */
 
 #pragma once
-#ifndef GAMETIME_H
-#define GAMETIME_H
 
 #include <time.h>
 #include "IUpdateable.h"
 
-static class GameTime : public IUpdateable
+class GameTime : public IUpdateable
 {
 public:
 	static float deltaTime;	// The delta time between frames
@@ -29,4 +27,3 @@ private:
 
 protected:
 };
-#endif // !GAMETIME_H

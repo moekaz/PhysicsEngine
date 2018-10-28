@@ -17,7 +17,7 @@ CapsuleCollider::CapsuleCollider(const glm::vec3& center , float radii , float h
 CapsuleCollider::~CapsuleCollider() {}
 
 // Checks for collisions
-bool CapsuleCollider::CheckCollision(Collider& col)
+bool CapsuleCollider::CheckCollision(const Collider& col)
 {
 	bool collision = false;
 
@@ -26,21 +26,21 @@ bool CapsuleCollider::CheckCollision(Collider& col)
 		case ColliderType::Sphere:
 		{
 			std::cout << "Capsule sphere collision detection" << std::endl;
-			CapsuleCollider& collider = static_cast<CapsuleCollider&>(col);
+			const CapsuleCollider& collider = static_cast<const CapsuleCollider&>(col);
 			collision = CollisionUtil::CapsuleCapsuleCollision(A, B, collider.A, collider.B, radii, collider.radii);
 			break;
 		}
 		case ColliderType::Box:
 		{
 			std::cout << "Capsule Box collision detection" << std::endl;
-			BoxCollider& collider = static_cast<BoxCollider&>(col);
-			collision = CollisionUtil::BoxCapsuleCollision(collider.GetPosition(), center, A, B, radii, collider.min, collider.max, collider.axes, collider.halfExtents);
+			const BoxCollider& collider = static_cast<const BoxCollider&>(col);
+			collision = CollisionUtil::BoxCapsuleCollision(collider.GetPosition(), center, A, B, radii, collider.min, collider.max, collider.GetAxes(), collider.halfExtents);
 			break;
 		}
 		case ColliderType::Capsule:
 		{
 			std::cout << "Capsule capsule collision detection" << std::endl;
-			CapsuleCollider& collider = static_cast<CapsuleCollider&>(col);
+			const CapsuleCollider& collider = static_cast<const CapsuleCollider&>(col);
 			collision = CollisionUtil::CapsuleCapsuleCollision(A , B , collider.A , collider.B , radii , collider.radii);
 			break;
 		}
@@ -64,7 +64,7 @@ bool CapsuleCollider::CheckCollision(Collider& col)
 }
 
 // Raycast collision with capsule
-bool CapsuleCollider::RaycastCollision(Ray& ray)
+bool CapsuleCollider::RaycastCollision(const Ray& ray)
 {
 	return CollisionUtil::RayCapsuleCollision(ray.startPosition , ray.direction, A , B , radii);
 }

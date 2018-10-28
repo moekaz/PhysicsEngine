@@ -8,12 +8,11 @@
 int Collider::id = 0;	// Set the value of the static int id 
 
 /* Constructor */
-Collider::Collider(const ColliderType& colliderType, const glm::vec3& vec)
-	: colliderId(id), enabled(true), trigger(false), isColliding(false), exitedCollision(false), enteredCollision(false), stillColliding(false),
-	forwardDirection(glm::vec3(0, 0, -1)), upDirection(glm::vec3(0, 1, 0)), type(colliderType)
+Collider::Collider(const ColliderType& colliderType, const glm::vec3& vec, bool isConvex)
+	: colliderId(id), center(vec), enabled(true), trigger(false), isColliding(false), exitedCollision(false), enteredCollision(false), stillColliding(false),
+	forwardDirection(glm::vec3(0, 0, -1)), upDirection(glm::vec3(0, 1, 0)), type(colliderType), isConvexShape(isConvex)
 {	
 	++id;
-	center = vec;																// Position of the center of the collider
 	sideDirection = glm::normalize(glm::cross(-forwardDirection, upDirection));	// Calculate directions of the collider
 }
 
@@ -30,10 +29,10 @@ Collider::~Collider()
 /* Functions */
 
 // Direction vectors
-glm::vec3& Collider::GetForward() { return forwardDirection; }
-glm::vec3& Collider::GetSide() { return sideDirection; }
-glm::vec3& Collider::GetUp() { return upDirection; }
-glm::vec3& Collider::GetPosition() { return this->center; }
+const glm::vec3& Collider::GetForward() const { return forwardDirection; }
+const glm::vec3& Collider::GetSide() const { return sideDirection; }
+const glm::vec3& Collider::GetUp() const { return upDirection; }
+const glm::vec3& Collider::GetPosition() const { return this->center; }
 
 void Collider::SetPosition(const glm::vec3& center) { this->center = center; }
 

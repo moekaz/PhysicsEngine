@@ -9,7 +9,7 @@
 // MIGHT WANT TO ADD SOME FRICTIONAL FORCES
 
 // Set the value of gravity that will be used for gravity calculations 
-float Rigidbody::gravity = 9.81;
+float Rigidbody::gravity = 9.81f;
 
 // Constructor
 Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, float maxSpeed) : mass(mass), isKinematic(isKinematic), position(position), maxSpeed(maxSpeed),

@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef VECTOR3D_H
-#define VECTOR3D_H
 
 #include <iostream>
 #include <cmath>
@@ -66,4 +64,3 @@ private:
 
 protected: 
 };
-#endif // VECTOR3D_H

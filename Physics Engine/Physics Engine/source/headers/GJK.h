@@ -9,8 +9,6 @@
 */
 
 #pragma once
-#ifndef GJK_H
-#define GJK_H
 
 #define MAX_NUM_ITERATIONS 64	// Helps with better performance for more complicated convex shapes while sacrificing a little on accuracy
 
@@ -25,7 +23,7 @@ class ConvexShapeCollider;
 class GJK
 {
 public:
-	bool GJKCollision(ConvexShapeCollider&, ConvexShapeCollider&);												// General implementation of GJK
+	bool GJKCollision(const ConvexShapeCollider&, const ConvexShapeCollider&);												// General implementation of GJK
 
 private:
 	bool UpdateSimplex(Simplex&, glm::vec3&, glm::vec3&);														// Update the values of the simplex after adding points from support
@@ -35,4 +33,3 @@ private:
 
 protected:
 };
-#endif // !GJK_H

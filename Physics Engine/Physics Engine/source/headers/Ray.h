@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef RAY_H
-#define RAY_H
 
 #include <glm/vec3.hpp>
 
@@ -21,4 +19,3 @@ public:
 private:
 protected:
 };
-#endif // !RAY_H

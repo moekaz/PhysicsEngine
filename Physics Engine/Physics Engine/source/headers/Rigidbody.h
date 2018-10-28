@@ -4,8 +4,7 @@
 */
 
 #pragma once
-#ifndef RIGIDBODY_H
-#define RIGIDBODY_H
+
 #define GLM_ENABLE_EXPERIMENTAL
 
 #include <glm/gtx/quaternion.hpp>
@@ -47,4 +46,3 @@ private:
 	glm::vec3 acceleration;	// Acceleration of the rigidbody
 protected:
 };
-#endif // !RIGIDBODY_H

@@ -25,27 +25,25 @@ BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(Collider
 
 	//min = glm::vec3(-0.5, -0.5, -0.5);	// Minimum positions
 	//max = glm::vec3(0.5, 0.5, 0.5);		// Maximum positions
-	
-	// CHANGE THISSSSS!!!
-	// Store the axes of the box
-	axes[0] = &sideDirection;
-	axes[1] = &upDirection;
-	axes[2] = &forwardDirection;
+
+	axes.reserve(3);
+	axes.emplace_back(&sideDirection);
+	axes.emplace_back(&upDirection);
+	axes.emplace_back(&forwardDirection);
 }
 
 /* Destructor */
 BoxCollider::~BoxCollider() {}
 
 /* Functions */
+const std::vector<glm::vec3*>& BoxCollider::GetAxes() const { return axes; }
 
 // Update values of the collider
 void BoxCollider::PhysicsUpdate()
-{
-
-}
+{}
 
 // Gives us whether there is a collision occurring
-bool BoxCollider::CheckCollision(Collider& col)
+bool BoxCollider::CheckCollision(const Collider& col)
 {
 	bool collision = false;
 
@@ -54,21 +52,21 @@ bool BoxCollider::CheckCollision(Collider& col)
 		case ColliderType::Sphere:
 		{
 			std::cout << "Box Sphere collision detection" << std::endl;
-			SphereCollider& collider = static_cast<SphereCollider&>(col);
-			collision = CollisionUtil::SphereBoxCollision(collider.GetPosition() , center , collider.radius , min , max , axes , halfExtents);
+			const SphereCollider& collider = static_cast<const SphereCollider&>(col);
+			collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), center, collider.radius, min, max, axes, halfExtents);
 			break;
 		}
 		case ColliderType::Box:
 		{
 			std::cout << "Box Box collision detection" << std::endl;
-			BoxCollider& collider = static_cast<BoxCollider&>(col);
+			const BoxCollider& collider = static_cast<const BoxCollider&>(col);
 			collision = CollisionUtil::BoxBoxCollision(*this , collider);
 			break;
 		}
 		case ColliderType::Capsule:
 		{
 			std::cout << "Box Capsule collision detection" << std::endl;
-			CapsuleCollider& collider = static_cast<CapsuleCollider&>(col);
+			const CapsuleCollider& collider = static_cast<const CapsuleCollider&>(col);
 			collision = CollisionUtil::BoxCapsuleCollision(center, collider.GetPosition(), collider.A, collider.B, collider.radii, min, max, axes, halfExtents); 
 			break;
 		}
@@ -88,8 +86,8 @@ bool BoxCollider::CheckCollision(Collider& col)
 	return collision;
 }
 
-//Raycast with box colliders
-bool BoxCollider::RaycastCollision(Ray& ray)
+// Raycast with box colliders
+bool BoxCollider::RaycastCollision(const Ray& ray)
 {
 	return CollisionUtil::RayBoxCollision(ray.startPosition, ray.direction, center, min, max, axes, halfExtents);
 }

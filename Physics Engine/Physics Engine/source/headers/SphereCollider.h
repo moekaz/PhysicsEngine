@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef SPHERECOLLIDER_H
-#define SPHERECOLLIDER_H
 
 #include <iostream>
 #include <glm/vec3.hpp>
@@ -27,12 +25,11 @@ public:
 	~SphereCollider();																// Destructor
 	
 	void PhysicsUpdate();
-	bool CheckCollision(Collider&);													// Sphere collision detection
-	bool RaycastCollision(Ray&);													// Raycast collision
+	bool CheckCollision(const Collider&);													// Sphere collision detection
+	bool RaycastCollision(const Ray&);													// Raycast collision
 
 	friend std::ostream& operator<<(std::ostream&, const SphereCollider&);			// Print out values of the collider
 
 private:
 protected:
 };
-#endif // !SPHERECOLLIDER_H

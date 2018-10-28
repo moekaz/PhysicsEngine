@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef MTRX_H
-#define MTRX_H
 
 #include <iostream>
 #include <string>
@@ -34,4 +32,3 @@ public:
 private:
 protected:
 };
-#endif // MTRX_H

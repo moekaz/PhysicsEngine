@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef SIMPLEX_H
-#define SIMPLEX_H
 
 #include <glm/vec3.hpp>
 
@@ -18,4 +16,3 @@ public:
 	Simplex();			// Constructor
 	~Simplex();			// Destructor
 };
-#endif // !SIMPLEX_H

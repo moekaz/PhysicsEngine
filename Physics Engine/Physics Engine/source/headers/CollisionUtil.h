@@ -4,8 +4,7 @@
 */
 
 #pragma once
-#ifndef COLLISIONUTIL_H
-#define COLLISIONUTIL_H
+
 #define GLM_ENABLE_EXPERIMENTAL
 
 #include <iostream>
@@ -27,21 +26,20 @@ class ConvexShapeCollider;
 // Will document this when it is at least near completion
 namespace CollisionUtil
 {
-	bool SphereSphereCollision(glm::vec3& center1, glm::vec3& center2, float radius1, float radius2);
-	bool SphereBoxCollision(glm::vec3& center1, glm::vec3& center2, float radius, glm::vec3& min, glm::vec3& max, glm::vec3* axes[], glm::vec3& halfExtents);
-	bool SphereCapsuleCollision(glm::vec3& center1, glm::vec3& center2, float radius1, float radius2, glm::vec3& A, glm::vec3& B);
+	bool SphereSphereCollision(const glm::vec3& center1, const glm::vec3& center2, float radius1, float radius2);
+	bool SphereBoxCollision(const glm::vec3& center1, const glm::vec3& center2, float radius, const glm::vec3& min, const glm::vec3& max, const std::vector<glm::vec3*>& axes, const glm::vec3& halfExtents);
+	bool SphereCapsuleCollision(const glm::vec3& center1, const glm::vec3& center2, float radius1, float radius2, const glm::vec3& A, const glm::vec3& B);
 	bool SphereMeshCollision();
-	bool BoxBoxCollision(BoxCollider& , BoxCollider&);
-	bool BoxCapsuleCollision(glm::vec3& center1, glm::vec3& center2, glm::vec3& A, glm::vec3& B, float radius, glm::vec3& min, glm::vec3& max, glm::vec3* axes[], glm::vec3& halfExtents);
+	bool BoxBoxCollision(const BoxCollider& , const BoxCollider&);
+	bool BoxCapsuleCollision(const glm::vec3& center1, const glm::vec3& center2, const glm::vec3& A, const glm::vec3& B, float radius, const glm::vec3& min, const glm::vec3& max, const std::vector<glm::vec3*>& axes, const glm::vec3& halfExtents);
 	bool BoxMeshCollision();
-	bool CapsuleCapsuleCollision(glm::vec3& A1, glm::vec3& B1, glm::vec3& A2, glm::vec3& B2, float radius1, float radius2);
+	bool CapsuleCapsuleCollision(const glm::vec3& A1, const glm::vec3& B1, const glm::vec3& A2, const glm::vec3& B2, float radius1, float radius2);
 	bool CapsuleMeshCollision();
 	bool MeshMeshCollision();
-	bool ConvexShapeCollision(ConvexShapeCollider& , ConvexShapeCollider&);		// Collision detection between convex shaped colliders
-	bool RaySphereCollision(glm::vec3& sphereCenter, float sphereRadius, glm::vec3& startPointRay, glm::vec3& rayDirection);
-	bool RayBoxCollision(glm::vec3& rayStartPosition, glm::vec3& rayDirection, glm::vec3& boxCenter, glm::vec3& boxMin, glm::vec3& boxMax, glm::vec3* axes[], glm::vec3& halfExtents);
-	bool RayCapsuleCollision(glm::vec3& startPositionRay, glm::vec3& direction, glm::vec3& A, glm::vec3& B, float capsRadius);
+	bool ConvexShapeCollision(const ConvexShapeCollider& , const ConvexShapeCollider&);		// Collision detection between convex shaped colliders
+	bool RaySphereCollision(const glm::vec3& sphereCenter, float sphereRadius, const glm::vec3& startPointRay, const glm::vec3& rayDirection);
+	bool RayBoxCollision(const glm::vec3& rayStartPosition, const glm::vec3& rayDirection, const glm::vec3& boxCenter, const glm::vec3& boxMin, const glm::vec3& boxMax, const std::vector<glm::vec3*>& axes, const glm::vec3& halfExtents);
+	bool RayCapsuleCollision(const glm::vec3& startPositionRay, const glm::vec3& direction, const glm::vec3& A, const glm::vec3& B, float capsRadius);
 	bool RayMeshCollision();
-	bool LineSegmentRayCollision(glm::vec3&, glm::vec3&, glm::vec3&, glm::vec3&);
+	bool LineSegmentRayCollision(const glm::vec3&, const glm::vec3&, const glm::vec3&, const glm::vec3&);
 }
-#endif // !COLLISIONUTIL_H

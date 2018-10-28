@@ -10,14 +10,14 @@
 namespace PhysicsUtil
 {
 	// Optimizes 2 cross product calls into 2 dot product ones
-	glm::vec3 TripleCross(glm::vec3& a, glm::vec3& b, glm::vec3& c)
+	glm::vec3 TripleCross(const glm::vec3& a, const glm::vec3& b, const glm::vec3& c)
 	{
 		// (A x B) x C = B(C . A) - A(C . B)
 		return b * (glm::dot(c , a)) - a * (glm::dot(c,b));
 	}
 
 	// Finding the minimum distance between infinite lines
-	float MinDistanceTwoLines(glm::vec3& A, glm::vec3& B, glm::vec3& C, glm::vec3& D)
+	float MinDistanceTwoLines(const glm::vec3& A, const glm::vec3& B, const glm::vec3& C, const glm::vec3& D)
 	{
 		glm::vec3 l1 = B - A;	// First direction vector 
 		glm::vec3 l2 = D - C;	// Second direction vector
@@ -35,7 +35,7 @@ namespace PhysicsUtil
 	}
 
 	// Finding the minimum distance between 2 line segments
-	float MinDistanceSquaredTwoSegments(glm::vec3& A, glm::vec3& B, glm::vec3& C, glm::vec3& D)
+	float MinDistanceSquaredTwoSegments(const glm::vec3& A, const glm::vec3& B, const glm::vec3& C, const glm::vec3& D)
 	{
 		glm::vec3 u = B - A;
 		glm::vec3 v = D - C;
@@ -113,7 +113,7 @@ namespace PhysicsUtil
 	}
 	
 	// Minimum distance between a point and a line segment
-	float MinDistanceSquaredPointSegment(glm::vec3& A, glm::vec3& B, glm::vec3& C, glm::vec3& closest)
+	float MinDistanceSquaredPointSegment(const glm::vec3& A, const glm::vec3& B, const glm::vec3& C, glm::vec3& closest)
 	{
 		glm::vec3 AB = B - A;
 		glm::vec3 AC = C - A;
@@ -144,7 +144,7 @@ namespace PhysicsUtil
 	}
 
 	// Find the minimum distance from a point to the ray
-	float MinDistanceSquaredPointRay(glm::vec3& point, glm::vec3& startPointRay, glm::vec3& rayDirection, glm::vec3& closestPoint)
+	float MinDistanceSquaredPointRay(const glm::vec3& point, const glm::vec3& startPointRay, const glm::vec3& rayDirection, glm::vec3& closestPoint)
 	{
 		float minDistance = 0;	// the minimum distance
 		glm::vec3 startPointToRay = point - startPointRay;	// Vector from the point to the starting point of the ray
@@ -169,7 +169,7 @@ namespace PhysicsUtil
 	}
 
 	// Minimum distance between a line segment and a ray
-	float MinDistanceSquaredLineSegmentRay(glm::vec3& A, glm::vec3& B, glm::vec3& rayStartPoint, glm::vec3& rayDirection)
+	float MinDistanceSquaredLineSegmentRay(const glm::vec3& A, const glm::vec3& B, const glm::vec3& rayStartPoint, const glm::vec3& rayDirection)
 	{
 		// Check if the line segment and ray intersect
 		if (CollisionUtil::LineSegmentRayCollision(A, B, rayStartPoint, rayDirection)) return 0.0f;
@@ -194,10 +194,10 @@ namespace PhysicsUtil
 	}
 	
 	// Do a raycast without checking for filtered colliders 
-	Collider* RaycastUnfiltered(std::map<int , Collider*>& colliders , glm::vec3& rayStartPosition, glm::vec3& rayDirection)
+	Collider* RaycastUnfiltered(const std::map<int , Collider*>& colliders , const glm::vec3& rayStartPosition, const glm::vec3& rayDirection)
 	{
 		Ray ray = Ray(rayStartPosition , rayDirection);		// Create a ray in the direction
-		std::map<int, Collider*>::iterator iter;
+		std::map<int, Collider*>::const_iterator iter;
 		
 		for (iter = colliders.begin(); iter != colliders.end(); ++iter)
 		{
@@ -208,11 +208,11 @@ namespace PhysicsUtil
 	}
 
 	// Do a raycast with some filtering of certain user defined filtered colliders 
-	Collider* RaycastFiltered(std::map<int, Collider*>& colliders, std::vector<Collider*>& filterColliders, glm::vec3& rayStartPosition, glm::vec3& rayDirection)
+	Collider* RaycastFiltered(const std::map<int, Collider*>& colliders, const std::vector<Collider*>& filterColliders, const glm::vec3& rayStartPosition, const glm::vec3& rayDirection)
 	{
 		Ray ray = Ray(rayStartPosition, rayDirection);	// Create a ray in the direction
 		std::map<int, Collider*> filterCollidersMap;	// Map of the filtered colliders
-		std::map<int, Collider*>::iterator iter;	// Iterator of the collider map
+		std::map<int, Collider*>::const_iterator iter;	// Iterator of the collider map
 		
 		// Store the vector in a map for quick access (makes filtering much more efficient)
 		for (unsigned int i = 0; i < filterColliders.size(); i++)
@@ -250,6 +250,6 @@ namespace PhysicsUtil
 	float Ease(float t)
 	{
 		if (!t) return NULL;
-		return (sin(t * pi - pi / 2.0f) + 1.0f) / 2.0f;
+		return (float)(sin(t * pi - pi / 2.0f) + 1.0f) / 2.0f;
 	}
 }

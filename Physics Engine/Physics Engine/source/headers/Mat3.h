@@ -4,8 +4,6 @@
 */
 
 #pragma once
-#ifndef MAT3_H
-#define MAT3_H
 
 #include <iostream>
 #include "../headers/Vector3D.h"
@@ -43,4 +41,3 @@ private:
 
 protected:
 };
-#endif // MAT3_H

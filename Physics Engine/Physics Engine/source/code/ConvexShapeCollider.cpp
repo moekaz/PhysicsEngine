@@ -6,30 +6,27 @@
 #include "../headers/ConvexShapeCollider.h"
 
 // Constructor
-ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center) : Collider(colliderType, center)
+ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center) : Collider(colliderType, center, true)
 {
-	type = ColliderType::ConvexShape;	// This is a convex shape
-	isConvexShape = true;
 }
 
 //Destructor
 ConvexShapeCollider::~ConvexShapeCollider(){}
 
 // Used for GJK collision
-glm::vec3 ConvexShapeCollider::Support(ConvexShapeCollider& convexCollider , glm::vec3& direction)
+glm::vec3 ConvexShapeCollider::Support(const ConvexShapeCollider& convexCollider , const glm::vec3& direction) const
 {
 	glm::vec3& p1 = FarthestPointInDirection(direction);
-	glm::vec3 neg = -direction;
-	glm::vec3& p2 = convexCollider.FarthestPointInDirection(neg);
+	glm::vec3& p2 = convexCollider.FarthestPointInDirection(-direction);
 	glm::vec3 p3 = p1 - p2;
 	return p3;
 }
 
 // Return farthest point with respect to a certain direction
-glm::vec3& ConvexShapeCollider::FarthestPointInDirection(glm::vec3& direction)
+glm::vec3& ConvexShapeCollider::FarthestPointInDirection(const glm::vec3& direction) const
 {
 	float maxDot = -std::numeric_limits<float>::infinity();	// Max dot vector
-	glm::vec3 *farthest = NULL;	// Farthest vector
+	glm::vec3* farthest = NULL;	// Farthest vector
 
 	for (unsigned int i = 0; i < vertices.size(); i++)
 	{
@@ -45,9 +42,9 @@ glm::vec3& ConvexShapeCollider::FarthestPointInDirection(glm::vec3& direction)
 }
 
 // Convex shape collision detection
-bool ConvexShapeCollider::CheckCollision(Collider& col)
+bool ConvexShapeCollider::CheckCollision(const Collider& col)
 {
-	ConvexShapeCollider& collider = static_cast<ConvexShapeCollider&>(col);
+	const ConvexShapeCollider& collider = static_cast<const ConvexShapeCollider&>(col);
 
 	if (col.isConvexShape) 
 	{
@@ -63,12 +60,15 @@ void ConvexShapeCollider::PhysicsUpdate()
 }
 
 // We do not have an implementation of this
-bool ConvexShapeCollider::RaycastCollision(Ray& ray) 
+bool ConvexShapeCollider::RaycastCollision(const Ray& ray)
 {
 	// A ray is a convex shape if we use it as a line
 	glm::vec3 rayEndPoint = glm::normalize(ray.direction) * std::numeric_limits<float>::infinity();	// Get the end point of the ray
-	ConvexShapeCollider convexLine = ConvexShapeCollider(rayEndPoint - ray.startPosition);	// Setup the convex shape
-	convexLine.vertices = { &ray.startPosition , &rayEndPoint };	// Set the vertices to be the 2 points of the ray
+	ConvexShapeCollider convexLine = ConvexShapeCollider(ColliderType::ConvexShape, rayEndPoint - ray.startPosition);	// Setup the convex shape
+	convexLine.vertices.reserve(2);
+	glm::vec3 start = ray.startPosition;
+	convexLine.vertices.emplace_back(&start);
+	convexLine.vertices.emplace_back(&rayEndPoint);
 
 	return CollisionUtil::ConvexShapeCollision(*this , convexLine);	// Check with GJK 
 }
