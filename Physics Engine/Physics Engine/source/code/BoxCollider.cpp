@@ -8,11 +8,8 @@
 #include "../headers/CapsuleCollider.h"
 
 /* Constructor */
-BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(center)
+BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(ColliderType::Box, center), halfExtents(glm::vec3(0.5, 0.5, 0.5))
 {
-	type = ColliderType::Box;
-	halfExtents = glm::vec3(0.5 , 0.5 , 0.5);	// The width along each axis should be 1 
-
 	// Setup vertices and mins and maxes
 	vertices =
 	{
@@ -26,9 +23,10 @@ BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(center)
 		new glm::vec3(0.5 , -0.5 , -0.5),
 	};
 
-	min = glm::vec3(-0.5, -0.5, -0.5);	// Minimum positions
-	max = glm::vec3(0.5, 0.5, 0.5);		// Maximum positions
+	//min = glm::vec3(-0.5, -0.5, -0.5);	// Minimum positions
+	//max = glm::vec3(0.5, 0.5, 0.5);		// Maximum positions
 	
+	// CHANGE THISSSSS!!!
 	// Store the axes of the box
 	axes[0] = &sideDirection;
 	axes[1] = &upDirection;

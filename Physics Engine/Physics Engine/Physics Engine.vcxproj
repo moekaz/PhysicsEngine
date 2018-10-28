@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -125,7 +125,6 @@
     <ClCompile Include="source\code\Collider.cpp" />
     <ClCompile Include="source\code\CollisionUtil.cpp" />
     <ClCompile Include="source\code\ConvexShapeCollider.cpp" />
-    <ClCompile Include="source\code\EPA.cpp" />
     <ClCompile Include="source\code\GameTime.cpp" />
     <ClCompile Include="source\code\GJK.cpp" />
     <ClCompile Include="source\code\Mat3.cpp" />
@@ -144,7 +143,6 @@
     <ClInclude Include="source\headers\CollisionUtil.h" />
     <ClInclude Include="source\headers\ConvexShapeCollider.h" />
     <ClInclude Include="source\headers\Defs.h" />
-    <ClInclude Include="source\headers\EPA.h" />
     <ClInclude Include="source\headers\GameTime.h" />
     <ClInclude Include="source\headers\GJK.h" />
     <ClInclude Include="source\headers\IUpdateable.h" />

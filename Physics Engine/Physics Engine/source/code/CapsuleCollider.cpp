@@ -8,13 +8,9 @@
 #include "../headers/SphereCollider.h"
 
 // Constructor
-CapsuleCollider::CapsuleCollider(const glm::vec3& center , float radii , float height) : Collider(center)
+CapsuleCollider::CapsuleCollider(const glm::vec3& center , float radii , float height) : Collider(ColliderType::Capsule, center),
+	height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
 {
-	type = ColliderType::Capsule;
-	this->height = height;
-	A = center - glm::vec3(0, height / 2, 0);	// Center should be the midpoint of the height line segment of the capsule
-	B = center + glm::vec3(0, height / 2, 0);
-	this->radii = radii;
 }
 
 // Destructor

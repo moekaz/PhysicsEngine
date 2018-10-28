@@ -8,19 +8,12 @@
 int Collider::id = 0;	// Set the value of the static int id 
 
 /* Constructor */
-Collider::Collider(const glm::vec3& vec)
+Collider::Collider(const ColliderType& colliderType, const glm::vec3& vec)
+	: colliderId(id), enabled(true), trigger(false), isColliding(false), exitedCollision(false), enteredCollision(false), stillColliding(false),
+	forwardDirection(glm::vec3(0, 0, -1)), upDirection(glm::vec3(0, 1, 0)), type(colliderType)
 {	
 	++id;
-	colliderId = id;															// Collider id for map hashing
-	enabled = true;																// Is the collider turned on 
-	trigger = false;															// Is it a trigger collider
-	isColliding = false;														// Is colliding with another collider
-	exitedCollision = false;													// Left Collision
-	enteredCollision = false;													// Just entered collision
-	stillColliding = false;														// still in collision
 	center = vec;																// Position of the center of the collider
-	forwardDirection = glm::vec3(0, 0, -1);										// Forward direction
-	upDirection = glm::vec3(0, 1, 0);											// Up vector
 	sideDirection = glm::normalize(glm::cross(-forwardDirection, upDirection));	// Calculate directions of the collider
 }
 

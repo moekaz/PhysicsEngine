@@ -8,11 +8,8 @@
 #include "../headers/CapsuleCollider.h"
 
 /* Constructor */
-SphereCollider::SphereCollider(const glm::vec3& center , float radius) : Collider(center)
-{
-	type = ColliderType::Sphere;
-	this->radius = radius;
-}
+SphereCollider::SphereCollider(const glm::vec3& center , float radius) : Collider(ColliderType::Sphere, center), radius(radius)
+{}
 
 /* Destructor */
 SphereCollider::~SphereCollider() {}

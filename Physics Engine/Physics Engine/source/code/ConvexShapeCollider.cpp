@@ -6,7 +6,7 @@
 #include "../headers/ConvexShapeCollider.h"
 
 // Constructor
-ConvexShapeCollider::ConvexShapeCollider(const glm::vec3& center) : Collider(center)
+ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center) : Collider(colliderType, center)
 {
 	type = ColliderType::ConvexShape;	// This is a convex shape
 	isConvexShape = true;

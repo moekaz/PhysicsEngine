@@ -36,7 +36,7 @@ public:
 	Rigidbody* rigidbody;												    // Values that might be needed are here
 	std::vector<glm::vec3*> vertices;										// Store the vertices of the collider
 
-	Collider(const glm::vec3& vec = glm::vec3());							// Constructor
+	Collider(const ColliderType&, const glm::vec3& vec = glm::vec3());							// Constructor
 	~Collider();															// Destructor
 
 	virtual void PhysicsUpdate() = 0;										// Physics update

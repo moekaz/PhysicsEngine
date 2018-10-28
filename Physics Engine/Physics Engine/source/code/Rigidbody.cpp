@@ -12,19 +12,10 @@
 float Rigidbody::gravity = 9.81;
 
 // Constructor
-Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, float maxSpeed)
+Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, float maxSpeed) : mass(mass), isKinematic(isKinematic), position(position), maxSpeed(maxSpeed),
+	previousPosition(glm::vec3()), velocity(glm::vec3()), acceleration(glm::vec3()), orientation(glm::quat()), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
+	up(glm::vec3(0, 1, 0))
 {
-	this->mass = mass;
-	this->isKinematic = isKinematic;
-	this->position = position;
-	this->maxSpeed = maxSpeed;
-	previousPosition = glm::vec3();
-	velocity = glm::vec3();
-	acceleration - glm::vec3();
-	orientation = glm::quat();
-	forward = glm::vec3(0, 0, -1);
-	up = glm::vec3(0, 1, 0);
-	side = glm::vec3(1, 0, 0);
 }
 
 // Destructor

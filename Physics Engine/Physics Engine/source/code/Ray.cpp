@@ -6,11 +6,8 @@
 #include "../headers/Ray.h"
 
 // Constructor
-Ray::Ray(const glm::vec3& startPos , const glm::vec3& rayDirection)
-{
-	startPosition = startPos;
-	direction = rayDirection;
-}
+Ray::Ray(const glm::vec3& startPos , const glm::vec3& rayDirection) : startPosition(startPos) , direction(rayDirection)
+{}
 
 // Destructor
 Ray::~Ray() {}
