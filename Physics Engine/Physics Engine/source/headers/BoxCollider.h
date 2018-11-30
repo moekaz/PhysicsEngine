@@ -5,38 +5,38 @@
 
 #pragma once
 
-#include <iostream>
-#include <glm/vec3.hpp>
-
 #include "Vector3D.h"
 #include "ConvexShapeCollider.h"
 #include "CollisionUtil.h"
 
-// Forward declarations
-class SphereCollider;
-class CapsuleCollider;
-class MeshCollider;
-
-class BoxCollider : public ConvexShapeCollider
+namespace MTRX
 {
-public:
-	glm::vec3 min;															// Stores min x,y,z
-	glm::vec3 max;															// Stores max x,y,z
-	glm::vec3 halfExtents;													// Half widths along each axis
+	// Forward declarations
+	class SphereCollider;
+	class CapsuleCollider;
+	class MeshCollider;
 
-	BoxCollider(const glm::vec3& = glm::vec3());							// Constructor
-	~BoxCollider();															// Destrutor
+	class BoxCollider : public ConvexShapeCollider
+	{
+	public:
+		glm::vec3 min;															// Stores min x,y,z
+		glm::vec3 max;															// Stores max x,y,z
+		glm::vec3 halfExtents;													// Half widths along each axis
 
-	const std::vector<glm::vec3*>& GetAxes() const; // Get axes
-	void PhysicsUpdate();
-	bool CheckCollision(const Collider&);											// Check collision with box collider 
-	bool RaycastCollision(const Ray&);									    // Raycast collision
-	void RecomputeMinsMaxes();												// Recalculates the min and max values of the vertices 
+		BoxCollider(const glm::vec3& = glm::vec3());							// Constructor
+		~BoxCollider();															// Destrutor
 
-	friend std::ostream& operator<<(std::ostream& os , const BoxCollider&);	// Print out the values of th collider
+		const std::vector<glm::vec3*>& GetAxes() const; // Get axes
+		void PhysicsUpdate();
+		bool CheckCollision(const MTRX::Collider&);											// Check collision with box collider 
+		bool RaycastCollision(const Ray&);									    // Raycast collision
+		void RecomputeMinsMaxes();												// Recalculates the min and max values of the vertices 
 
-private:
-	std::vector<glm::vec3*> axes;														// Store the axes of the box collider
+		friend std::ostream& operator<<(std::ostream& os, const BoxCollider&);	// Print out the values of th collider
 
-protected:
-};
+	private:
+		std::vector<glm::vec3*> axes;														// Store the axes of the box collider
+
+	protected:
+	};
+}

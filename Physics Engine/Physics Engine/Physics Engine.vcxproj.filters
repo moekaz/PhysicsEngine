@@ -45,9 +45,6 @@
     <ClCompile Include="source\code\GJK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\code\EPA.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\code\CapsuleCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\code\GameTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\PrecompiledHeader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,9 +98,6 @@
     <ClInclude Include="source\headers\Simplex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\headers\EPA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\headers\GJK.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -117,6 +114,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\headers\IUpdateable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\PrecompiledHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

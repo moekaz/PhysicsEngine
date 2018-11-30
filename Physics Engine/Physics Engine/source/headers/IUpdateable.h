@@ -5,11 +5,14 @@
 
 #pragma once
 
-class IUpdateable
+namespace MTRX
 {
-public:
-	virtual void PhysicsUpdate() = 0;	// Call a physics update
+	class IUpdateable
+	{
+	public:
+		virtual void PhysicsUpdate() = 0;	// Call a physics update
 
-private:
-protected:
-};
+	private:
+	protected:
+	};
+}

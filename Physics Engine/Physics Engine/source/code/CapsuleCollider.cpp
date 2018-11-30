@@ -3,26 +3,29 @@
 	Description: Implementation of a capsule collider
 */
 
+#include "../headers/PrecompiledHeader.h"
 #include "../headers/CapsuleCollider.h"
 #include "../headers/BoxCollider.h"
 #include "../headers/SphereCollider.h"
 
-// Constructor
-CapsuleCollider::CapsuleCollider(const glm::vec3& center , float radii , float height) : Collider(ColliderType::Capsule, center),
-	height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
+namespace MTRX
 {
-}
-
-// Destructor
-CapsuleCollider::~CapsuleCollider() {}
-
-// Checks for collisions
-bool CapsuleCollider::CheckCollision(const Collider& col)
-{
-	bool collision = false;
-
-	switch (col.type)
+	// Constructor
+	CapsuleCollider::CapsuleCollider(const glm::vec3& center, float radii, float height) : Collider(ColliderType::Capsule, center),
+		height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
 	{
+	}
+
+	// Destructor
+	CapsuleCollider::~CapsuleCollider() {}
+
+	// Checks for collisions
+	bool CapsuleCollider::CheckCollision(const Collider& col)
+	{
+		bool collision = false;
+
+		switch (col.type)
+		{
 		case ColliderType::Sphere:
 		{
 			std::cout << "Capsule sphere collision detection" << std::endl;
@@ -41,7 +44,7 @@ bool CapsuleCollider::CheckCollision(const Collider& col)
 		{
 			std::cout << "Capsule capsule collision detection" << std::endl;
 			const CapsuleCollider& collider = static_cast<const CapsuleCollider&>(col);
-			collision = CollisionUtil::CapsuleCapsuleCollision(A , B , collider.A , collider.B , radii , collider.radii);
+			collision = CollisionUtil::CapsuleCapsuleCollision(A, B, collider.A, collider.B, radii, collider.radii);
 			break;
 		}
 		case ColliderType::Mesh:
@@ -56,34 +59,34 @@ bool CapsuleCollider::CheckCollision(const Collider& col)
 			std::cout << "HOUSTON WE HAVE A PROBLEM" << std::endl;
 			collision = false;
 		}
+		}
+
+		UpdateCollisionInfo();	// Update the collision information such as when the collision occurred etc etc...
+
+		return collision;
 	}
 
-	UpdateCollisionInfo();	// Update the collision information such as when the collision occurred etc etc...
+	// Raycast collision with capsule
+	bool CapsuleCollider::RaycastCollision(const Ray& ray)
+	{
+		return CollisionUtil::RayCapsuleCollision(ray.startPosition, ray.direction, A, B, radii);
+	}
 
-	return collision;
+	// Update values of the collider
+	void CapsuleCollider::PhysicsUpdate()
+	{
+	}
+
+	// Print out the values of the collider
+	std::ostream& operator<<(std::ostream& os, const CapsuleCollider& caps)
+	{
+		return os << "Capsule Collider:" << std::endl
+			<< "-----------------" << std::endl
+			<< "Center: " << std::endl
+			<< "x: " << caps.center.x << std::endl
+			<< "y: " << caps.center.y << std::endl
+			<< "z: " << caps.center.z << std::endl
+			<< "Radii: " << caps.radii << std::endl
+			<< "Height: " << caps.height;
+	}
 }
-
-// Raycast collision with capsule
-bool CapsuleCollider::RaycastCollision(const Ray& ray)
-{
-	return CollisionUtil::RayCapsuleCollision(ray.startPosition , ray.direction, A , B , radii);
-}
-
-// Update values of the collider
-void CapsuleCollider::PhysicsUpdate()
-{
-}
-
-// Print out the values of the collider
-std::ostream& operator<<(std::ostream& os , const CapsuleCollider& caps)
-{
-	return os << "Capsule Collider:" << std::endl
-		<< "-----------------" << std::endl
-		<< "Center: " << std::endl
-		<< "x: " << caps.center.x << std::endl
-		<< "y: " << caps.center.y << std::endl
-		<< "z: " << caps.center.z << std::endl
-		<< "Radii: " << caps.radii << std::endl
-		<< "Height: " << caps.height;
-}
-
