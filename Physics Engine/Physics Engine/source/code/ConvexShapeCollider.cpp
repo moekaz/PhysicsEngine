@@ -3,8 +3,8 @@
 	Description: Implementation of a convex shape collider
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/ConvexShapeCollider.h"
+#include <PrecompiledHeader.h>
+#include <ConvexShapeCollider.h>
 
 namespace MTRX
 {
@@ -59,7 +59,6 @@ namespace MTRX
 	// Updating the values of a convex shape
 	void ConvexShapeCollider::PhysicsUpdate() {}
 
-	// We do not have an implementation of this
 	bool ConvexShapeCollider::RaycastCollision(const Ray& ray)
 	{
 		// A ray is a convex shape if we use it as a line

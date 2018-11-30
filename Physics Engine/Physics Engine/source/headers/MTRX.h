@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "IUpdateable.h"
-#include "Collider.h"
-#include "Mat3.h"
+#include <IUpdateable.h>
+#include <Collider.h>
+#include <Mat3.h>
 
 namespace MTRX
 {

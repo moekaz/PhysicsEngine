@@ -3,7 +3,7 @@
 	Description: Implementation of a ray
 */
 
-#include "../headers/PrecompiledHeader.h"
+#include <PrecompiledHeader.h>
 #include "../headers/Ray.h"
 
 namespace MTRX

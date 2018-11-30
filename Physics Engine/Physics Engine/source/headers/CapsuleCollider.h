@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "Defs.h"
-#include "Collider.h"
+#include <Defs.h>
+#include <Collider.h>
 #include "CollisionUtil.h"
 
 namespace MTRX

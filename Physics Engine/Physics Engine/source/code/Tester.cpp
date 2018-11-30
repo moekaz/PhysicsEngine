@@ -3,14 +3,14 @@
 	Description: This is a tester piece of source code
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/Vector3D.h"
-#include "../headers/Mat3.h"
-#include "../headers/SphereCollider.h"
-#include "../headers/BoxCollider.h"
-#include "../headers/CapsuleCollider.h"
-#include "../headers/ConvexShapeCollider.h"
-#include "../headers/PhysicsUtil.h"
+#include <PrecompiledHeader.h>
+#include <Vector3D.h>
+#include <Mat3.h>
+#include <SphereCollider.h>
+#include <BoxCollider.h>
+#include <CapsuleCollider.h>
+#include <ConvexShapeCollider.h>
+#include <PhysicsUtil.h>
 
 // HOW AM I CHECKING FOR MEMORY LEAKS
 

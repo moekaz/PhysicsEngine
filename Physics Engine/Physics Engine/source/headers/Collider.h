@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include "IUpdateable.h"
-#include "Rigidbody.h"
-#include "Defs.h"
-#include "Ray.h"
+#include <IUpdateable.h>
+#include <Rigidbody.h>
+#include <Defs.h>
+#include <Ray.h>
 
 namespace MTRX
 {
@@ -24,6 +24,8 @@ namespace MTRX
 		bool enteredCollision;													// Entered collision
 		bool exitedCollision;													// Exited collision	
 		bool isConvexShape;														// Is the collider a convex shape
+
+		// MAKE DIRECTION VECTORS A UNION OF vec3s and an array of size 3 of them 
 		glm::vec3 forwardDirection;												// The forward direction of the collider
 		glm::vec3 upDirection;													// The Upwards direction of the collider
 		glm::vec3 sideDirection;												// The Side direction of the collider

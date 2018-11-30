@@ -3,8 +3,8 @@
     Description: Cpp for implemnenating a 3D vector's functionality
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/Vector3D.h"
+#include <PrecompiledHeader.h>
+#include <Vector3D.h>
 
 namespace MTRX
 {

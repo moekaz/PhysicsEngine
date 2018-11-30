@@ -3,9 +3,8 @@
 	Description: Util file that includes implementations of collider collision detection
 */
 
-#include "../headers/PrecompiledHeader.h"
+#include <PrecompiledHeader.h>
 
-// Fix for cyclic dependencies
 #include "../headers/CollisionUtil.h"
 #include "../headers/BoxCollider.h"
 #include "../headers/SphereCollider.h"

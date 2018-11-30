@@ -3,8 +3,8 @@
 	Description: Implementation of a simplex
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/Simplex.h"
+#include <PrecompiledHeader.h>
+#include <Simplex.h>
 
 namespace MTRX
 {

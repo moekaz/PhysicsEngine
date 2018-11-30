@@ -3,10 +3,10 @@
 	Description: implementation of a sphere collider
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/SphereCollider.h"
-#include "../headers/BoxCollider.h"
-#include "../headers/CapsuleCollider.h"
+#include <PrecompiledHeader.h>
+#include <SphereCollider.h>
+#include <BoxCollider.h>
+#include <CapsuleCollider.h>
 
 namespace MTRX
 {

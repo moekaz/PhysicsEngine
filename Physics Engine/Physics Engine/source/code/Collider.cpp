@@ -3,8 +3,9 @@
 	Description: Some general implementation of all colliders
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/Collider.h"
+#include <PrecompiledHeader.h>
+
+#include <Collider.h>
 
 namespace MTRX
 {

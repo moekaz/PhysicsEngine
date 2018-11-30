@@ -5,8 +5,8 @@
 		http://geomalgorithms.com/a07-_distance.html#dist3D_Segment_to_Segment
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/PhysicsUtil.h"
+#include <PrecompiledHeader.h>
+#include <PhysicsUtil.h>
 
 namespace MTRX
 {

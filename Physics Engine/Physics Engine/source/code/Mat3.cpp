@@ -3,8 +3,8 @@
 	Description: Cpp implementation of a 3x3 matrix
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/Mat3.h"
+#include <PrecompiledHeader.h>
+#include <Mat3.h>
 
 namespace MTRX
 {

@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "IUpdateable.h"
-#include "GameTime.h"
+#include <IUpdateable.h>
+#include <GameTime.h>
 
 namespace MTRX
 {

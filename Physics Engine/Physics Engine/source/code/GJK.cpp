@@ -3,9 +3,9 @@
 	Description: Implementation of GJK
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/GJK.h"
-#include "../headers/ConvexShapeCollider.h"
+#include <PrecompiledHeader.h>
+#include <GJK.h>
+#include <ConvexShapeCollider.h>
 
 // WE CAN OPTIMIZE THIS SOME MORE MAYBE
 namespace MTRX

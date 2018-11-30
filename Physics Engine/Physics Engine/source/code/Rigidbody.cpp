@@ -3,8 +3,8 @@
 	Description: Implementation of rigidbodies
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/Rigidbody.h"
+#include <PrecompiledHeader.h>
+#include <Rigidbody.h>
 
 // MIGHT WANT TO READ UP ON SOME TORQUE AND ROTATIONAL FORCES
 // MIGHT WANT TO ADD SOME FRICTIONAL FORCES

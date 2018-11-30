@@ -3,8 +3,8 @@
 	Description: Some calculations of the game's time
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/GameTime.h"
+#include <PrecompiledHeader.h>
+#include <GameTime.h>
 
 namespace MTRX
 {

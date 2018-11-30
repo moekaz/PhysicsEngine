@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "Simplex.h"
-#include "GJK.h"
-#include "PhysicsUtil.h"
+#include <Simplex.h>
+#include <GJK.h>
+#include <PhysicsUtil.h>
 
 namespace MTRX
 {

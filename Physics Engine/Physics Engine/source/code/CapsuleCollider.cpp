@@ -3,10 +3,11 @@
 	Description: Implementation of a capsule collider
 */
 
-#include "../headers/PrecompiledHeader.h"
-#include "../headers/CapsuleCollider.h"
-#include "../headers/BoxCollider.h"
-#include "../headers/SphereCollider.h"
+#include <PrecompiledHeader.h>
+
+#include <CapsuleCollider.h>
+#include <BoxCollider.h>
+#include <SphereCollider.h>
 
 namespace MTRX
 {
