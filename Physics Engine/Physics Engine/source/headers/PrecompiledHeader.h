@@ -15,6 +15,16 @@
 #include <time.h>
 #include <cmath>
 
+// MTRX defs
+#include <Defs.h>
+
 // GLM
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
+
+// SpdLog
+#include <spdlog.h>
+#include <logger.h>
+#include <sinks/rotating_file_sink.h>
+
+// Premake
