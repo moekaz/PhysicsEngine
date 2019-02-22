@@ -40,7 +40,7 @@ namespace MTRX
 
 	void Particle::SetMass(const float mass) 
 	{
-		assert(mass != 0); 
+		assert(mass != 0); // We are not supposed to have a 0 mass 
 		inverseMass = 1.f / mass; 
 	}
 

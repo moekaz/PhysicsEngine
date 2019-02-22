@@ -34,12 +34,10 @@ namespace MTRX
 		/* Getters */
 		inline float GetInverseMass() const { return inverseMass; }
 		float GetMass() const;
-
-		// Const functions
+		inline float GetDamping() const { return damping; }
 		inline glm::vec3& GetPosition() { return position; }
 		inline glm::vec3& GetVelocity() { return velocity; }
 		inline glm::vec3& GetAcceleration() { return acceleration; }
-		inline float GetDamping() const { return damping; }
 
 		friend std::ostream& operator<<(const std::ostream& os, const Particle& particle); // Some way of printing out a particle
 	protected:

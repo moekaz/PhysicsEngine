@@ -66,7 +66,7 @@
     <ClCompile Include="source\code\LogManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="source\code\Particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,10 +128,7 @@
     <ClInclude Include="source\headers\LogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header1.h">
+    <ClInclude Include="source\headers\Particle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

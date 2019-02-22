@@ -9,11 +9,11 @@
 #define LOG_FILE_DIR "MTRXLogs\\" // Directory where log file will be created in
 
 // Macros for API calls to log information
-#define MTRX_WARN(...) MTRX::LogManager::GetMTRXLogger()->warn(__VA_ARGS__)
-#define MTRX_INFO(...) MTRX::LogManager::GetMTRXLogger()->info(__VA_ARGS__)
-#define MTRX_TRACE(...) MTRX::LogManager::GetMTRXLogger()->trace(__VA_ARGS__)
-#define MTRX_ERROR(...) MTRX::LogManager::GetMTRXLogger()->error(__VA_ARGS__)
-#define MTRX_CRITICAL(...) MTRX::LogManager::GetMTRXLogger()->critical(__VA_ARGS__)
+#define MTRX_WARN(...) MTRX::LogManager::warn(__VA_ARGS__)
+#define MTRX_INFO(...) MTRX::LogManager::info(__VA_ARGS__)
+#define MTRX_TRACE(...) MTRX::LogManager::trace(__VA_ARGS__)
+#define MTRX_ERROR(...) MTRX::LogManager::error(__VA_ARGS__)
+#define MTRX_CRITICAL(...) MTRX::LogManager::critical(__VA_ARGS__)
 
 namespace MTRX
 {
@@ -21,13 +21,23 @@ namespace MTRX
 	{
 	public:
 		static void init(); // Initialize the logger
-		inline static std::shared_ptr<spdlog::logger>& GetMTRXLogger() { return mtrxLogger; } // Getter for the logger 
+
+		/* API for the logger to abstract library used and make it simple if we change libraries */
+		template<typename T>
+		inline static void warn(const T& msg) { mtrxLogger->warn(msg); }
+		template<typename T>
+		inline static void info(const T& msg) { mtrxLogger->info(msg); }
+		template<typename T>
+		inline static void trace(const T& msg) { mtrxLogger->trace(msg); }
+		template<typename T>
+		inline static void error(const T& msg) { mtrxLogger->error(msg); }
+		template<typename T>
+		inline static void critical(const T& msg) { mtrxLogger->critical(msg); }
 
 	private:
 		static std::shared_ptr<spdlog::logger> mtrxLogger; // Store a pointer to the logger that the engine will be using		
 		static void CreateLogDirectory(); // Sets up the log directory to be used by the logger to log information onto
 
 	protected:
-
 	};
 }
