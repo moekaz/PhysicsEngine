@@ -19,26 +19,30 @@ namespace MTRX
 	public:
 		Particle(const glm::vec3& position = glm::vec3(), const float inverseMass = 0);
 		~Particle();
-		virtual void PhysicsUpdate() override; // Implementation of the physics engine update
-		void AddForce(const glm::vec3& force); // Add forces
 
-		inline bool isInfiniteMass() { return inverseMass == 0.f; } // Checking if we have infinite mass
+		// Implementation of the physics engine update
+		virtual void PhysicsUpdate() override;
+		// Add forces
+		void AddForce(const glm::vec3& force);
+		// Checking if we have infinite mass
+		inline bool isInfiniteMass() { return inverseMass == 0.f; }
 
 		/* Setters */
-		inline void SetInverseMass(const float inverseMass) { this->inverseMass = inverseMass; }
 		void SetMass(const float mass);
+		inline void SetInverseMass(const float inverseMass) { this->inverseMass = inverseMass; }
 		inline void SetPosition(const glm::vec3& position) { this->position = position; }
 		inline void SetVelocity(const glm::vec3& velocity) { this->velocity = velocity; }
 		inline void SetAcceleration(const glm::vec3& acceleration) { this->acceleration = acceleration; }
 		inline void SetDamping(const float damping) { this->damping = damping; }
 
 		/* Getters */
-		inline float GetInverseMass() const { return inverseMass; }
 		float GetMass() const;
+		inline float GetInverseMass() const { return inverseMass; }
 		inline float GetDamping() const { return damping; }
 		inline glm::vec3& GetPosition() { return position; }
 		inline glm::vec3& GetVelocity() { return velocity; }
 		inline glm::vec3& GetAcceleration() { return acceleration; }
+		inline ForceGenerationRegistry& GetForceRegistry() { return forceRegistry; }
 
 		friend std::ostream& operator<<(const std::ostream& os, const Particle& particle); // Some way of printing out a particle
 	protected:
@@ -49,7 +53,5 @@ namespace MTRX
 		float damping; // Simple damping for frictional forces (between 0 and 1)
 		float inverseMass; // The mass of the particle (inverse mass is better as we don't want a zero mass and having a value of 0 is easy but infinity is hard)
 		ForceGenerationRegistry forceRegistry; // Force registry that we use to generate forces 
-
-	private:
 	};
 }

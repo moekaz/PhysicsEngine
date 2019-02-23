@@ -72,10 +72,10 @@
     <ClCompile Include="source\code\ForceGenerationRegistry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GravityForceGenerator.cpp">
+    <ClCompile Include="source\code\GravityForceGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DragForceGenerator.cpp">
+    <ClCompile Include="source\code\DragForceGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,10 +146,10 @@
     <ClInclude Include="source\headers\IForceGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GravityForceGenerator.h">
+    <ClInclude Include="source\headers\DragForceGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DragForceGenerator.h">
+    <ClInclude Include="source\headers\GravityForceGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

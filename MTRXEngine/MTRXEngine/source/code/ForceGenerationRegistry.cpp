@@ -1,6 +1,5 @@
-#include "PrecompiledHeader.h"
-#include "ForceGenerationRegistry.h"
-
+#include <PrecompiledHeader.h>
+#include <ForceGenerationRegistry.h>
 
 namespace MTRX
 {

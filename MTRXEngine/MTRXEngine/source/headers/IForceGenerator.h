@@ -4,10 +4,11 @@
 */
 #pragma once
 
-#include <Particle.h>
-
 namespace MTRX
 {
+	// Forward declarations
+	class Particle;
+
 	class IForceGenerator
 	{
 	public:

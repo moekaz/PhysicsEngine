@@ -146,9 +146,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DragForceGenerator.cpp" />
-    <ClCompile Include="GravityForceGenerator.cpp" />
+    <ClCompile Include="source\code\DragForceGenerator.cpp" />
     <ClCompile Include="source\code\ForceGenerationRegistry.cpp" />
+    <ClCompile Include="source\code\GravityForceGenerator.cpp" />
     <ClCompile Include="source\code\Particle.cpp" />
     <ClCompile Include="source\code\BoxCollider.cpp" />
     <ClCompile Include="source\code\CapsuleCollider.cpp" />
@@ -178,9 +178,9 @@
     <ClCompile Include="source\code\Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DragForceGenerator.h" />
-    <ClInclude Include="GravityForceGenerator.h" />
+    <ClInclude Include="source\headers\DragForceGenerator.h" />
     <ClInclude Include="source\headers\ForceGenerationRegistry.h" />
+    <ClInclude Include="source\headers\GravityForceGenerator.h" />
     <ClInclude Include="source\headers\IForceGenerator.h" />
     <ClInclude Include="source\headers\Particle.h" />
     <ClInclude Include="source\headers\BoxCollider.h" />
