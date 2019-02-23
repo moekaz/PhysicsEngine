@@ -6,10 +6,11 @@
 
 #pragma once
 
+#define MAX_MASS 10000000.f // Some large number i am going to use to simulate a very large mass
+
 #include <IUpdateable.h>
 #include <GameTime.h>
-
-#define MAX_MASS 10000000.f // Some large number i am going to use to simulate a very large mass
+#include <ForceGenerationRegistry.h>
 
 namespace MTRX
 {
@@ -47,6 +48,7 @@ namespace MTRX
 		glm::vec3 accumForces; // Accumulated forces 
 		float damping; // Simple damping for frictional forces (between 0 and 1)
 		float inverseMass; // The mass of the particle (inverse mass is better as we don't want a zero mass and having a value of 0 is easy but infinity is hard)
+		ForceGenerationRegistry forceRegistry; // Force registry that we use to generate forces 
 
 	private:
 	};
