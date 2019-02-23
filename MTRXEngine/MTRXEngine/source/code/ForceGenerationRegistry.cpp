@@ -14,7 +14,7 @@ namespace MTRX
 	{
 		for (auto iter = forceGenerators.begin(); iter != forceGenerators.end(); ++iter)
 		{
-			if (&(*iter) == forceGenerator)
+			if (*iter == forceGenerator)
 			{
 				forceGenerators.erase(iter);
 				break;
@@ -26,7 +26,7 @@ namespace MTRX
 	{
 		for (auto iter = forceGenerators.begin(); iter != forceGenerators.end(); ++iter)
 		{
-			iter->UpdateForces(*particle);
+			(*iter)->UpdateForces(*particle);
 		}
 	}
 }

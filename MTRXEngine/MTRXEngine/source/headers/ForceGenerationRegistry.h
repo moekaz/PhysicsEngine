@@ -18,7 +18,7 @@ namespace MTRX
 		~ForceGenerationRegistry();
 
 		// Add a force generator to a particle's registry
-		inline void AddForceGenerator(const IForceGenerator& forceGenerator) { forceGenerators.push_back(forceGenerator); }
+		inline void AddForceGenerator(IForceGenerator* forceGenerator) { forceGenerators.push_back(forceGenerator); }
 		// Remove a force generator from a particle's registry
 		inline void RemoveForceGenerator(const int index) { forceGenerators.erase(forceGenerators.begin() + index); }
 		// Remove by force generator
@@ -29,7 +29,7 @@ namespace MTRX
 		void UpdateForceGenerators();
 
 	private:
-		std::vector<IForceGenerator> forceGenerators; // The force generators that we going to be using
+		std::vector<IForceGenerator*> forceGenerators; // The force generators that we going to be using
 	};
 }
 
