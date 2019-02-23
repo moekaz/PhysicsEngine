@@ -9,6 +9,9 @@
 
 namespace MTRX
 {
+	// Forward declarations
+	class Particle;
+
 	class ForceGenerationRegistry
 	{
 	public:

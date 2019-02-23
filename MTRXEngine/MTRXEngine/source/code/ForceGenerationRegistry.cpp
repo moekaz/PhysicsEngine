@@ -1,5 +1,6 @@
 #include <PrecompiledHeader.h>
 #include <ForceGenerationRegistry.h>
+#include <Particle.h>
 
 namespace MTRX
 {
