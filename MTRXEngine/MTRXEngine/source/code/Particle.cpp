@@ -4,7 +4,7 @@
 namespace MTRX
 {
 	Particle::Particle(const glm::vec3& position, const float inverseMass) : position(position), velocity(glm::vec3()), acceleration(glm::vec3()), 
-		inverseMass(inverseMass), accumForces(glm::vec3()), forceRegistry(ForceGenerationRegistry(this))
+		inverseMass(inverseMass), accumForces(glm::vec3()), forceRegistry(this)
 	{}
 
 	Particle::~Particle()

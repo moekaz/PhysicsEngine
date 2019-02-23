@@ -10,3 +10,12 @@
 enum class ColliderType: char { Sphere, Box, Capsule, Mesh, ConvexShape, };	// Type of what a collider is 
 const double pi = 3.14159265358;	// The value of pi (close enough)
 float g = 15.f; // Constant value for gravity (not realistic value but games don't have realistic gravity)
+
+// Struct that holds some information about a spring
+struct SpringData
+{
+	float stiffness;
+	float restLength;
+
+	SpringData(float stiffness, float restLength) : stiffness(stiffness), restLength(restLength) {}
+};
