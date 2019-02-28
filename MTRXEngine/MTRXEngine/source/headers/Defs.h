@@ -25,7 +25,6 @@ struct LiquidProperties
 {
 	float density;
 	float volume;
-	float depth;
 
-	LiquidProperties(float density, float volume, float depth) : density(density), volume(volume), depth(depth) {}
+	LiquidProperties(float density, float volume) : density(density), volume(volume) {}
 };
