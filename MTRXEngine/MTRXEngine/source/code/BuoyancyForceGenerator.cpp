@@ -3,8 +3,8 @@
 
 namespace MTRX
 {
- 	BuoyancyForceGenerator::BuoyancyForceGenerator(float density, float volume, float paticleDepth) : liquidProperties(density, volume), 
-		particleDepth(particleDepth)
+ 	BuoyancyForceGenerator::BuoyancyForceGenerator(float density, float volume, float maxPaticleDepth) : liquidProperties(density, volume),
+		maxParticleDepth(maxPaticleDepth)
 	{}
 
 	BuoyancyForceGenerator::~BuoyancyForceGenerator()
@@ -30,6 +30,9 @@ namespace MTRX
 			force.y = liquidProperties.density * liquidProperties.volume * (liquidHeight + maxParticleDepth - currentDepth) / (2 * maxParticleDepth);
 		else // Completely submerged object
 			force.y = liquidProperties.density * liquidProperties.volume;
+
+		// Don't we need to multiply that force by gravity??
+		//force.y *= g;
 
 		// Add the resulting force on the particle
 		particle->AddForce(force);
