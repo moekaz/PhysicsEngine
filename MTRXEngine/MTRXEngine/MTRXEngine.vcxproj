@@ -146,6 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\code\BuoyancyForceGenerator.cpp" />
+    <ClCompile Include="source\code\BungeeSpringForceGenerator.cpp" />
+    <ClCompile Include="source\code\AnchoredSpringForceGenerator.cpp" />
+    <ClCompile Include="source\code\DefaultSpringForceGenerator.cpp" />
     <ClCompile Include="source\code\DragForceGenerator.cpp" />
     <ClCompile Include="source\code\ForceGenerationRegistry.cpp" />
     <ClCompile Include="source\code\GravityForceGenerator.cpp" />
@@ -178,6 +182,10 @@
     <ClCompile Include="source\code\Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\headers\BuoyancyForceGenerator.h" />
+    <ClInclude Include="source\headers\BungeeSpringForceGenerator.h" />
+    <ClInclude Include="source\headers\AnchoredSpringForceGenerator.h" />
+    <ClInclude Include="source\headers\DefaultSpringForceGenerator.h" />
     <ClInclude Include="source\headers\DragForceGenerator.h" />
     <ClInclude Include="source\headers\ForceGenerationRegistry.h" />
     <ClInclude Include="source\headers\GravityForceGenerator.h" />

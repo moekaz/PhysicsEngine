@@ -19,3 +19,13 @@ struct SpringData
 
 	SpringData(float stiffness, float restLength) : stiffness(stiffness), restLength(restLength) {}
 };
+
+// Struct that holds properties of a liquid used in the buoyancy generator
+struct LiquidProperties
+{
+	float density;
+	float volume;
+	float depth;
+
+	LiquidProperties(float density, float volume, float depth) : density(density), volume(volume), depth(depth) {}
+};
