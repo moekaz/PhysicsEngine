@@ -41,6 +41,21 @@ namespace MTRX
 
 		// Calculate the new separating velocity and factor in the restitution
 		float newSeperatingVelocity = -seperatingVelocity * restitution;
+
+		// This is a bit of a hack but should work for the moment
+		// Check for velocity caused by acceleration in the direction of the closing velocity
+		glm::vec3 accelerationBuildUp = particles[0]->GetAcceleration() - particles[1]->GetAcceleration();
+		float accelerationCausedSepVelocity = glm::dot(accelerationBuildUp , collisionNormal * GameTime::deltaTime);
+		if (accelerationCausedSepVelocity < 0)
+		{
+			// Subtract the acceleration in the direction of the collision normal from the separating velocity
+			newSeperatingVelocity += accelerationCausedSepVelocity * restitution;
+
+			// We don't want a negative new separating velocity
+			if (newSeperatingVelocity < 0)
+				newSeperatingVelocity = 0;
+		}
+
 		float deltaVelocity = newSeperatingVelocity - seperatingVelocity;
 		float impulse = deltaVelocity / totalInverseMass;
 		glm::vec3 impulsePerMass = collisionNormal * impulse;
