@@ -6,7 +6,7 @@ namespace MTRX
 	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitution) : particles {particle1, particle2}, restitution(restitution),
 		collisionNormal(glm::normalize(particles[0]->GetPosition() - particles[1]->GetPosition()))
 	{
-		// COLLISION WITH A STATIC OBJECT NEED TO DECIDE WHAT THE COLLISION NORMAL IS?
+		// IF THE COLLISION IS BETWEEN A PARTICLE AND AN IMMOVABLE OBJECT PROVIDE YOUR NORMAL AS THIS WILL NOT WORK
 
 		// Getting the normal of particles if one has infinite mass
 		//if (particles[0]->isInfiniteMass() || particles[1]->isInfiniteMass()) // One of the particles is immovable
