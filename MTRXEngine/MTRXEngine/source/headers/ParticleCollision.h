@@ -1,7 +1,7 @@
 /*
 	Author: Mohamed Kazma
 	Description: Collision contact handling between 2 particles (collision event)
-	impluse forces caused by collision modify the velocity value and not the acceleration as they are not forces per se
+	impulse forces caused by collision modify the velocity value and not the acceleration as they are not forces per se
 */
 
 #pragma once
@@ -24,7 +24,6 @@ namespace MTRX
 		void Resolve(); // Allows us to resolve a collision
 		float CalculateSeparatingVelocity() const; // Calculate the separating velocity between 2 particles
 		inline void SetCollisionNormal(glm::vec3& normal) { collisionNormal = normal; } // Mostly used for collision between particle and static object
-	protected:
 
 	private:
 		void ResolveVelocity(); // Modify velocity according to separating velocity, restitution etc...

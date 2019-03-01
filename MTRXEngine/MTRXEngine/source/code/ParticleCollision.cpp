@@ -3,17 +3,10 @@
 
 namespace MTRX
 {
+	// IF THE COLLISION IS BETWEEN A PARTICLE AND AN IMMOVABLE OBJECT PROVIDE YOUR NORMAL AS THIS WILL NOT WORK
 	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitution) : particles {particle1, particle2}, restitution(restitution),
 		collisionNormal(glm::normalize(particles[0]->GetPosition() - particles[1]->GetPosition()))
-	{
-		// IF THE COLLISION IS BETWEEN A PARTICLE AND AN IMMOVABLE OBJECT PROVIDE YOUR NORMAL AS THIS WILL NOT WORK
-
-		// Getting the normal of particles if one has infinite mass
-		//if (particles[0]->isInfiniteMass() || particles[1]->isInfiniteMass()) // One of the particles is immovable
-		//	contactNormal = glm::vec3(0, 1, 0);
-		//else // 2 particles a to b 
-		//contactNormal = glm::normalize(particles[0]->GetPosition() - particles[1]->GetPosition());
-	}
+	{}
 
 	ParticleCollision::~ParticleCollision()
 	{}
@@ -23,7 +16,7 @@ namespace MTRX
 		// Assuming that both particles exist if not then u have a problem
 		glm::vec3 relVelocity = particles[0]->GetVelocity();
 		relVelocity -= particles[1]->GetVelocity(); // Would be zero if the object is immovable
-		return glm::dot(relVelocity, collisionNormal);
+		return glm::dot(relVelocity, collisionNormal); // Dot product of the 2 vectors
 	}
 
 	void ParticleCollision::Resolve()
