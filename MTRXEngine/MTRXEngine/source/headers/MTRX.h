@@ -6,7 +6,7 @@
 #pragma once
 
 #include <IUpdateable.h>
-#include <Collider.h>
+#include <colliders/Collider.h>
 
 namespace MTRX
 {

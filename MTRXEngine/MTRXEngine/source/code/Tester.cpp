@@ -4,14 +4,14 @@
 */
 
 #include <PrecompiledHeader.h>
-#include <Vector3D.h>
-#include <Mat3.h>
-#include <SphereCollider.h>
-#include <BoxCollider.h>
-#include <CapsuleCollider.h>
-#include <ConvexShapeCollider.h>
-#include <PhysicsUtil.h>
-#include <LogManager.h>
+#include <math/Vector3D.h>
+#include <math/Mat3.h>
+#include <colliders/SphereCollider.h>
+#include <colliders/BoxCollider.h>
+#include <colliders/CapsuleCollider.h>
+#include <colliders/ConvexShapeCollider.h>
+#include <utils/PhysicsUtil.h>
+#include <log/LogManager.h>
 
 // HOW AM I CHECKING FOR MEMORY LEAKS
 

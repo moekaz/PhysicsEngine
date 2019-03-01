@@ -5,7 +5,7 @@
 
 #include <PrecompiledHeader.h>
 #include <GJK.h>
-#include <ConvexShapeCollider.h>
+#include <colliders/ConvexShapeCollider.h>
 
 // WE CAN OPTIMIZE THIS SOME MORE MAYBE
 namespace MTRX

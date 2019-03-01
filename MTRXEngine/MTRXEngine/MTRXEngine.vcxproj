@@ -146,23 +146,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\code\BuoyancyForceGenerator.cpp" />
-    <ClCompile Include="source\code\BungeeSpringForceGenerator.cpp" />
-    <ClCompile Include="source\code\AnchoredSpringForceGenerator.cpp" />
-    <ClCompile Include="source\code\DefaultSpringForceGenerator.cpp" />
-    <ClCompile Include="source\code\DragForceGenerator.cpp" />
-    <ClCompile Include="source\code\ForceGenerationRegistry.cpp" />
-    <ClCompile Include="source\code\GravityForceGenerator.cpp" />
-    <ClCompile Include="source\code\Particle.cpp" />
-    <ClCompile Include="source\code\BoxCollider.cpp" />
-    <ClCompile Include="source\code\CapsuleCollider.cpp" />
-    <ClCompile Include="source\code\Collider.cpp" />
-    <ClCompile Include="source\code\CollisionUtil.cpp" />
-    <ClCompile Include="source\code\ConvexShapeCollider.cpp" />
+    <ClCompile Include="source\code\colliders\BoxCollider.cpp" />
+    <ClCompile Include="source\code\colliders\CapsuleCollider.cpp" />
+    <ClCompile Include="source\code\colliders\Collider.cpp" />
+    <ClCompile Include="source\code\colliders\ConvexShapeCollider.cpp" />
+    <ClCompile Include="source\code\colliders\SphereCollider.cpp" />
+    <ClCompile Include="source\code\entities\Particle.cpp" />
+    <ClCompile Include="source\code\entities\Rigidbody.cpp" />
+    <ClCompile Include="source\code\forceGenerators\AnchoredSpringForceGenerator.cpp" />
+    <ClCompile Include="source\code\forceGenerators\BungeeSpringForceGenerator.cpp" />
+    <ClCompile Include="source\code\forceGenerators\BuoyancyForceGenerator.cpp" />
+    <ClCompile Include="source\code\forceGenerators\DefaultSpringForceGenerator.cpp" />
+    <ClCompile Include="source\code\forceGenerators\DragForceGenerator.cpp" />
+    <ClCompile Include="source\code\forceGenerators\ForceGenerationRegistry.cpp" />
+    <ClCompile Include="source\code\forceGenerators\GravityForceGenerator.cpp" />
+    <ClCompile Include="source\code\forceGenerators\StiffSpringForceGenerator.cpp" />
+    <ClCompile Include="source\code\log\LogManager.cpp" />
+    <ClCompile Include="source\code\math\Mat3.cpp" />
+    <ClCompile Include="source\code\math\Simplex.cpp" />
+    <ClCompile Include="source\code\math\Vector3D.cpp" />
+    <ClCompile Include="source\code\ParticleCollision.cpp" />
     <ClCompile Include="source\code\GameTime.cpp" />
     <ClCompile Include="source\code\GJK.cpp" />
-    <ClCompile Include="source\code\LogManager.cpp" />
-    <ClCompile Include="source\code\Mat3.cpp" />
     <ClCompile Include="source\code\PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -174,42 +179,41 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PrecompiledHeader.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="source\code\Ray.cpp" />
-    <ClCompile Include="source\code\Rigidbody.cpp" />
-    <ClCompile Include="source\code\Simplex.cpp" />
-    <ClCompile Include="source\code\SphereCollider.cpp" />
     <ClCompile Include="source\code\Tester.cpp" />
-    <ClCompile Include="source\code\PhysicsUtil.cpp" />
-    <ClCompile Include="source\code\Vector3D.cpp" />
+    <ClCompile Include="source\code\utils\CollisionUtil.cpp" />
+    <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\headers\BuoyancyForceGenerator.h" />
-    <ClInclude Include="source\headers\BungeeSpringForceGenerator.h" />
-    <ClInclude Include="source\headers\AnchoredSpringForceGenerator.h" />
-    <ClInclude Include="source\headers\DefaultSpringForceGenerator.h" />
-    <ClInclude Include="source\headers\DragForceGenerator.h" />
-    <ClInclude Include="source\headers\ForceGenerationRegistry.h" />
-    <ClInclude Include="source\headers\GravityForceGenerator.h" />
-    <ClInclude Include="source\headers\IForceGenerator.h" />
-    <ClInclude Include="source\headers\Particle.h" />
-    <ClInclude Include="source\headers\BoxCollider.h" />
-    <ClInclude Include="source\headers\CapsuleCollider.h" />
-    <ClInclude Include="source\headers\Collider.h" />
-    <ClInclude Include="source\headers\CollisionUtil.h" />
-    <ClInclude Include="source\headers\ConvexShapeCollider.h" />
+    <ClInclude Include="source\headers\colliders\BoxCollider.h" />
+    <ClInclude Include="source\headers\colliders\CapsuleCollider.h" />
+    <ClInclude Include="source\headers\colliders\Collider.h" />
+    <ClInclude Include="source\headers\colliders\ConvexShapeCollider.h" />
+    <ClInclude Include="source\headers\colliders\SphereCollider.h" />
+    <ClInclude Include="source\headers\entities\Particle.h" />
+    <ClInclude Include="source\headers\entities\Rigidbody.h" />
+    <ClInclude Include="source\headers\forceGenerators\AnchoredSpringForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\BungeeSpringForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\BuoyancyForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\DefaultSpringForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\DragForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\ForceGenerationRegistry.h" />
+    <ClInclude Include="source\headers\forceGenerators\GravityForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\IForceGenerator.h" />
+    <ClInclude Include="source\headers\forceGenerators\StiffSpringForceGenerator.h" />
+    <ClInclude Include="source\headers\log\LogManager.h" />
+    <ClInclude Include="source\headers\math\Mat3.h" />
+    <ClInclude Include="source\headers\math\Simplex.h" />
+    <ClInclude Include="source\headers\math\Vector3D.h" />
+    <ClInclude Include="source\headers\ParticleCollision.h" />
     <ClInclude Include="source\headers\Defs.h" />
     <ClInclude Include="source\headers\GameTime.h" />
     <ClInclude Include="source\headers\GJK.h" />
     <ClInclude Include="source\headers\IUpdateable.h" />
-    <ClInclude Include="source\headers\LogManager.h" />
-    <ClInclude Include="source\headers\Mat3.h" />
     <ClInclude Include="source\headers\MTRX.h" />
     <ClInclude Include="source\headers\PrecompiledHeader.h" />
     <ClInclude Include="source\headers\Ray.h" />
-    <ClInclude Include="source\headers\Rigidbody.h" />
-    <ClInclude Include="source\headers\Simplex.h" />
-    <ClInclude Include="source\headers\SphereCollider.h" />
-    <ClInclude Include="source\headers\PhysicsUtil.h" />
-    <ClInclude Include="source\headers\Vector3D.h" />
+    <ClInclude Include="source\headers\utils\CollisionUtil.h" />
+    <ClInclude Include="source\headers\utils\PhysicsUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
