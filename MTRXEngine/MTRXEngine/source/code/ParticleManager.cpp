@@ -22,7 +22,7 @@ namespace MTRX
 		// THERE IS ALSO THE ROD AND CABLE COLLISION GENERATORS THAT WE NEED TO ADD THRIR COLLISIONS HERE
 
 		// Resolve collisions (THIS MIGHT BE WRONG) makes some sense but not sure 
-		collisionResolver.SetIterations(particleCollisions.size() * 2.f);
+		collisionResolver.SetIterations(particleCollisions.size() * 2);
 		collisionResolver.ResolveContacts(particleCollisions);
 	}
 
@@ -32,6 +32,8 @@ namespace MTRX
 		{
 			(*iter)->GenerateContact(particleCollisions, maxContacts);
 		}
+
+		return 1;
 	}
 
 	void ParticleManager::UpdateParticles()
