@@ -15,9 +15,10 @@ namespace MTRX
 	public:
 		float lengthSqr; // Length of the rod
 
-		ParticleRodCoupling(float length);
+		ParticleRodCoupling(float lengthSqr);
 		~ParticleRodCoupling();
 
+		// THIS MIGHT NEED TO BE REDONE
 		virtual void GenerateContact(ParticleCollision& collision); // Implementation of the generation of a contact with a rod
 	};
 }

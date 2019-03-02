@@ -17,7 +17,7 @@ namespace MTRX
 		~ParticleCollisionResolver();
 
 		inline void SetIterations(unsigned int iterations) { numIterations = iterations; }
-		void ResolveContacts(std::vector<ParticleCollision*> particleCollisions);
+		void ResolveContacts(std::list<ParticleCollision*>& particleCollisions);
 	private:
 		unsigned int numIterations; // The number of iterations that we are going to be running at the current frame
 		unsigned int currentIterations; // The number of iterations that we have currently used at the current frame

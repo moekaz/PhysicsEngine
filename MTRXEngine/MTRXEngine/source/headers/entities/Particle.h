@@ -10,7 +10,6 @@
 
 #include <IUpdateable.h>
 #include <GameTime.h>
-#include <forceGenerators/ForceGenerationRegistry.h>
 
 namespace MTRX
 {
@@ -42,7 +41,6 @@ namespace MTRX
 		inline glm::vec3& GetPosition() { return position; }
 		inline glm::vec3& GetVelocity() { return velocity; }
 		inline glm::vec3& GetAcceleration() { return acceleration; }
-		inline ForceGenerationRegistry& GetForceRegistry() { return forceRegistry; }
 
 		friend std::ostream& operator<<(const std::ostream& os, const Particle& particle); // Some way of printing out a particle
 	protected:
@@ -52,6 +50,5 @@ namespace MTRX
 		glm::vec3 accumForces; // Accumulated forces 
 		float damping; // Simple damping for frictional forces (between 0 and 1)
 		float inverseMass; // The mass of the particle (inverse mass is better as we don't want a zero mass and having a value of 0 is easy but infinity is hard)
-		ForceGenerationRegistry forceRegistry; // Force registry that we use to generate forces 
 	};
 }

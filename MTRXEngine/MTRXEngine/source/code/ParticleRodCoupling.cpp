@@ -3,7 +3,7 @@
 
 namespace MTRX
 {
-	ParticleRodCoupling::ParticleRodCoupling(float length) : length(length)
+	ParticleRodCoupling::ParticleRodCoupling(float lengthSqr) : lengthSqr(lengthSqr)
 	{}
 
 	ParticleRodCoupling::~ParticleRodCoupling()

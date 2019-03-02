@@ -10,7 +10,7 @@ namespace MTRX
 	ParticleCollisionResolver::~ParticleCollisionResolver()
 	{}
 
-	void ParticleCollisionResolver::ResolveContacts(std::vector<ParticleCollision*> particleCollisions)
+	void ParticleCollisionResolver::ResolveContacts(std::list<ParticleCollision*>& particleCollisions)
 	{
 		currentIterations = 0; // Reset the number of iterations for this frame
 		while (currentIterations != numIterations)

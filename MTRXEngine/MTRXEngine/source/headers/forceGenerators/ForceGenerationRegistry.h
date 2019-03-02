@@ -9,15 +9,13 @@
 
 namespace MTRX
 {
-	// Forward declarations
+	// Forward declaration
 	class Particle;
 
 	class ForceGenerationRegistry
 	{
 	public:
-		Particle* particle;
-
-		ForceGenerationRegistry(Particle* particle);
+		ForceGenerationRegistry();
 		~ForceGenerationRegistry();
 
 		// Add a force generator to a particle's registry
@@ -29,7 +27,7 @@ namespace MTRX
 		// Removes All the force generators that we have
 		inline void clearForceGenerators() { forceGenerators.clear(); }
 		// Update the force generators
-		void UpdateForceGenerators();
+		void UpdateForceGenerators(Particle* particle); // Update the force generators using a particle
 
 	private:
 		std::vector<IForceGenerator*> forceGenerators; // The force generators that we going to be using

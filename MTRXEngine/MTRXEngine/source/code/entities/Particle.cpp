@@ -4,7 +4,7 @@
 namespace MTRX
 {
 	Particle::Particle(const glm::vec3& position, const float inverseMass) : position(position), velocity(glm::vec3()), acceleration(glm::vec3()), 
-		inverseMass(inverseMass), accumForces(glm::vec3()), forceRegistry(this)
+		inverseMass(inverseMass), accumForces(glm::vec3())
 	{}
 
 	Particle::~Particle()
@@ -15,9 +15,6 @@ namespace MTRX
 		// If we have an inverseMass of 0 we should not be updating
 		if (inverseMass <= 0)
 			return;
-
-		// Update the forces that we are generating before calculating the acceleration
-		forceRegistry.UpdateForceGenerators();
 
 		// Update acceleration using newton's second law
 		acceleration = accumForces * inverseMass;

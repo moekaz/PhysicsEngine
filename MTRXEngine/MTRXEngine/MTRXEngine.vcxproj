@@ -146,6 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\code\ParticleCableCoupling.cpp" />
+    <ClCompile Include="source\code\ParticleManager.cpp" />
+    <ClCompile Include="source\code\ParticleRodCoupling.cpp" />
+    <ClCompile Include="source\code\ParticleCollisionResolver.cpp" />
+    <ClCompile Include="source\code\ParticleCoupling.cpp" />
     <ClCompile Include="source\code\colliders\BoxCollider.cpp" />
     <ClCompile Include="source\code\colliders\CapsuleCollider.cpp" />
     <ClCompile Include="source\code\colliders\Collider.cpp" />
@@ -184,6 +189,12 @@
     <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\headers\ParticleCableCoupling.h" />
+    <ClInclude Include="source\headers\ParticleCollisionGenerator.h" />
+    <ClInclude Include="source\headers\ParticleManager.h" />
+    <ClInclude Include="source\headers\ParticleRodCoupling.h" />
+    <ClInclude Include="source\headers\ParticleCollisionResolver.h" />
+    <ClInclude Include="source\headers\ParticleCoupling.h" />
     <ClInclude Include="source\headers\colliders\BoxCollider.h" />
     <ClInclude Include="source\headers\colliders\CapsuleCollider.h" />
     <ClInclude Include="source\headers\colliders\Collider.h" />

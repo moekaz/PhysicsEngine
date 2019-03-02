@@ -4,7 +4,7 @@
 
 namespace MTRX
 {
-	ForceGenerationRegistry::ForceGenerationRegistry(Particle* particle) : particle(particle)
+	ForceGenerationRegistry::ForceGenerationRegistry()
 	{}
 
 	ForceGenerationRegistry::~ForceGenerationRegistry()
@@ -22,7 +22,7 @@ namespace MTRX
 		}
 	}
 
-	void ForceGenerationRegistry::UpdateForceGenerators()
+	void ForceGenerationRegistry::UpdateForceGenerators(Particle* particle)
 	{
 		for (auto iter = forceGenerators.begin(); iter != forceGenerators.end(); ++iter)
 		{
