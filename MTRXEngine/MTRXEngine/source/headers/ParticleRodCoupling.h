@@ -19,6 +19,6 @@ namespace MTRX
 		~ParticleRodCoupling();
 
 		// THIS MIGHT NEED TO BE REDONE
-		virtual void GenerateContact(ParticleCollision& collision); // Implementation of the generation of a contact with a rod
+		virtual void GenerateContact(std::list<ParticleCollision*>& collisions, unsigned int limit); // Implementation of the generation of a contact with a rod
 	};
 }
