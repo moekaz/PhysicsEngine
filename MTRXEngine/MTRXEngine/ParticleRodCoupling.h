@@ -13,7 +13,7 @@ namespace MTRX
 	class ParticleRodCoupling : public ParticleCoupling
 	{
 	public:
-		float length; // Length of the rod
+		float lengthSqr; // Length of the rod
 
 		ParticleRodCoupling(float length);
 		~ParticleRodCoupling();
