@@ -18,7 +18,7 @@ namespace MTRX
 		float penetration; // The depth of penetration between the 2 objects
 		glm::vec3 collisionNormal; // The normal of the collision used to calculate the separating velocity
 
-		ParticleCollision(Particle* particle1, Particle* particle2, float restitution);
+		ParticleCollision(Particle* particle1, Particle* particle2, float restitution, glm::vec3& normal);
 		~ParticleCollision();
 
 		void Resolve(); // Allows us to resolve a collision

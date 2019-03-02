@@ -3,9 +3,9 @@
 
 namespace MTRX
 {
-	// IF THE COLLISION IS BETWEEN A PARTICLE AND AN IMMOVABLE OBJECT PROVIDE YOUR NORMAL AS THIS WILL NOT WORK
-	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitution) : particles {particle1, particle2}, restitution(restitution),
-		collisionNormal(glm::normalize(particles[0]->GetPosition() - particles[1]->GetPosition()))
+	// YOU NEED TO SPECIFY THE NORMAL OF THE COLLISION 
+	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitutionm, glm::vec3& normal) : particles {particle1, particle2}, 
+		restitution(restitution), collisionNormal(normal)
 	{}
 
 	ParticleCollision::~ParticleCollision()
