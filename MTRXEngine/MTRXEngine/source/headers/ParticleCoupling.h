@@ -22,8 +22,8 @@ namespace MTRX
 		~ParticleCoupling();
 
 		float GetCurrentLengthSqr() const; // Gives us the length of the cable/ rod that connects the particles squared
-		virtual void GenerateContact(std::list<ParticleCollision*>& collisions, unsigned int limit) = 0;
-		//virtual void GenerateContact(ParticleCollision& collision) = 0; // Create a contact collision if the link is taut enough
+		virtual void GenerateContact(std::list<ParticleCollision>& collisions, unsigned int limit) = 0;
+
 	private:
 	};
 }

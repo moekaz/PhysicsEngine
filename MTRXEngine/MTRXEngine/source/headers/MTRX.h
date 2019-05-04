@@ -13,7 +13,7 @@ namespace MTRX
 	class MTRX : public IUpdateable
 	{
 	public:
-		std::map<int, Collider> collider;		// Store the colliders that we want to run through
+		std::unordered_map<int, Collider> collider;		// Store the colliders that we want to run through
 
 		MTRX();								// Constructor
 		~MTRX();							// Destructor

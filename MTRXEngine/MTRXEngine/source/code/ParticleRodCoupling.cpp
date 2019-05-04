@@ -9,7 +9,7 @@ namespace MTRX
 	ParticleRodCoupling::~ParticleRodCoupling()
 	{}
 
-	void ParticleRodCoupling::GenerateContact(std::list<ParticleCollision*>& collisions, unsigned int limit)
+	void ParticleRodCoupling::GenerateContact(std::list<ParticleCollision>& collisions, unsigned int limit)
 	{
 		// THIS SHOULD GENERATE 2 CONTACT AS TO NOT MAKE THE ROD VIBRATE
 
@@ -29,6 +29,6 @@ namespace MTRX
 		collision.penetration = sqrt(abs(currentLengthSqr - lengthSqr));
 
 		// THIS IS STILL A PROBLEM
-		//collision.push_back(collision);
+		collisions.push_back(collision);
 	}
 }
