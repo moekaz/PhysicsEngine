@@ -10,7 +10,7 @@ namespace MTRX
 	{}
 
 	// THIS MIGHT NEED TO BE REDONE
-	void ParticleCableCoupling::GenerateContact(std::list<ParticleCollision*>& collisions, unsigned int limit)
+	void ParticleCableCoupling::GenerateContact(std::list<ParticleCollision>& collisions, unsigned int limit)
 	{
 		// If the cable is not taut enough no contact will be generated
 		float lengthSqr = GetCurrentLengthSqr();
@@ -24,7 +24,6 @@ namespace MTRX
 		ParticleCollision collision = ParticleCollision(particles[0], particles[1], restitution, collisionNormal);
 		collision.penetration = sqrt(lengthSqr - maxLengthSqr); // We need the actual lengths so we are gonna have to bite the bullet with sqrt
 
-		// THIS MIGHT BE A PROBLEM AS THIS WILL BE DEALLOCATED
-		//collisions.push_back(&collision);
+		collisions.push_back(collision);
 	}
 }

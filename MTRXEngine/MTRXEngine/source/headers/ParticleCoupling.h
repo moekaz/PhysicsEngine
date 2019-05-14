@@ -21,9 +21,8 @@ namespace MTRX
 		ParticleCoupling();
 		~ParticleCoupling();
 
-		float GetCurrentLengthSqr() const; // Gives us the length of the cable/ rod that connects the particles squared
+		// Gives us the length of the cable/ rod that connects the particles squared
+		inline float GetCurrentLengthSqr() const { return glm::length2(particles[0]->GetPosition() - particles[1]->GetPosition()); }
 		virtual void GenerateContact(std::list<ParticleCollision>& collisions, unsigned int limit) = 0;
-
-	private:
 	};
 }

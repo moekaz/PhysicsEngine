@@ -11,7 +11,7 @@ namespace MTRX
 
 	void ParticleRodCoupling::GenerateContact(std::list<ParticleCollision>& collisions, unsigned int limit)
 	{
-		// THIS SHOULD GENERATE 2 CONTACT AS TO NOT MAKE THE ROD VIBRATE
+		// THIS SHOULD GENERATE 2 CONTACTS AS TO NOT MAKE THE ROD VIBRATE
 
 		// Check the length of the rod
 		float currentLengthSqr = GetCurrentLengthSqr();

@@ -28,7 +28,7 @@ namespace MTRX
 
 	unsigned int ParticleManager::GenerateCollisions()
 	{
-		for (auto iter = particleCollisionGenrators.begin(); iter != particleCollisionGenrators.end(); ++iter)
+		for (auto iter = particleCollisionGenerators.begin(); iter != particleCollisionGenerators.end(); ++iter)
 		{
 			(*iter)->GenerateContact(particleCollisions, maxContacts);
 		}
@@ -40,7 +40,7 @@ namespace MTRX
 	{
 		for (auto iter = particles.begin(); iter != particles.end(); ++iter)
 		{
-			(*iter)->PhysicsUpdate();
+			iter->PhysicsUpdate();
 		}
 	}
 
@@ -49,7 +49,7 @@ namespace MTRX
 		for (auto iter = forceGenerationRegistry.begin(); iter != forceGenerationRegistry.end(); ++iter)
 		{
 			// Update force generators with their representative particle
-			(*iter)->registry->UpdateForceGenerators((*iter)->particle);
+			iter->registry->UpdateForceGenerators(iter->particle);
 		}
 	}
 }

@@ -7,6 +7,7 @@
 
 #include <forceGenerators/IForceGenerator.h>
 #include <entities/Particle.h>
+#include <Defs.h>
 
 namespace MTRX
 {

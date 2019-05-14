@@ -6,74 +6,101 @@
 #include <PrecompiledHeader.h>
 #include <entities/Rigidbody.h>
 
-// MIGHT WANT TO READ UP ON SOME TORQUE AND ROTATIONAL FORCES
-// MIGHT WANT TO ADD SOME FRICTIONAL FORCES
-
 namespace MTRX
 {
-	// Set the value of gravity that will be used for gravity calculations 
-	float Rigidbody::gravity = 9.81f;
-
 	// Constructor
-	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, float maxSpeed) : mass(mass), isKinematic(isKinematic), position(position), maxSpeed(maxSpeed),
-		previousPosition(glm::vec3()), velocity(glm::vec3()), acceleration(glm::vec3()), orientation(glm::quat()), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)),
-		up(glm::vec3(0, 1, 0))
-	{
-	}
+	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position) : Body(position, mass), isKinematic(isKinematic), 
+		orientation(glm::quat()), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0))
+	{}
 
 	// Destructor
 	Rigidbody::~Rigidbody() {}
 
-	// Get Position 
-	glm::vec3& Rigidbody::GetPosition() { return position; }
-
-	// Set position
-	void Rigidbody::SetPosition(const glm::vec3& position) { this->position = position; }
-
 	// Update the values of the rigid body
 	void Rigidbody::PhysicsUpdate()
 	{
-		// Check for gravity (Weight = mg so we don't need to divide by mass when we add that force)
-		if (isKinematic) acceleration.y -= gravity;
+		// Do not perform physics calculations
+		if (isKinematic || GetIsInfiniteMass())
+			return;
 
-		// A = V / T => V = A * T
-		//velocity = acceleration * GameTime::deltaTime;
+		// Get acceleration with accumulated forces and inverse mass
+		prevAcceleration = acceleration + inverseMass * accumForces;
+		
+		// Get angular acceleration
+		glm::vec3 angularAcceleration = accumTorque * CalculateIITWorld();
 
-		// Store temporary position
-		glm::vec3& temp = position;
+		// Integrate the acceleration to get the velocity
+		velocity += prevAcceleration * GameTime::deltaTime;
 
-		// Move the position of the rigidbody (verlet integeration)
-		position += (position - previousPosition) + acceleration * GameTime::deltaTime * GameTime::deltaTime;
+		// Integrate the angular acceleration to get the rotation
+		rotation += angularAcceleration * GameTime::deltaTime;
 
-		// Store Previous position
-		previousPosition = temp;
+		// Drag linear and rotation
+		velocity += std::pow(linearDamping, GameTime::deltaTime);
+		rotation *= std::pow(angularDamping, GameTime::deltaTime);
 
-		// Reset the velocity values
-		//velocity.x = 0;
-		//velocity.y = 0;
-		//velocity.z = 0;
+		// Update rotation and position
+		position += velocity * GameTime::deltaTime;
+		orientation *= rotation * GameTime::deltaTime;
 
-		// Reset acceleration values
-		acceleration.x = 0;
-		acceleration.y = 0;
-		acceleration.z = 0;
+		// Calculate the body data from the updated positions
+		CalculateBodyData();
+		
+		// Clear the accumulators
+		ClearAccumulators();
+
+		// Sleep stuff if needed
 	}
 
-	// Apply a force on an rigidbody (Newtonian force application)
-	void Rigidbody::ApplyForce(const glm::vec3& force)
+	void Rigidbody::ClearAccumulators()
 	{
-		acceleration += force / mass;	// Newtonian physics (SUM OF FORCES = MASS * ACCELERATION)
-		// Check for torsional and torque forces induced
+		accumTorque.x = 0;
+		accumTorque.y = 0;
+		accumTorque.z = 0;
+		accumForces.x = 0;
+		accumForces.y = 0;
+		accumForces.z = 0;
 	}
 
-	// Rotate a rigidbody with a certain rotation quaternion
-	void Rigidbody::Rotate(const glm::quat& rotation)
+	void Rigidbody::IntegrateRotation()
+	{}
+
+	void Rigidbody::AddForceAtPoint(glm::vec3& force, glm::vec3& point)
 	{
-		orientation = rotation * orientation;
+		// Convert to coordinates relative to center of mass.
+		glm::vec3 pt = point;
+		pt -= position;
+
+		accumForces += force;
+		accumTorque += pt % force;
 	}
 
-	// Look at a certain position
-	void Rigidbody::LookAt(const glm::vec3& lookPosition)
+	void Rigidbody::CalculateBodyData()
 	{
+		// Normalize orientation
+		glm::normalize(orientation);
+
+		// Calculate the object to world transform
+		CalculateObjToWorldMat();
+		
+		// Calculate inverse inertia tensor in world coordinates
+		CalculateIITWorld();
+	}
+	
+	void Rigidbody::CalculateObjToWorldMat()
+	{
+		// i,j,k -> x,y,z
+		objToWorldMat[0][0] = 1 - 2 * orientation.y * orientation.y - 2 * orientation.z * orientation.z;
+		objToWorldMat[0][1] = 2 * orientation.x * orientation.y - 2 * orientation.w * orientation.z;
+		objToWorldMat[0][2] = 2 * orientation.x * orientation.z + 2 * orientation.w * orientation.y;
+		objToWorldMat[0][3] = position.x;
+		objToWorldMat[1][0] = 2 * orientation.x * orientation.y + 2 * orientation.w * orientation.z;
+		objToWorldMat[1][1] = 1 - 2 * orientation.x * orientation.x - 2 * orientation.z * orientation.z;
+		objToWorldMat[1][2] = 2 * orientation.y * orientation.z - 2 * orientation.w * orientation.x;
+		objToWorldMat[1][3] = position.y;
+		objToWorldMat[2][0] = 2 * orientation.x * orientation.z - 2 * orientation.w * orientation.y;
+		objToWorldMat[2][1] = 2 * orientation.y * orientation.z + 2 * orientation.w * orientation.x;
+		objToWorldMat[2][2] = 1 - 2 * orientation.x * orientation.x - 2 * orientation.y * orientation.y;
+		objToWorldMat[2][3] = position.z;
 	}
 }

@@ -10,7 +10,7 @@ namespace MTRX
 	ParticleCollisionResolver::~ParticleCollisionResolver()
 	{}
 
-	void ParticleCollisionResolver::ResolveContacts(std::list<ParticleCollision*>& particleCollisions)
+	void ParticleCollisionResolver::ResolveContacts(std::list<ParticleCollision>& particleCollisions)
 	{
 		currentIterations = 0; // Reset the number of iterations for this frame
 		while (currentIterations != numIterations)
@@ -20,7 +20,7 @@ namespace MTRX
 			auto maxCollisionIter = particleCollisions.begin();
 			for (auto iter = particleCollisions.begin(); iter != particleCollisions.end(); ++iter)
 			{
-				float sepVelocity = (*iter)->CalculateSeparatingVelocity();
+				float sepVelocity = iter->CalculateSeparatingVelocity();
 				if (sepVelocity < maxSeparatingVelocity)
 				{
 					maxSeparatingVelocity = sepVelocity;
@@ -29,7 +29,7 @@ namespace MTRX
 			}
 
 			// Resolve the collision with the maximum separating velocity
-			(*maxCollisionIter)->Resolve();
+			maxCollisionIter->Resolve();
 			++currentIterations;
 		}
 	}

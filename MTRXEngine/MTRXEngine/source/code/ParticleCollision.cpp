@@ -4,7 +4,7 @@
 namespace MTRX
 {
 	// YOU NEED TO SPECIFY THE NORMAL OF THE COLLISION 
-	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitutionm, glm::vec3& normal) : particles {particle1, particle2}, 
+	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitution, glm::vec3& normal) : particles {particle1, particle2}, 
 		restitution(restitution), collisionNormal(normal)
 	{}
 
@@ -62,15 +62,11 @@ namespace MTRX
 
 		// Apply the impulses
 		if (!particles[0]->isInfiniteMass())
-		{
 			particles[0]->GetVelocity() += impulsePerMass * particles[0]->GetInverseMass();
-		}
 
 		// Apply opposite impulse
 		if (!particles[1]->isInfiniteMass())
-		{
 			particles[1]->GetVelocity() += impulsePerMass * -particles[1]->GetInverseMass();
-		}
 	}
 
 	void ParticleCollision::ResolveInterpenetration() 
@@ -91,13 +87,10 @@ namespace MTRX
 
 		// Apply this movement vector
 		if (particles[0]->GetInverseMass())
-		{
 			particles[0]->GetPosition() += moveVector * particles[0]->GetInverseMass();
-		}
 
 		if (particles[1]->GetInverseMass())
-		{
 			particles[1]->GetPosition() += moveVector * -particles[1]->GetInverseMass();
-		}
+		
 	}
 }

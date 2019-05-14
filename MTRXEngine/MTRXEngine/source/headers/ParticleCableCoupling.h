@@ -18,6 +18,6 @@ namespace MTRX
 		ParticleCableCoupling(float maxLengthSqr, float restitution);
 		~ParticleCableCoupling();
 
-		virtual void GenerateContact(std::list<ParticleCollision*>& collisions, unsigned int limit);
+		virtual void GenerateContact(std::list<ParticleCollision>& collisions, unsigned int limit);
 	};
 }
