@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/ParticleGenerators/p_StiffSpringForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	p_StiffSpringForceGenerator::p_StiffSpringForceGenerator(glm::vec3* anchorPoint, float springStiffness, float springDamping) : anchorPoint(anchorPoint),
 		springStiffness(springStiffness), springDamping(springDamping)

@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include <forceGenerators/ParticleGenerators/p_ForceGenerationRegistry.h>
 
-namespace MTRX
+namespace mtrx
 {
 	p_ForceGenerationRegistry::p_ForceGenerationRegistry()
 	{}

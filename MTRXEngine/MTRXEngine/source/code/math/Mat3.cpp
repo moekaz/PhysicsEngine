@@ -6,7 +6,7 @@
 #include <PrecompiledHeader.h>
 #include <math/Mat3.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Constructor
 	Mat3::Mat3(const Vector3D& col1, const Vector3D& col2, const Vector3D& col3)

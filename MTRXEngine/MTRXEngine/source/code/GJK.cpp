@@ -8,7 +8,7 @@
 #include <colliders/ConvexShapeCollider.h>
 
 // WE CAN OPTIMIZE THIS SOME MORE MAYBE
-namespace MTRX
+namespace mtrx
 {
 	// Gilbert-Johnson-Keerthi collision detection algorithm
 	bool GJK::GJKCollision(const ConvexShapeCollider& convexCollider1, const ConvexShapeCollider& convexCollider2)

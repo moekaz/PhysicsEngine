@@ -7,7 +7,7 @@
 
 #include <forceGenerators/RigidbodyGenerators/IRigidbodyForceGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class rb_ForceGenerationRegistry
 	{

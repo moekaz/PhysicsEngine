@@ -9,7 +9,7 @@
 #include <utils/CollisionUtil.h>
 #include <colliders/Collider.h>
 
-namespace MTRX
+namespace mtrx
 {
 	namespace PhysicsUtil
 	{

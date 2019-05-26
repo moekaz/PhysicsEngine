@@ -6,7 +6,7 @@
 #include <PrecompiledHeader.h>
 #include <colliders/ConvexShapeCollider.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Constructor
 	ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center) : Collider(colliderType, center, true) {}

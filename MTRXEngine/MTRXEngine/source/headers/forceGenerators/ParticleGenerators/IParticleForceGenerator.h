@@ -6,7 +6,7 @@
 
 #include <entities/Particle.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Forward declarations
 	//class Particle;

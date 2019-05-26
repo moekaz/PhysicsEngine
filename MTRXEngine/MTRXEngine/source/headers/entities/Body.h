@@ -3,7 +3,7 @@
 
 #include <IUpdateable.h>
 
-namespace MTRX
+namespace mtrx
 {
 	#define MAX_MASS 10000000.f // Some large number 
 

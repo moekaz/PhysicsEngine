@@ -9,7 +9,7 @@
 #include <colliders/SphereCollider.h>
 #include <colliders/CapsuleCollider.h>
 
-namespace MTRX
+namespace mtrx
 {
 	/* Constructor */
 	BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(ColliderType::Box, center), halfExtents(glm::vec3(0.5, 0.5, 0.5))
@@ -55,21 +55,21 @@ namespace MTRX
 			case ColliderType::Sphere:
 			{
 				std::cout << "Box Sphere collision detection" << std::endl;
-				const MTRX::SphereCollider& collider = static_cast<const MTRX::SphereCollider&>(col);
+				const mtrx::SphereCollider& collider = static_cast<const mtrx::SphereCollider&>(col);
 				collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), center, collider.radius, min, max, axes, halfExtents);
 				break;
 			}
 			case ColliderType::Box:
 			{
 				std::cout << "Box Box collision detection" << std::endl;
-				const MTRX::BoxCollider& collider = static_cast<const MTRX::BoxCollider&>(col);
+				const mtrx::BoxCollider& collider = static_cast<const mtrx::BoxCollider&>(col);
 				collision = CollisionUtil::BoxBoxCollision(*this, collider);
 				break;
 			}
 			case ColliderType::Capsule:
 			{
 				std::cout << "Box Capsule collision detection" << std::endl;
-				const MTRX::CapsuleCollider& collider = static_cast<const MTRX::CapsuleCollider&>(col);
+				const mtrx::CapsuleCollider& collider = static_cast<const mtrx::CapsuleCollider&>(col);
 				collision = CollisionUtil::BoxCapsuleCollision(center, collider.GetPosition(), collider.A, collider.B, collider.radii, min, max, axes, halfExtents);
 				break;
 			}

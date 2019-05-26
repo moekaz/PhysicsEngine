@@ -8,7 +8,7 @@
 #include <PrecompiledHeader.h>
 #include <utils/PhysicsUtil.h>
 
-namespace MTRX
+namespace mtrx
 {
 	namespace PhysicsUtil
 	{

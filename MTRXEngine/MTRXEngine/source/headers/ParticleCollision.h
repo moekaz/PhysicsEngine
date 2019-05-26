@@ -8,7 +8,7 @@
 
 #include <entities/Particle.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class ParticleCollision
 	{

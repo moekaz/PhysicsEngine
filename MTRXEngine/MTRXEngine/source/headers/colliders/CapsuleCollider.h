@@ -9,7 +9,7 @@
 #include <colliders/Collider.h>
 #include <utils/CollisionUtil.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class CapsuleCollider : public Collider
 	{

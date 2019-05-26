@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace MTRX
+namespace mtrx
 {
 	class Simplex
 	{

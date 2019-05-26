@@ -10,7 +10,7 @@
 #include <forceGenerators/ParticleGenerators/IParticleForceGenerator.h>
 #include <Defs.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class p_AnchoredSpringForceGenerator : public IParticleForceGenerator
 	{

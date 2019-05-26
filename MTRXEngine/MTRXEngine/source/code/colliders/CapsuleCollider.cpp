@@ -9,7 +9,7 @@
 #include <colliders/BoxCollider.h>
 #include <colliders/SphereCollider.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Constructor
 	CapsuleCollider::CapsuleCollider(const glm::vec3& center, float radii, float height) : Collider(ColliderType::Capsule, center),

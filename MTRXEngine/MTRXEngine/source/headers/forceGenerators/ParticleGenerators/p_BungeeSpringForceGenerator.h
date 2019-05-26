@@ -3,7 +3,7 @@
 #include <entities/Particle.h>
 #include <forceGenerators/ParticleGenerators/p_AnchoredSpringForceGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class p_BungeeSpringForceGenerator : public p_AnchoredSpringForceGenerator
 	{

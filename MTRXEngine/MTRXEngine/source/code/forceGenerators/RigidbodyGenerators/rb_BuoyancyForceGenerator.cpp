@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/RigidbodyGenerators/rb_BuoyancyForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float density, float volume, float maxPaticleDepth) : liquidProperties(density, volume),
 		maxParticleDepth(maxPaticleDepth)

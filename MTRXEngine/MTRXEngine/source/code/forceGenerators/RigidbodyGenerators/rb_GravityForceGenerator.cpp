@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/RigidbodyGenerators/rb_GravityForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	rb_GravityForceGenerator::rb_GravityForceGenerator(const glm::vec3& gravity) : gravitationalAcceleration(gravity)
 	{}

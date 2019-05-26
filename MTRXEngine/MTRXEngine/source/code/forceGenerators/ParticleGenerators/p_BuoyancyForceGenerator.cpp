@@ -2,7 +2,7 @@
 #include "forceGenerators/ParticleGenerators/p_BuoyancyForceGenerator.h"
 #include <Defs.h>
 
-namespace MTRX
+namespace mtrx
 {
 	p_BuoyancyForceGenerator::p_BuoyancyForceGenerator(float density, float volume, float maxPaticleDepth) : liquidProperties(density, volume),
 		maxParticleDepth(maxPaticleDepth)

@@ -8,7 +8,7 @@
 #include <colliders/Collider.h>
 #include <utils/CollisionUtil.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Forward declarations
 	class BoxCollider;

@@ -7,7 +7,7 @@
 
 #include <math/Vector3D.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class Mat3
 	{

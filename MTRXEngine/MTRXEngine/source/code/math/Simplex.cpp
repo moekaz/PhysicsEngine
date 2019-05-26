@@ -6,7 +6,7 @@
 #include <PrecompiledHeader.h>
 #include <math/Simplex.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Constructor
 	Simplex::Simplex() : size(0) {}

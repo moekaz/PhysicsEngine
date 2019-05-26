@@ -13,7 +13,7 @@
 #include <ParticleCollision.h>
 #include <ParticleCollisionGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// A struct that holds all the force generators of a certain particle
 	struct ParticleForceGenerators

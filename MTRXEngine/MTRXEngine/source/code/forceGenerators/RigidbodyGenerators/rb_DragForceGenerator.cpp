@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include "forceGenerators/RigidbodyGenerators/rb_DragForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	rb_DragForceGenerator::rb_DragForceGenerator(float k1, float k2) : k1(k1), k2(k2)
 	{}

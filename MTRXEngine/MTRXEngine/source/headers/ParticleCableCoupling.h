@@ -7,7 +7,7 @@
 
 #include <ParticleCoupling.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class ParticleCableCoupling : public ParticleCoupling
 	{

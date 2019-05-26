@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/RigidbodyGenerators/rb_DefaultSpringForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	rb_DefaultSpringForceGenerator::rb_DefaultSpringForceGenerator(Rigidbody* secondParticle, float stiffness, float restLength) : secondParticle(secondParticle),
 		spring(stiffness, restLength)

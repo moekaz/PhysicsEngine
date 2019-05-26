@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "ParticleCollision.h"
 
-namespace MTRX
+namespace mtrx
 {
 	// YOU NEED TO SPECIFY THE NORMAL OF THE COLLISION 
 	ParticleCollision::ParticleCollision(Particle* particle1, Particle* particle2, float restitution, glm::vec3& normal) : particles {particle1, particle2}, 

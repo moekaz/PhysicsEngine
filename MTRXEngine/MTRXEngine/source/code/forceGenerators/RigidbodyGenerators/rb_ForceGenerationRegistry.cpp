@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include <forceGenerators/RigidbodyGenerators/rb_ForceGenerationRegistry.h>
 
-namespace MTRX
+namespace mtrx
 {
 	rb_ForceGenerationRegistry::rb_ForceGenerationRegistry()
 	{}

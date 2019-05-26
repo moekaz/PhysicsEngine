@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "ParticleManager.h"
 
-namespace MTRX
+namespace mtrx
 {
 	ParticleManager::ParticleManager(unsigned int maxContacts, unsigned int numIterations) : maxContacts(maxContacts), numIterations(numIterations),
 		collisionResolver(numIterations)

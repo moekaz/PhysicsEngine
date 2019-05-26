@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include "forceGenerators/ParticleGenerators/p_DragForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	p_DragForceGenerator::p_DragForceGenerator(float k1, float k2) : k1(k1), k2(k2)
 	{}

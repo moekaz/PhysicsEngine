@@ -3,7 +3,7 @@
 #include <entities/Rigidbody.h>
 #include <forceGenerators/RigidbodyGenerators/rb_AnchoredSpringForceGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class rb_BungeeSpringForceGenerator : public rb_AnchoredSpringForceGenerator
 	{

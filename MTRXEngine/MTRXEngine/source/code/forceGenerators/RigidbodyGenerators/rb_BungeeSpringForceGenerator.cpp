@@ -2,7 +2,7 @@
 #include "forceGenerators/RigidbodyGenerators/rb_BungeeSpringForceGenerator.h"
 
 
-namespace MTRX
+namespace mtrx
 {
 	rb_BungeeSpringForceGenerator::rb_BungeeSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength) :
 		rb_AnchoredSpringForceGenerator(anchorPoint, stiffness, restLength)

@@ -2,7 +2,7 @@
 #include "ParticleCollisionResolver.h"
 
 
-namespace MTRX
+namespace mtrx
 {
 	ParticleCollisionResolver::ParticleCollisionResolver(unsigned int numIterations) : numIterations(numIterations)
 	{}

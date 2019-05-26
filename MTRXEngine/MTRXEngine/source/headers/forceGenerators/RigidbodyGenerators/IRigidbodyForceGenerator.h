@@ -6,7 +6,7 @@
 
 #include <entities/Rigidbody.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// // Forward declarations
 	//class Rigidbody;

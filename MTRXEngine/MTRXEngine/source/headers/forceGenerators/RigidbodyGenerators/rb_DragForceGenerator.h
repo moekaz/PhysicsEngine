@@ -8,7 +8,7 @@
 #include <entities/Rigidbody.h>
 #include <forceGenerators/RigidbodyGenerators/IRigidbodyForceGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class rb_DragForceGenerator : public IRigidbodyForceGenerator
 	{

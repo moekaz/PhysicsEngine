@@ -11,7 +11,7 @@
 #include <forceGenerators/RigidbodyGenerators/IRigidbodyForceGenerator.h>
 #include <Defs.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class rb_DefaultSpringForceGenerator : public IRigidbodyForceGenerator
 	{

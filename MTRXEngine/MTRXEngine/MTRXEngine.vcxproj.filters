@@ -138,6 +138,9 @@
     <ClCompile Include="source\code\entities\Body.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\code\RigidbodyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\headers\Defs.h">
@@ -276,6 +279,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_StiffSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\RigidbodyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

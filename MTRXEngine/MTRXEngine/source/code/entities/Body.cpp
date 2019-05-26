@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "entities/Body.h"
 
-namespace MTRX
+namespace mtrx
 {
 	Body::Body(const glm::vec3& position, const float inverseMass) : position(position), velocity(glm::vec3()), acceleration(glm::vec3()),
 		inverseMass(inverseMass), accumForces(glm::vec3()), linearDamping(1.f)

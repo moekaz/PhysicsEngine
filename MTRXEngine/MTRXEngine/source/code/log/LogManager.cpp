@@ -1,12 +1,12 @@
 /*
 	Author: Mohamed Kazma
-	Description: Logger abstraction API to be used by the MTRX Engine
+	Description: Logger abstraction API to be used by the mtrx Engine
 */
 
 #include <PrecompiledHeader.h>
 #include <log/LogManager.h>
 
-namespace MTRX
+namespace mtrx
 {
 	std::shared_ptr<spdlog::logger> LogManager::mtrxLogger;
 
@@ -24,7 +24,7 @@ namespace MTRX
 
 		spdlog::register_logger(mtrxLogger); // Register the logger that we are using
 
-		MTRX_TRACE("INITIALIZED MTRX LOGGER!!"); // Print out success statement
+		MTRX_TRACE("INITIALIZED mtrx LOGGER!!"); // Print out success statement
 	}
 
 	// Create/Update the directory that we want to create our log file in 

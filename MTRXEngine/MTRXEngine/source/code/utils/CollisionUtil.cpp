@@ -11,7 +11,7 @@
 #include <colliders/CapsuleCollider.h>
 #include <colliders/ConvexShapeCollider.h>
 
-namespace MTRX
+namespace mtrx
 {
 	namespace CollisionUtil
 	{
@@ -61,7 +61,7 @@ namespace MTRX
 		}
 
 		// Box Box collision 
-		bool BoxBoxCollision(const MTRX::BoxCollider& box1, const MTRX::BoxCollider& box2)
+		bool BoxBoxCollision(const mtrx::BoxCollider& box1, const mtrx::BoxCollider& box2)
 		{
 			return ConvexShapeCollision(box1, box2);
 		}
@@ -102,9 +102,9 @@ namespace MTRX
 		}
 
 		// Convex Shape convex shape collision detection 
-		bool ConvexShapeCollision(const MTRX::ConvexShapeCollider& convexCollider1, const MTRX::ConvexShapeCollider& convexCollider2)
+		bool ConvexShapeCollision(const mtrx::ConvexShapeCollider& convexCollider1, const mtrx::ConvexShapeCollider& convexCollider2)
 		{
-			return MTRX::GJK().GJKCollision(convexCollider1, convexCollider2);
+			return mtrx::GJK().GJKCollision(convexCollider1, convexCollider2);
 		}
 
 		// Ray sphere collision detection

@@ -10,7 +10,7 @@
 #include <entities/Rigidbody.h>
 #include <Defs.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class rb_AnchoredSpringForceGenerator : public IRigidbodyForceGenerator
 	{

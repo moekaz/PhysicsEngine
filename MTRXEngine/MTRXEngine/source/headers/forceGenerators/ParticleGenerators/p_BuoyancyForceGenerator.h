@@ -9,7 +9,7 @@
 #include <entities/Particle.h>
 #include <Defs.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class p_BuoyancyForceGenerator : public IParticleForceGenerator
 	{	

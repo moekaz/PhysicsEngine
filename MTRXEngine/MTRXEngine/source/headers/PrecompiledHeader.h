@@ -1,6 +1,6 @@
 /*
 	Author: Mohamed Kazma
-	Description: Precompiled header for the MTRX project
+	Description: Precompiled header for the mtrx project
 */
 
 #pragma once

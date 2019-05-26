@@ -8,7 +8,7 @@
 
 #include <ParticleCoupling.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class ParticleRodCoupling : public ParticleCoupling
 	{

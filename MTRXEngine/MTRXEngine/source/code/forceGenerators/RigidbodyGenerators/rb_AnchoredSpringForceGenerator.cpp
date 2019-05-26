@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/RigidbodyGenerators/rb_AnchoredSpringForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	rb_AnchoredSpringForceGenerator::rb_AnchoredSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength) : anchorPoint(anchorPoint),
 		spring(stiffness, restLength)

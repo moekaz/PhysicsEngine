@@ -9,13 +9,13 @@
 #define LOG_FILE_DIR "MTRXLogs\\" // Directory where log file will be created in
 
 // Macros for API calls to log information
-#define MTRX_WARN(...) MTRX::LogManager::warn(__VA_ARGS__)
-#define MTRX_INFO(...) MTRX::LogManager::info(__VA_ARGS__)
-#define MTRX_TRACE(...) MTRX::LogManager::trace(__VA_ARGS__)
-#define MTRX_ERROR(...) MTRX::LogManager::error(__VA_ARGS__)
-#define MTRX_CRITICAL(...) MTRX::LogManager::critical(__VA_ARGS__)
+#define MTRX_WARN(...) mtrx::LogManager::warn(__VA_ARGS__)
+#define MTRX_INFO(...) mtrx::LogManager::info(__VA_ARGS__)
+#define MTRX_TRACE(...) mtrx::LogManager::trace(__VA_ARGS__)
+#define MTRX_ERROR(...) mtrx::LogManager::error(__VA_ARGS__)
+#define MTRX_CRITICAL(...) mtrx::LogManager::critical(__VA_ARGS__)
 
-namespace MTRX
+namespace mtrx
 {
 	class LogManager
 	{

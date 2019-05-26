@@ -7,7 +7,7 @@
 
 #include <colliders/Collider.h>
 
-namespace MTRX
+namespace mtrx
 {
 	int Collider::id = 0;	// Set the value of the static int id 
 

@@ -8,7 +8,7 @@
 #include <colliders/ConvexShapeCollider.h>
 #include <utils/CollisionUtil.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Forward declarations
 	class SphereCollider;
@@ -27,7 +27,7 @@ namespace MTRX
 
 		const std::vector<glm::vec3*>& GetAxes() const; // Get axes
 		void PhysicsUpdate();
-		bool CheckCollision(const MTRX::Collider&);											// Check collision with box collider 
+		bool CheckCollision(const mtrx::Collider&);											// Check collision with box collider 
 		bool RaycastCollision(const Ray&);									    // Raycast collision
 		void RecomputeMinsMaxes();												// Recalculates the min and max values of the vertices 
 

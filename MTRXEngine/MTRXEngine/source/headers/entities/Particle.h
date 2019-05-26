@@ -10,7 +10,7 @@
 #include <GameTime.h>
 #include <entities/Body.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class Particle : public Body
 	{

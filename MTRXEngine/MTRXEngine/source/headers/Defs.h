@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace MTRX
+namespace mtrx
 {
 	#define LOGGER_FILE_SIZE 5242880 // Maximum size of logger file 
 	enum class ColliderType : char { Sphere, Box, Capsule, Mesh, ConvexShape, };	// Type of what a collider is 

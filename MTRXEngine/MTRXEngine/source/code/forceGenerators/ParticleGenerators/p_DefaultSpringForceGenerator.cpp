@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/ParticleGenerators/p_DefaultSpringForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	p_DefaultSpringForceGenerator::p_DefaultSpringForceGenerator(Particle* secondParticle, float stiffness, float restLength) : secondParticle(secondParticle),
 		spring(stiffness, restLength)

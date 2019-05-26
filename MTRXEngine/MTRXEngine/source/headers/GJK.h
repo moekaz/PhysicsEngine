@@ -15,7 +15,7 @@
 #include <math/Simplex.h>
 #include <utils/PhysicsUtil.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Forward declarations
 	class ConvexShapeCollider;

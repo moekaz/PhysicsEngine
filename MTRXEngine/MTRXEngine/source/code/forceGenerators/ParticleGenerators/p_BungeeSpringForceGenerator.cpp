@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "forceGenerators/ParticleGenerators/p_BungeeSpringForceGenerator.h"
 
-namespace MTRX
+namespace mtrx
 {
 	p_BungeeSpringForceGenerator::p_BungeeSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength) :
 		p_AnchoredSpringForceGenerator(anchorPoint, stiffness, restLength)

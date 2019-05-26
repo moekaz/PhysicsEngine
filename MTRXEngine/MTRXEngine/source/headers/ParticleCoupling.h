@@ -11,7 +11,7 @@
 #include <ParticleCollision.h>
 #include <ParticleCollisionGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class ParticleCoupling : public ParticleCollisionGenerator
 	{

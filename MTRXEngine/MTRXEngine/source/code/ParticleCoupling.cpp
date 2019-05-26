@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "ParticleCoupling.h"
 
-namespace MTRX
+namespace mtrx
 {
 	ParticleCoupling::ParticleCoupling()
 	{}

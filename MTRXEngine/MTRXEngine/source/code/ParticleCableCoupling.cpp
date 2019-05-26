@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "ParticleCableCoupling.h"
 
-namespace MTRX
+namespace mtrx
 {
 	ParticleCableCoupling::ParticleCableCoupling(float maxLengthSqr, float restitution) : maxLengthSqr(maxLengthSqr), restitution(restitution)
 	{}

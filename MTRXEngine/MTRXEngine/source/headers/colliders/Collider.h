@@ -11,7 +11,7 @@
 #include <Defs.h>
 #include <Ray.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class Collider : public IUpdateable
 	{

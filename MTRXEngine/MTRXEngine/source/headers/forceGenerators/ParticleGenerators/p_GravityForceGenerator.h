@@ -7,7 +7,7 @@
 #include <entities/Particle.h>
 #include <forceGenerators/ParticleGenerators/IParticleForceGenerator.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class p_GravityForceGenerator : public IParticleForceGenerator
 	{

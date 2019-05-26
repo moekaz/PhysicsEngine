@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include <entities/Particle.h>
 
-namespace MTRX
+namespace mtrx
 {
 	Particle::Particle(const glm::vec3& position, const float inverseMass) : Body(position, inverseMass) 
 	{}

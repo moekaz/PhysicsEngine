@@ -7,7 +7,7 @@
 #include <forceGenerators/RigidbodyGenerators/IRigidbodyForceGenerator.h>
 #include <entities/Rigidbody.h>
 
-namespace MTRX
+namespace mtrx
 {
 	class rb_GravityForceGenerator : public IRigidbodyForceGenerator
 	{

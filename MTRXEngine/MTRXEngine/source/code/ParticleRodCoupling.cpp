@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "ParticleRodCoupling.h"
 
-namespace MTRX
+namespace mtrx
 {
 	ParticleRodCoupling::ParticleRodCoupling(float lengthSqr) : lengthSqr(lengthSqr)
 	{}

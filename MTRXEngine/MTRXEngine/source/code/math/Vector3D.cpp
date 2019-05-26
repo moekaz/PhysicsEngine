@@ -6,7 +6,7 @@
 #include <PrecompiledHeader.h>
 #include <math/Vector3D.h>
 
-namespace MTRX
+namespace mtrx
 {
 	// Setting up the zero vector
 	Vector3D Vector3D::zero = Vector3D();
