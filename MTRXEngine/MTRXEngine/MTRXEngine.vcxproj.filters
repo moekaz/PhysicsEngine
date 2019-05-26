@@ -54,30 +54,6 @@
     <ClCompile Include="source\code\entities\Rigidbody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\AnchoredSpringForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\BungeeSpringForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\BuoyancyForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\DefaultSpringForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\DragForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\ForceGenerationRegistry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\GravityForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\code\forceGenerators\StiffSpringForceGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\code\log\LogManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +85,57 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\code\ParticleRodCoupling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_AnchoredSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_BungeeSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_BuoyancyForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_DefaultSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_DragForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_ForceGenerationRegistry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_GravityForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\RigidbodyGenerators\rb_StiffSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_AnchoredSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_BungeeSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_BuoyancyForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_DefaultSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_DragForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_GravityForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_StiffSpringForceGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_ForceGenerationRegistry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\code\entities\Body.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,33 +185,6 @@
     <ClInclude Include="source\headers\entities\Rigidbody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\AnchoredSpringForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\BungeeSpringForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\BuoyancyForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\DefaultSpringForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\DragForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\ForceGenerationRegistry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\GravityForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\IForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\forceGenerators\StiffSpringForceGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\headers\log\LogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -219,6 +219,63 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\headers\ParticleRodCoupling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\entities\Body.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\IRigidbodyForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_BungeeSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_AnchoredSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_GravityForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_ForceGenerationRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_DragForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_DefaultSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_BuoyancyForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\RigidbodyGenerators\rb_StiffSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\IParticleForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_AnchoredSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_BungeeSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_BuoyancyForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_DefaultSpringForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_DragForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_ForceGenerationRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_GravityForceGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\p_StiffSpringForceGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

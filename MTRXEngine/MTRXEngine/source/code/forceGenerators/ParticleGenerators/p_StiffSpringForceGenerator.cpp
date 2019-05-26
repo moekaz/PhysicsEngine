@@ -1,19 +1,19 @@
 #include "PrecompiledHeader.h"
-#include "forceGenerators/StiffSpringForceGenerator.h"
+#include "forceGenerators/ParticleGenerators/p_StiffSpringForceGenerator.h"
 
 namespace MTRX
 {
-	StiffSpringForceGenerator::StiffSpringForceGenerator(glm::vec3* anchorPoint, float springStiffness, float springDamping) : anchorPoint(anchorPoint),
+	p_StiffSpringForceGenerator::p_StiffSpringForceGenerator(glm::vec3* anchorPoint, float springStiffness, float springDamping) : anchorPoint(anchorPoint),
 		springStiffness(springStiffness), springDamping(springDamping)
 	{}
 
-	StiffSpringForceGenerator::~StiffSpringForceGenerator()
+	p_StiffSpringForceGenerator::~p_StiffSpringForceGenerator()
 	{}
 
-	void StiffSpringForceGenerator::UpdateForces(Particle* particle)
+	void p_StiffSpringForceGenerator::UpdateForces(Particle* particle)
 	{
 		// Check for infinite mass
-		if (particle->isInfiniteMass())
+		if (particle->GetIsInfiniteMass())
 			return;
 
 		// Get the vector from the anchor to the particle connected to this string

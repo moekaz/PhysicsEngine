@@ -6,22 +6,22 @@
 
 #pragma once
 
-#include <entities/Particle.h>
-#include <forceGenerators/IForceGenerator.h>
+#include <forceGenerators/RigidbodyGenerators/IRigidbodyForceGenerator.h>
+#include <entities/Rigidbody.h>
 #include <Defs.h>
 
 namespace MTRX
 {
-	class AnchoredSpringForceGenerator : public IForceGenerator
+	class rb_AnchoredSpringForceGenerator : public IRigidbodyForceGenerator
 	{
 	public:
 		glm::vec3* anchorPoint;
 		SpringData spring;
 
-		virtual void UpdateForces(Particle* particle);
+		rb_AnchoredSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength);
+		~rb_AnchoredSpringForceGenerator();
 
-		AnchoredSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength);
-		~AnchoredSpringForceGenerator();
+		virtual void UpdateForces(Rigidbody* rb) override;
 
 		inline void SetAnchorPoint(glm::vec3* point) { anchorPoint = point; }
 	};

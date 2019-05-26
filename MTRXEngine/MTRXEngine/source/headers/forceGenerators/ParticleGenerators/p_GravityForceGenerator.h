@@ -5,20 +5,20 @@
 #pragma once
 
 #include <entities/Particle.h>
-#include <forceGenerators/IForceGenerator.h>
+#include <forceGenerators/ParticleGenerators/IParticleForceGenerator.h>
 
 namespace MTRX
 {
-	class GravityForceGenerator : public IForceGenerator
+	class p_GravityForceGenerator : public IParticleForceGenerator
 	{
 	public:
 		glm::vec3 gravitationalAcceleration; // Gravitational acceleration
 
 		// Implementation of an update forces for a force generator will apply a gravitational force on the particle
-		virtual void UpdateForces(Particle* particle); 
+		virtual void UpdateForces(Particle* particle) override; 
 
-		GravityForceGenerator(const glm::vec3& gravity);
-		~GravityForceGenerator();
+		p_GravityForceGenerator(const glm::vec3& gravity);
+		~p_GravityForceGenerator();
 	};
 }
 

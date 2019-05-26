@@ -9,7 +9,7 @@
 
 #include <entities/Particle.h>
 #include <ParticleCollisionResolver.h>
-#include <forceGenerators/ForceGenerationRegistry.h>
+#include <forceGenerators/ParticleGenerators/p_ForceGenerationRegistry.h>
 #include <ParticleCollision.h>
 #include <ParticleCollisionGenerator.h>
 
@@ -19,7 +19,7 @@ namespace MTRX
 	struct ParticleForceGenerators
 	{
 		Particle* particle;
-		ForceGenerationRegistry* registry;
+		p_ForceGenerationRegistry* registry;
 	};
 
 	class ParticleManager : public IUpdateable

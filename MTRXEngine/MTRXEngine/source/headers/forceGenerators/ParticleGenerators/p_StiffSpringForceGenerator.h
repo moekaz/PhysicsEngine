@@ -7,22 +7,22 @@
 
 #pragma once
 
-#include <forceGenerators/IForceGenerator.h>
+#include <forceGenerators/ParticleGenerators/IParticleForceGenerator.h>
 #include <entities/Particle.h>
 
 namespace MTRX
 {
-	class StiffSpringForceGenerator : public IForceGenerator
+	class p_StiffSpringForceGenerator : public IParticleForceGenerator
 	{
 	public:
 		float springStiffness; // Stiffness constant of the spring
 		glm::vec3* anchorPoint; // Anchor point that the spring is hung from
 		float springDamping; // Damping caused by by the spring forces
 
-		virtual void UpdateForces(Particle* particle);
+		virtual void UpdateForces(Particle* particle) override;
 
-		StiffSpringForceGenerator(glm::vec3* anchorPoint, float springStiffness, float springDamping);
-		~StiffSpringForceGenerator();
+		p_StiffSpringForceGenerator(glm::vec3* anchorPoint, float springStiffness, float springDamping);
+		~p_StiffSpringForceGenerator();
 
 		inline void SetAnchorPoint(glm::vec3* point) { anchorPoint = point; }
 	};

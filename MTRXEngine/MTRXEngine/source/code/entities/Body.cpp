@@ -1,5 +1,5 @@
 #include "PrecompiledHeader.h"
-#include "Body.h"
+#include "entities/Body.h"
 
 namespace MTRX
 {

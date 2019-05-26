@@ -1,16 +1,16 @@
 #include "PrecompiledHeader.h"
-#include "forceGenerators/AnchoredSpringForceGenerator.h"
+#include "forceGenerators/ParticleGenerators/p_AnchoredSpringForceGenerator.h"
 
 namespace MTRX
 {
-	AnchoredSpringForceGenerator::AnchoredSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength) : anchorPoint(anchorPoint), 
+	p_AnchoredSpringForceGenerator::p_AnchoredSpringForceGenerator(glm::vec3* anchorPoint, float stiffness, float restLength) : anchorPoint(anchorPoint),
 		spring(stiffness, restLength)
 	{}
 
-	AnchoredSpringForceGenerator::~AnchoredSpringForceGenerator()
+	p_AnchoredSpringForceGenerator::~p_AnchoredSpringForceGenerator()
 	{}
 
-	void AnchoredSpringForceGenerator::UpdateForces(Particle* particle)
+	void p_AnchoredSpringForceGenerator::UpdateForces(Particle* particle)
 	{
 		// Get the difference in position between the 2 particles on either side of the spring
 		glm::vec3 generatedForce = particle->GetPosition() - *anchorPoint;

@@ -8,15 +8,12 @@
 
 namespace MTRX
 {
-	// Constructor
 	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position) : Body(position, mass), isKinematic(isKinematic), 
 		orientation(glm::quat()), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0))
 	{}
 
-	// Destructor
 	Rigidbody::~Rigidbody() {}
 
-	// Update the values of the rigid body
 	void Rigidbody::PhysicsUpdate()
 	{
 		// Do not perform physics calculations
@@ -35,13 +32,15 @@ namespace MTRX
 		// Integrate the angular acceleration to get the rotation
 		rotation += angularAcceleration * GameTime::deltaTime;
 
-		// Drag linear and rotation
-		velocity += std::pow(linearDamping, GameTime::deltaTime);
+		// Drag linear and rotation (should i be doing pow here?? maybe just multiply it instead)
+		velocity *= std::pow(linearDamping, GameTime::deltaTime);
 		rotation *= std::pow(angularDamping, GameTime::deltaTime);
 
 		// Update rotation and position
 		position += velocity * GameTime::deltaTime;
-		orientation *= rotation * GameTime::deltaTime;
+
+		// MIGHT BE A PROBLEM !!
+		orientation += 0.5f * orientation * glm::quat(0, rotation * GameTime::deltaTime);
 
 		// Calculate the body data from the updated positions
 		CalculateBodyData();
@@ -65,18 +64,19 @@ namespace MTRX
 	void Rigidbody::IntegrateRotation()
 	{}
 
-	void Rigidbody::AddForceAtPoint(glm::vec3& force, glm::vec3& point)
+	void Rigidbody::AddForceAtPoint(const glm::vec3& force, glm::vec3& point)
 	{
-		// Convert to coordinates relative to center of mass.
+		// Point is assumed to be in world space 
 		glm::vec3 pt = point;
 		pt -= position;
 
 		accumForces += force;
-		accumTorque += pt % force;
+		accumTorque += glm::cross(pt, force);
 	}
 
 	void Rigidbody::CalculateBodyData()
 	{
+		// THIS MIGHT BE SMTHG WE DON"T WANT TO BE DOING 
 		// Normalize orientation
 		glm::normalize(orientation);
 

@@ -61,11 +61,11 @@ namespace MTRX
 		glm::vec3 impulsePerMass = collisionNormal * impulse;
 
 		// Apply the impulses
-		if (!particles[0]->isInfiniteMass())
+		if (!particles[0]->GetIsInfiniteMass())
 			particles[0]->GetVelocity() += impulsePerMass * particles[0]->GetInverseMass();
 
 		// Apply opposite impulse
-		if (!particles[1]->isInfiniteMass())
+		if (!particles[1]->GetIsInfiniteMass())
 			particles[1]->GetVelocity() += impulsePerMass * -particles[1]->GetInverseMass();
 	}
 

@@ -20,7 +20,7 @@ namespace MTRX
 		};
 		mtrxLogger = std::make_shared<spdlog::logger>("MTRXLog", begin(loggerSinks), end(loggerSinks)); // Create the logger with multiple sinks	
 		mtrxLogger->set_level(spdlog::level::trace); // Set logger level
-		mtrxLogger->set_pattern("%^ [%n] [%l] [%d-%m-%Y %T]: %v %$"); // Set the logger pattern
+		mtrxLogger->set_pattern("%^[%n] [%l] [%d-%m-%Y %T]: %v %$"); // Set the logger pattern
 
 		spdlog::register_logger(mtrxLogger); // Register the logger that we are using
 

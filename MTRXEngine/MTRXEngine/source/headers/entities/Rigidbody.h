@@ -16,7 +16,6 @@ namespace MTRX
 	public:
 		// NOT SURE HOW INERTIA TENSORS ARE BEING SET
 
-		// Constructor
 		Rigidbody(float inverseMass = 0.f, bool iskinematic = false, const glm::vec3& position = glm::vec3());
 		~Rigidbody();	// Destructor
 		
@@ -40,7 +39,7 @@ namespace MTRX
 		// Clear accumulators
 		inline void ClearAccumulators();
 		// Add Torque force
-		inline void AddTorque(glm::vec3& torque) { accumTorque += torque; }
+		inline void AddTorque(const glm::vec3& torque) { accumTorque += torque; }
 
 		// Update the values of the rigidbody
 		void PhysicsUpdate();
@@ -49,7 +48,7 @@ namespace MTRX
 		// Calculate the transformation matrix
 		void CalculateObjToWorldMat();
 		// Add a force at a certain point of the rigidbody (helps in calculating torque forces) PS: point is assumed in world space
-		void AddForceAtPoint(glm::vec3& force, glm::vec3& point);
+		void AddForceAtPoint(const glm::vec3& force, glm::vec3& point);
 		// Calculate intrinsic rigidbody data
 		void CalculateBodyData();
 
@@ -70,7 +69,5 @@ namespace MTRX
 		glm::vec3 forward;
 		glm::vec3 side;
 		glm::vec3 up;
-
-	protected:
 	};
 }

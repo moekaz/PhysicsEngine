@@ -4,15 +4,16 @@
 */
 #pragma once
 
+#include <entities/Particle.h>
+
 namespace MTRX
 {
 	// Forward declarations
-	class Particle;
+	//class Particle;
 
-	class IForceGenerator
+	class IParticleForceGenerator
 	{
 	public:
-		virtual void UpdateForces(Particle& particle) = 0; // Allows us to have some specific types of forces generated on a specific type of particle
-	protected:
+		virtual void UpdateForces(Particle* particle) = 0;
 	};
 }

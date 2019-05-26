@@ -1,16 +1,16 @@
 #include "PrecompiledHeader.h"
-#include "forceGenerators/DefaultSpringForceGenerator.h"
+#include "forceGenerators/ParticleGenerators/p_DefaultSpringForceGenerator.h"
 
 namespace MTRX
 {
-	DefaultSpringForceGenerator::DefaultSpringForceGenerator(Particle* secondParticle, float stiffness, float restLength) : secondParticle(secondParticle),
+	p_DefaultSpringForceGenerator::p_DefaultSpringForceGenerator(Particle* secondParticle, float stiffness, float restLength) : secondParticle(secondParticle),
 		spring(stiffness, restLength)
 	{}
 
-	DefaultSpringForceGenerator::~DefaultSpringForceGenerator()
+	p_DefaultSpringForceGenerator::~p_DefaultSpringForceGenerator()
 	{}
 
-	void DefaultSpringForceGenerator::UpdateForces(Particle* particle)
+	void p_DefaultSpringForceGenerator::UpdateForces(Particle* particle)
 	{
 		// Get the difference in position between the 2 particles on either side of the spring
 		glm::vec3 generatedForce = particle->GetPosition() - secondParticle->GetPosition();

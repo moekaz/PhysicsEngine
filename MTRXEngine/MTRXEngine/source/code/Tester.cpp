@@ -299,20 +299,21 @@ void SphereColliderTesting()
 
 int main()
 {
-	//MTRX::LogManager::init();
-	//MTRX_WARN("hello initialized logger");
-	//MTRX_INFO("INFO!!!");
-	//MTRX_TRACE("INFO!!!");
-	//MTRX_ERROR("INFO!!!");
-	//MTRX_CRITICAL("INFO!!!");
+	MTRX::LogManager::init();
+	MTRX_WARN("hello initialized logger");
+	MTRX_INFO("INFO!!!");
+	MTRX_TRACE("INFO!!!");
+	MTRX_ERROR("INFO!!!");
+	MTRX_CRITICAL("INFO!!!");
 
 	// Testing classes
 	VectorTesting();
 	MatrixTesting();
 	SphereColliderTesting();
 
-	// Just to hold the console open in vs studio
-	std::cin;
+	// Just to hold the console open in vs
+	std::string input;
+	getline(std::cin, input);
 	return 0;
 }
 

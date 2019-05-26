@@ -1,16 +1,17 @@
 #include "PrecompiledHeader.h"
-#include "forceGenerators/BuoyancyForceGenerator.h"
+#include "forceGenerators/ParticleGenerators/p_BuoyancyForceGenerator.h"
+#include <Defs.h>
 
 namespace MTRX
 {
- 	BuoyancyForceGenerator::BuoyancyForceGenerator(float density, float volume, float maxPaticleDepth) : liquidProperties(density, volume),
+	p_BuoyancyForceGenerator::p_BuoyancyForceGenerator(float density, float volume, float maxPaticleDepth) : liquidProperties(density, volume),
 		maxParticleDepth(maxPaticleDepth)
 	{}
 
-	BuoyancyForceGenerator::~BuoyancyForceGenerator()
+	p_BuoyancyForceGenerator::~p_BuoyancyForceGenerator()
 	{}
 
-	void BuoyancyForceGenerator::UpdateForces(Particle* particle)
+	void p_BuoyancyForceGenerator::UpdateForces(Particle* particle)
 	{
 		// THE ASSUMPTION ATM IS THAT THE UP DIRECTION WE ARE USING IS THE Y AXIS AND THAT OUR LIQUID IS POSITIONED ACCORDINGLY 
 		// IF WE WANT TO CHANGE THAT WE WOULD NEED A NEW UP DIRECTION VECTOR
@@ -30,7 +31,7 @@ namespace MTRX
 			force.y = liquidProperties.density * liquidProperties.volume;
 
 		// Don't we need to multiply that force by gravity??
-		force.y *= g;
+		force.y *= gravity;
 
 		// Add the resulting force on the particle
 		particle->AddForce(force);
