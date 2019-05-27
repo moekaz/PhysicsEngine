@@ -19,4 +19,16 @@ namespace mtrx
 
 	}
 
+	bool BVHNode::IsCollision(BVHNode& other)
+	{
+		other.boundingVolume->CheckCollision(*other.boundingVolume);
+	}
+
+	void BVHNode::Insert() 
+	{
+	}
+
+	void BVHNode::RecalculateBoundingVolume() 
+	{
+	}
 }

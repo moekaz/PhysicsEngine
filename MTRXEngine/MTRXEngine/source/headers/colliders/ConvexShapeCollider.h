@@ -13,17 +13,17 @@ namespace mtrx
 	class ConvexShapeCollider : public Collider
 	{
 	public:
-		ConvexShapeCollider(const ColliderType& colliderType = ColliderType::ConvexShape, const glm::vec3& = glm::vec3());			// Constructor
-		~ConvexShapeCollider();											// Destructor
+		std::vector<glm::vec3*> vertices;
 
-		glm::vec3 Support(const ConvexShapeCollider&, const glm::vec3&) const;		// Support is used to build a simplex as it will return a point on the minkowski sum (or difference depending on naming) 
-		glm::vec3& FarthestPointInDirection(const glm::vec3&) const;				// Farthest point within a certain direction
+		ConvexShapeCollider(const ColliderType& colliderType = ColliderType::ConvexShape, const glm::vec3& = glm::vec3());
+		~ConvexShapeCollider();
 
-		bool CheckCollision(const Collider&);								    // Does collision detection checks
-		virtual bool RaycastCollision(const Ray&);							// Raycast collision
-		virtual void PhysicsUpdate();
+		// Used for GJK minkowski sum calculations
+		glm::vec3 Support(const ConvexShapeCollider&, const glm::vec3&) const;
+		glm::vec3& FarthestPointInDirection(const glm::vec3&) const;
 
-	private:
-	protected:
+		virtual bool CheckCollision(const Collider&) override;
+		virtual bool RaycastCollision(const Ray&) override;
+		virtual float GetSize() override;
 	};
 }

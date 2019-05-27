@@ -10,21 +10,17 @@
 
 namespace mtrx
 {
-	/* Constructor */
-	SphereCollider::SphereCollider(const glm::vec3& center, float radius) : Collider(ColliderType::Sphere, center), radius(radius) {}
+	SphereCollider::SphereCollider(const glm::vec3& center, float radius) : Collider(ColliderType::Sphere, center), radius(radius) 
+	{}
 
-	/* Destructor */
-	SphereCollider::~SphereCollider() {}
-
-	/* Functions */
-
-	// Update the values of the collider
-	void SphereCollider::PhysicsUpdate() {}
+	SphereCollider::~SphereCollider() 
+	{}
 
 	// Checking for collision since this is going to be polymorphic it would make sense to use a general collider and work from there
 	bool SphereCollider::CheckCollision(const Collider& col)
 	{
-		switch (col.type)
+		bool isColliding; 
+		switch (col.GetColliderType())
 		{
 			case ColliderType::Sphere:
 			{
@@ -59,7 +55,6 @@ namespace mtrx
 			}
 		}
 
-		UpdateCollisionInfo();	// Update info about when the collision started etc...
 		return isColliding;
 	}
 
@@ -69,15 +64,8 @@ namespace mtrx
 		return CollisionUtil::RaySphereCollision(center, radius, ray.startPosition, ray.direction);
 	}
 
-	// Print out values of the collider
-	std::ostream& operator<<(std::ostream& os, const SphereCollider& sphCollider)
+	float SphereCollider::GetSize()
 	{
-		return os << "Sphere Collider:" << std::endl
-			<< "---------------" << std::endl
-			<< "Center: " << std::endl
-			<< "x: " << sphCollider.center.x << std::endl
-			<< "y: " << sphCollider.center.y << std::endl
-			<< "z: " << sphCollider.center.z << std::endl
-			<< "Radius: " << sphCollider.radius;
+		return 1.333333f * pi * radius * radius * radius;
 	}
 }

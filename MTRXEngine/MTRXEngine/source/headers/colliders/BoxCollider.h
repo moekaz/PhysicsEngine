@@ -18,24 +18,18 @@ namespace mtrx
 	class BoxCollider : public ConvexShapeCollider
 	{
 	public:
-		glm::vec3 min;															// Stores min x,y,z
-		glm::vec3 max;															// Stores max x,y,z
-		glm::vec3 halfExtents;													// Half widths along each axis
+		glm::vec3 halfExtents;
 
-		BoxCollider(const glm::vec3& = glm::vec3());							// Constructor
-		~BoxCollider();															// Destrutor
+		BoxCollider(const glm::vec3 & = glm::vec3());
+		~BoxCollider();
 
-		const std::vector<glm::vec3*>& GetAxes() const; // Get axes
-		void PhysicsUpdate();
-		bool CheckCollision(const mtrx::Collider&);											// Check collision with box collider 
-		bool RaycastCollision(const Ray&);									    // Raycast collision
-		void RecomputeMinsMaxes();												// Recalculates the min and max values of the vertices 
+		virtual bool CheckCollision(const mtrx::Collider&) override;
+		virtual bool RaycastCollision(const Ray&) override;
+		virtual float GetSize() override;
 
-		friend std::ostream& operator<<(std::ostream& os, const BoxCollider&);	// Print out the values of th collider
+		inline const glm::vec3* GetAxes() const { return axes; }
 
 	private:
-		std::vector<glm::vec3*> axes;														// Store the axes of the box collider
-
-	protected:
+		glm::vec3 axes[3];
 	};
 }

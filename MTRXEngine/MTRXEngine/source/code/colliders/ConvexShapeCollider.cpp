@@ -46,18 +46,14 @@ namespace mtrx
 	// Convex shape collision detection
 	bool ConvexShapeCollider::CheckCollision(const Collider& col)
 	{
-		const ConvexShapeCollider& collider = static_cast<const ConvexShapeCollider&>(col);
-
-		if (col.isConvexShape)
+		if (col.IsConvex())
 		{
-			UpdateCollisionInfo();
+			const ConvexShapeCollider& collider = static_cast<const ConvexShapeCollider&>(col);
 			return CollisionUtil::ConvexShapeCollision(*this, collider);	// Collision
 		}
-		else return false;	// Its not a convex hull
+		else 
+			return false;
 	}
-
-	// Updating the values of a convex shape
-	void ConvexShapeCollider::PhysicsUpdate() {}
 
 	bool ConvexShapeCollider::RaycastCollision(const Ray& ray)
 	{
@@ -66,10 +62,15 @@ namespace mtrx
 		ConvexShapeCollider convexLine = ConvexShapeCollider(ColliderType::ConvexShape, rayEndPoint - ray.startPosition);	// Setup the convex shape
 		glm::vec3 start = ray.startPosition;
 
-		convexLine.vertices.reserve(2);
-		convexLine.vertices.emplace_back(&start);
-		convexLine.vertices.emplace_back(&rayEndPoint);
+		//convexLine.vertices.reserve(2);
+		//convexLine.vertices.emplace_back(&start);
+		//convexLine.vertices.emplace_back(&rayEndPoint);
 
 		return CollisionUtil::ConvexShapeCollision(*this, convexLine);	// Check with GJK 
+	}
+
+	float ConvexShapeCollider::GetSize()
+	{
+		return 0.f;
 	}
 }

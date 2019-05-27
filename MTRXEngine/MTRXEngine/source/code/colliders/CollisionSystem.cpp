@@ -4,10 +4,8 @@
 namespace mtrx
 {
 	CollisionSystem::CollisionSystem()
-	{
-	}
+	{}
 
 	CollisionSystem::~CollisionSystem()
-	{
-	}
+	{}
 }

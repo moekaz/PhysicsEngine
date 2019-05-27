@@ -31,6 +31,5 @@ namespace mtrx
 		bool IsCollision(BVHNode& other);
 		void Insert();
 		void RecalculateBoundingVolume();
-
 	};
 }

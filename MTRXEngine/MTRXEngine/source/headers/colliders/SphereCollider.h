@@ -18,18 +18,13 @@ namespace mtrx
 	class SphereCollider : public Collider
 	{
 	public:
-		float radius;																	// Radius of a sphere collider
+		float radius;
 
-		SphereCollider(const glm::vec3& vec = glm::vec3(), float radius = 0.5);			// Constructor 
-		~SphereCollider();																// Destructor
+		SphereCollider(const glm::vec3& vec = glm::vec3(), float radius = 0.5);
+		~SphereCollider();
 
-		void PhysicsUpdate();
-		bool CheckCollision(const Collider&);													// Sphere collision detection
-		bool RaycastCollision(const Ray&);													// Raycast collision
-
-		friend std::ostream& operator<<(std::ostream&, const SphereCollider&);			// Print out values of the collider
-
-	private:
-	protected:
+		virtual bool CheckCollision(const Collider&) override;
+		virtual bool RaycastCollision(const Ray&) override;
+		virtual float GetSize() override;
 	};
 }
