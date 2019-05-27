@@ -29,7 +29,6 @@ namespace mtrx
 		glm::vec3 forwardDirection;												// The forward direction of the collider
 		glm::vec3 upDirection;													// The Upwards direction of the collider
 		glm::vec3 sideDirection;												// The Side direction of the collider
-		Rigidbody* rigidbody;												    // Values that might be needed are here
 		std::vector<glm::vec3*> vertices;										// Store the vertices of the collider
 
 		Collider(const ColliderType&, const glm::vec3& vec = glm::vec3(), bool isConvex = false);							// Constructor
