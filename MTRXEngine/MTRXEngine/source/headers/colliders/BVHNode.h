@@ -18,10 +18,19 @@ namespace mtrx
 	class BVHNode
 	{
 	public:
+		BVHNode* parent; // Parent node
 		BVHNode* children[2]; // Left and right children
-		Collider* boundingVolume; // the bounding volume used 
+		Collider* boundingVolume; // The bounding volume used 
+		Body* body; // Only leaves will have rigidbodies (we can use an unordered_map to get corresponding rigidbodies if we want)
 
-		BVHNode();
+		BVHNode(BVHNode* parent, Collider* collider, Body* body = nullptr);
 		~BVHNode();
+
+		inline bool IsLeaf() { return !children[0] && !children[1]; }
+		void GetPotentialContacts(std::list<PotentialCollision>& potentialCollisions);
+		bool IsCollision(BVHNode& other);
+		void Insert();
+		void RecalculateBoundingVolume();
+
 	};
 }
