@@ -16,6 +16,12 @@ namespace mtrx
 		height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
 	{}
 
+	CapsuleCollider::CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2)
+	{
+		// Create a bounding capsule
+		// Dunno if i want to do that 
+	}
+
 	// Destructor
 	CapsuleCollider::~CapsuleCollider() 
 	{}
@@ -69,6 +75,11 @@ namespace mtrx
 	}
 
 	float CapsuleCollider::GetSize()
+	{
+		return 0.f;
+	}
+
+	float CapsuleCollider::GetGrowth()
 	{
 		return 0.f;
 	}

@@ -13,7 +13,12 @@ namespace mtrx
 	SphereCollider::SphereCollider(const glm::vec3& center, float radius) : Collider(ColliderType::Sphere, center), radius(radius) 
 	{}
 
-	SphereCollider::~SphereCollider() 
+	SphereCollider::SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2)
+	{
+		// Create a sphere encapsulating the 2 sphere colliders
+	}
+
+	SphereCollider::~SphereCollider()
 	{}
 
 	// Checking for collision since this is going to be polymorphic it would make sense to use a general collider and work from there
@@ -67,5 +72,10 @@ namespace mtrx
 	float SphereCollider::GetSize()
 	{
 		return 1.333333f * pi * radius * radius * radius;
+	}
+
+	float SphereCollider::GetGrowth()
+	{
+		return 0.f;
 	}
 }

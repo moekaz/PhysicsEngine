@@ -15,17 +15,19 @@ namespace mtrx
 	class CapsuleCollider;
 	class MeshCollider;
 
-	class BoxCollider : public ConvexShapeCollider
+	class BoxCollider : public ConvexShapeCollider, public IBoundingVolume
 	{
 	public:
 		glm::vec3 halfExtents;
 
 		BoxCollider(const glm::vec3 & = glm::vec3());
+		BoxCollider(const BoxCollider& collider1, const BoxCollider collider2);
 		~BoxCollider();
 
 		virtual bool CheckCollision(const mtrx::Collider&) override;
 		virtual bool RaycastCollision(const Ray&) override;
 		virtual float GetSize() override;
+		virtual float GetGrowth() override;
 
 		inline const glm::vec3* GetAxes() const { return axes; }
 

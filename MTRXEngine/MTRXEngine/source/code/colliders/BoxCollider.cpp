@@ -35,6 +35,11 @@ namespace mtrx
 		//axes.emplace_back(&forwardDirection);
 	}
 
+	BoxCollider::BoxCollider(const BoxCollider& collider1, const BoxCollider collider2)
+	{
+		// Create a bounding box from the 2 other bounding boxes
+	}
+
 	BoxCollider::~BoxCollider() {}
 
 	// Gives us whether there is a collision occurring
@@ -86,6 +91,11 @@ namespace mtrx
 	}
 
 	float BoxCollider::GetSize()
+	{
+		return 0.f;
+	}
+
+	float BoxCollider::GetGrowth()
 	{
 		return 0.f;
 	}

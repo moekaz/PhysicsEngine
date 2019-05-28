@@ -11,7 +11,7 @@
 
 namespace mtrx
 {
-	class CapsuleCollider : public Collider
+	class CapsuleCollider : public Collider, IBoundingVolume
 	{
 	public:
 		float radii;
@@ -20,10 +20,12 @@ namespace mtrx
 		float height;
 
 		CapsuleCollider(const glm::vec3& = glm::vec3(), float radii = 0.25f, float height = 0.5f);
+		CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2);
 		~CapsuleCollider();
 
 		virtual bool CheckCollision(const Collider&) override;
 		virtual bool RaycastCollision(const Ray&) override;
 		virtual float GetSize() override;
+		virtual float GetGrowth() override;
 	};
 }

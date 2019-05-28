@@ -13,13 +13,12 @@ namespace mtrx
 {
 	class Collider
 	{
-	public:										
+	public:	
 		Collider(const ColliderType&, const glm::vec3& vec = glm::vec3(), bool isConvex = false);			
 		~Collider();										
 
 		virtual bool CheckCollision(const Collider&) = 0;
 		virtual bool RaycastCollision(const Ray&) = 0;
-		virtual float GetSize() = 0;
 
 		inline const glm::vec3& GetPosition() const { return center; }
 		inline const ColliderType& GetColliderType() const { return type; }

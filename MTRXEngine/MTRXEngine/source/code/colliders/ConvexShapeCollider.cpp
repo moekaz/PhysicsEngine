@@ -68,9 +68,4 @@ namespace mtrx
 
 		return CollisionUtil::ConvexShapeCollision(*this, convexLine);	// Check with GJK 
 	}
-
-	float ConvexShapeCollider::GetSize()
-	{
-		return 0.f;
-	}
 }
