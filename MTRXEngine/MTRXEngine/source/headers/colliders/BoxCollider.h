@@ -27,7 +27,7 @@ namespace mtrx
 		virtual bool CheckCollision(const mtrx::Collider&) override;
 		virtual bool RaycastCollision(const Ray&) override;
 		virtual float GetSize() override;
-		virtual float GetGrowth() override;
+		float GetGrowth(const BoxCollider& boxCollider);
 
 		inline const glm::vec3* GetAxes() const { return axes; }
 

@@ -13,9 +13,37 @@ namespace mtrx
 	SphereCollider::SphereCollider(const glm::vec3& center, float radius) : Collider(ColliderType::Sphere, center), radius(radius) 
 	{}
 
-	SphereCollider::SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2)
+	SphereCollider::SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2) : Collider(ColliderType::Sphere)
 	{
 		// Create a sphere encapsulating the 2 sphere colliders
+		glm::vec3 difference = collider2.center - collider1.center;
+		float distanceSqr = glm::length2(difference);
+		float diffRadius = collider1.radius - collider2.radius;
+
+		if (diffRadius * diffRadius >= distanceSqr)
+		{
+			// One sphere is inside another one
+			if (collider1.radius > collider2.radius)
+			{
+				center = collider1.center;
+				radius = collider1.radius;
+			}
+			else
+			{
+				center = collider2.center;
+				radius = collider2.radius;
+			}
+		}
+		else
+		{
+			// Can we optimize this call out
+			distanceSqr = sqrt(distanceSqr);
+			radius = (distanceSqr + collider1.radius + collider2.radius) * 0.5f;
+
+			center = collider1.center;
+			if (distanceSqr > 0)
+				center += difference * (radius - collider1.radius) / distanceSqr;
+		}
 	}
 
 	SphereCollider::~SphereCollider()
@@ -74,8 +102,9 @@ namespace mtrx
 		return 1.333333f * pi * radius * radius * radius;
 	}
 
-	float SphereCollider::GetGrowth()
+	float SphereCollider::GetGrowth(const SphereCollider& sphereCollider)
 	{
-		return 0.f;
+		SphereCollider collider = SphereCollider(*this, sphereCollider);
+		return collider.radius * collider.radius - radius * radius;
 	}
 }

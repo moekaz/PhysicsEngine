@@ -15,16 +15,16 @@ namespace mtrx
 		Body* bodies[2];
 	};
 
-	template<class IBoundingVolume>
+	template<class BoundingVolume>
 	class BVHNode
 	{
 	public:
 		BVHNode* parent; // Parent node
 		BVHNode* children[2]; // Left and right children
-		IBoundingVolume boundingVolume; // The bounding volume used 
+		BoundingVolume boundingVolume; // The bounding volume used 
 		Body* body; // Only leaves will have rigidbodies (we can use an unordered_map to get corresponding rigidbodies if we want)
 
-		BVHNode(BVHNode* parent, IBoundingVolume& volume, Body* body = nullptr);
+		BVHNode(BVHNode* parent, BoundingVolume& volume, Body* body = nullptr);
 		~BVHNode();
 
 		inline bool IsLeaf() { return !children[0] && !children[1]; }

@@ -79,7 +79,7 @@ namespace mtrx
 		return 0.f;
 	}
 
-	float CapsuleCollider::GetGrowth()
+	float CapsuleCollider::GetGrowth(const CapsuleCollider& capsuleCollider)
 	{
 		return 0.f;
 	}

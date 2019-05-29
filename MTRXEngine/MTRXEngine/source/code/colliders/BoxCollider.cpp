@@ -95,7 +95,7 @@ namespace mtrx
 		return 0.f;
 	}
 
-	float BoxCollider::GetGrowth()
+	float BoxCollider::GetGrowth(const BoxCollider& boxCollider)
 	{
 		return 0.f;
 	}

@@ -26,6 +26,6 @@ namespace mtrx
 		virtual bool CheckCollision(const Collider&) override;
 		virtual bool RaycastCollision(const Ray&) override;
 		virtual float GetSize() override;
-		virtual float GetGrowth() override;
+		float GetGrowth(const CapsuleCollider& capsuleCollider);
 	};
 }
