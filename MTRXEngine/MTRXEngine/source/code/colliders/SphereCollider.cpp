@@ -106,6 +106,5 @@ namespace mtrx
 	{
 		SphereCollider collider = SphereCollider(*this, sphereCollider);
 		return collider.radius * collider.radius - radius * radius;
-	
 	}
 }
