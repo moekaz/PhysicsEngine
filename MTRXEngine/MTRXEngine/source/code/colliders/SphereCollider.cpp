@@ -66,7 +66,7 @@ namespace mtrx
 			{
 				std::cout << "SPHERE BOX COLLISION DETECTION" << std::endl;
 				const BoxCollider& collider = static_cast<const BoxCollider&>(col);
-				isColliding = CollisionUtil::SphereBoxCollision(center, collider.GetPosition(), radius, collider.min, collider.max, collider.GetAxes(), collider.halfExtents);
+				isColliding = CollisionUtil::SphereBoxCollision(center, collider.GetPosition(), radius, collider.GetAxes(), collider.halfExtents);
 				break;
 			}
 			case ColliderType::Capsule:

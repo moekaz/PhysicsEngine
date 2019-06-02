@@ -7,6 +7,7 @@
 
 #include <colliders/ConvexShapeCollider.h>
 #include <utils/CollisionUtil.h>
+#include <IBoundingVolume.h>
 
 namespace mtrx
 {
@@ -27,6 +28,7 @@ namespace mtrx
 		virtual bool CheckCollision(const mtrx::Collider&) override;
 		virtual bool RaycastCollision(const Ray&) override;
 		virtual float GetSize() override;
+
 		float GetGrowth(const BoxCollider& boxCollider);
 
 		inline const glm::vec3* GetAxes() const { return axes; }

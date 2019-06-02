@@ -227,7 +227,7 @@ void SphereColliderTesting()
 	mtrx::SphereCollider collider1 = mtrx::SphereCollider();
 	mtrx::SphereCollider collider2 = mtrx::SphereCollider(glm::vec3(30,0,0));
 
-	std::cout << collider1 << std::endl;
+	//std::cout << collider1 << std::endl;
 
 	std::vector<glm::vec3*> vertices1 = 
 	{ 

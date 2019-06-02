@@ -231,7 +231,7 @@ namespace mtrx
 			// Store the vector in a map for quick access (makes filtering much more efficient)
 			for (unsigned int i = 0; i < filterColliders.size(); i++)
 			{
-				filterCollidersMap[filterColliders[i]->colliderId] = filterColliders[i];
+				filterCollidersMap[filterColliders[i]->GetColliderId()] = filterColliders[i];
 			}
 
 			// Go through the colliders checking for raycast collisions after filtering out the ones we don't want

@@ -16,7 +16,7 @@ namespace mtrx
 		height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
 	{}
 
-	CapsuleCollider::CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2)
+	CapsuleCollider::CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2) : Collider(ColliderType::Capsule)
 	{
 		// Create a bounding capsule
 		// Dunno if i want to do that 
@@ -30,7 +30,7 @@ namespace mtrx
 	bool CapsuleCollider::CheckCollision(const Collider& col)
 	{
 		bool collision = false;
-		switch (col.GetColliderType)
+		switch (col.GetColliderType())
 		{
 			case ColliderType::Sphere:
 			{
@@ -43,7 +43,7 @@ namespace mtrx
 			{
 				std::cout << "Capsule Box collision detection" << std::endl;
 				const BoxCollider& collider = static_cast<const BoxCollider&>(col);
-				collision = CollisionUtil::BoxCapsuleCollision(collider.GetPosition(), center, A, B, radii, glm::vec3(), glm::vec3(), collider.GetAxes(), collider.halfExtents);
+				collision = CollisionUtil::BoxCapsuleCollision(collider.GetPosition(), center, A, B, radii, collider.GetAxes(), collider.halfExtents);
 				break;
 			}
 			case ColliderType::Capsule:

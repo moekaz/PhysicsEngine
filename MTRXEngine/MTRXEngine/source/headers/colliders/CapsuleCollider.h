@@ -8,6 +8,7 @@
 #include <Defs.h>
 #include <colliders/Collider.h>
 #include <utils/CollisionUtil.h>
+#include <IBoundingVolume.h>
 
 namespace mtrx
 {

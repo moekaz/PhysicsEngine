@@ -52,7 +52,7 @@ namespace mtrx
 			{
 				std::cout << "Box Sphere collision detection" << std::endl;
 				const mtrx::SphereCollider& collider = static_cast<const mtrx::SphereCollider&>(col);
-				collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), center, collider.radius, min, max, axes, halfExtents);
+				collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), center, collider.radius, axes, halfExtents);
 				break;
 			}
 			case ColliderType::Box:
@@ -66,7 +66,7 @@ namespace mtrx
 			{
 				std::cout << "Box Capsule collision detection" << std::endl;
 				const mtrx::CapsuleCollider& collider = static_cast<const mtrx::CapsuleCollider&>(col);
-				collision = CollisionUtil::BoxCapsuleCollision(center, collider.GetPosition(), collider.A, collider.B, collider.radii, min, max, axes, halfExtents);
+				collision = CollisionUtil::BoxCapsuleCollision(center, collider.GetPosition(), collider.A, collider.B, collider.radii, axes, halfExtents);
 				break;
 			}
 			case ColliderType::Mesh:
@@ -87,7 +87,7 @@ namespace mtrx
 	// Raycast with box colliders
 	bool BoxCollider::RaycastCollision(const Ray& ray)
 	{
-		return CollisionUtil::RayBoxCollision(ray.startPosition, ray.direction, center, 0, 0, axes, halfExtents);
+		return CollisionUtil::RayBoxCollision(ray.startPosition, ray.direction, center, axes, halfExtents);
 	}
 
 	float BoxCollider::GetSize()

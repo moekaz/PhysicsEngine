@@ -4,6 +4,9 @@
 #pragma once
 
 #include <colliders/BVHNode.h>
+#include <../code/colliders/BVHNode.cpp>
+#include <colliders/SphereCollider.h>
+#include <colliders/BoxCollider.h>
 
 namespace mtrx
 {
@@ -13,6 +16,7 @@ namespace mtrx
 		CollisionSystem();
 		~CollisionSystem();
 
-		BVHNode root;
+		// Using sphere colliders atm
+		BVHNode<SphereCollider>* root;
 	};
 }

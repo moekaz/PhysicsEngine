@@ -9,7 +9,7 @@
 namespace mtrx
 {
 	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position) : Body(position, mass), isKinematic(isKinematic), 
-		orientation(glm::quat()), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0))
+		orientation(glm::quat()), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0)), angularDamping(1.f)
 	{}
 
 	Rigidbody::~Rigidbody() {}

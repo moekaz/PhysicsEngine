@@ -24,7 +24,7 @@ namespace mtrx
 		}
 
 		// Sphere box collision detection
-		bool SphereBoxCollision(const glm::vec3& center1, const glm::vec3& center2, float radius, const glm::vec3& min, const glm::vec3& max, const std::vector<glm::vec3*>& axes, const glm::vec3& halfExtents)
+		bool SphereBoxCollision(const glm::vec3& center1, const glm::vec3& center2, float radius, const glm::vec3* axes, const glm::vec3& halfExtents)
 		{
 			// Clamp the center to the closest point on the OBB (The same for AABB) then check distance to that box
 			glm::vec3 direction = center1 - center2;		// Starting direction
@@ -33,12 +33,12 @@ namespace mtrx
 			// For the 3 axes 
 			for (int i = 0; i < 3; i++)
 			{
-				float distance = glm::dot(direction, *axes[i]);
+				float distance = glm::dot(direction, axes[i]);
 
 				if (distance > halfExtents[i]) distance = halfExtents[i];
 				else if (distance < -halfExtents[i]) distance = -halfExtents[i];
 
-				closestPoint += *axes[i] * distance;
+				closestPoint += axes[i] * distance;
 			}
 
 			// Sphere point collision detection
@@ -54,7 +54,7 @@ namespace mtrx
 			return PhysicsUtil::MinDistanceSquaredPointSegment(A, B, center1, vec) <= (radius1 + radius2) * (radius1 + radius2);
 		}
 
-		// Sphere mesh Collsiion detection
+		// Sphere mesh Collsion detection
 		bool SphereMeshCollision()
 		{
 			return false;
@@ -66,14 +66,14 @@ namespace mtrx
 			return ConvexShapeCollision(box1, box2);
 		}
 
-		// Box Capsule collsiion detection 
-		bool BoxCapsuleCollision(const glm::vec3& center1, const glm::vec3& center2, const glm::vec3& A, const glm::vec3& B, float radius, const glm::vec3& min, const glm::vec3& max, const std::vector<glm::vec3*>& axes, const glm::vec3& halfExtents)
+		// Box Capsule collsion detection 
+		bool BoxCapsuleCollision(const glm::vec3& center1, const glm::vec3& center2, const glm::vec3& A, const glm::vec3& B, float radius, const glm::vec3* axes, const glm::vec3& halfExtents)
 		{
 			// Find the closest point on the capsule line to the center of of the box and then do a sphere box collision detection
 			glm::vec3 closestPoint;
 			PhysicsUtil::MinDistanceSquaredPointSegment(A, B, center1, closestPoint);
 
-			return SphereBoxCollision(closestPoint, center1, radius, min, max, axes, halfExtents);
+			return SphereBoxCollision(closestPoint, center1, radius, axes, halfExtents);
 		}
 
 		// Box Mesh collision detection
@@ -115,13 +115,13 @@ namespace mtrx
 		}
 
 		// Ray box collision detection
-		bool RayBoxCollision(const glm::vec3& rayStartPosition, const glm::vec3& rayDirection, const glm::vec3& boxCenter, const glm::vec3& boxMin, const glm::vec3& boxMax, const std::vector<glm::vec3*>& axes, const glm::vec3& halfExtents)
+		bool RayBoxCollision(const glm::vec3& rayStartPosition, const glm::vec3& rayDirection, const glm::vec3& boxCenter, const glm::vec3* axes, const glm::vec3& halfExtents)
 		{
 			// Sphere box collision but with a sphere of radius 0
 			glm::vec3 closestPointRay;
 			PhysicsUtil::MinDistanceSquaredPointRay(boxCenter, rayStartPosition, rayDirection, closestPointRay);
 
-			return SphereBoxCollision(closestPointRay, boxCenter, 0, boxMin, boxMax, axes, halfExtents);
+			return SphereBoxCollision(closestPointRay, boxCenter, 0, axes, halfExtents);
 		}
 
 		// Ray capsuale collision detection

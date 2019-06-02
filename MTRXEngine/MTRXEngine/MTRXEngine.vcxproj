@@ -146,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\code\colliders\BVHNode.cpp" />
+    <ClCompile Include="source\code\colliders\CollisionSystem.cpp" />
     <ClCompile Include="source\code\RigidbodyManager.cpp" />
     <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="source\code\forceGenerators\ParticleGenerators\p_BungeeSpringForceGenerator.cpp" />
@@ -199,6 +201,9 @@
     <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\headers\colliders\BVHNode.h" />
+    <ClInclude Include="source\headers\colliders\CollisionSystem.h" />
+    <ClInclude Include="source\headers\IBoundingVolume.h" />
     <ClInclude Include="source\headers\RigidbodyManager.h" />
     <ClInclude Include="source\headers\entities\Body.h" />
     <ClInclude Include="source\headers\forceGenerators\ParticleGenerators\IParticleForceGenerator.h" />
