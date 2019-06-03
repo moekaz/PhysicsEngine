@@ -6,6 +6,7 @@ Window::Window(const char* windowName, int width, int height) : width(width), he
 	if (!glfwInit())
 	{
 		MTRX_CRITICAL("GLFW HAS NOT INITIALIZED PROPERLY!!!");
+		glfwTerminate();
 		assert(false);
 	}
 
@@ -28,6 +29,7 @@ Window::Window(const char* windowName, int width, int height) : width(width), he
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		MTRX_ERROR("Could not initialize GLAD");
+		glfwTerminate();
 		assert(false);
 	}
 
