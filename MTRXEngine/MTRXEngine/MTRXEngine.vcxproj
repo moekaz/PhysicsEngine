@@ -212,7 +212,12 @@
     <ClCompile Include="source\code\utils\CollisionUtil.cpp" />
     <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
     <ClCompile Include="source\Demos\Demo.cpp" />
-    <ClCompile Include="source\Libraries\glad\src\glad.c" />
+    <ClCompile Include="source\Libraries\glad\src\glad.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\headers\colliders\BVHNode.h" />
