@@ -19,7 +19,7 @@ void Camera::UpdateCamera(float deltaTime)
 
 glm::mat4 Camera::GetProjectionMatrix()
 {
-	return glm::perspective(fov, (float)renderWindow->GetWidth() / (float)renderWindow->GetHeight(), nearPlane, farPlane);
+	return glm::perspective(fov, renderWindow->GetAspectRatio(), nearPlane, farPlane);
 }
 
 glm::mat4 Camera::GetViewMatrix()
