@@ -19,13 +19,20 @@
 #include <unordered_map>
 #include <stack>
 
-// GLM
-#include <glm/glm.hpp>
-#include <glm/gtx/quaternion.hpp>
-
 // SpdLog
 #include <spdlog/spdlog.h>
 #include <spdlog/logger.h>
 #include <spdlog/sinks/basic_file_sink.h>
+
+// GLM
+#include <glm/glm.hpp>
+#include <glm/gtx/quaternion.hpp>
+
+// GLAD
+#include <glad/glad.h>
+
+
+// GLFW
+#include <GLFW/glfw3.h>
 
 // Premake
