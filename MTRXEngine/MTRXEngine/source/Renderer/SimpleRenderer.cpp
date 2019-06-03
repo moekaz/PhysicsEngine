@@ -6,8 +6,8 @@
 #include <PrecompiledHeader.h>
 #include "SimpleRenderer.h"
 
-SimpleRenderer::SimpleRenderer()
-	: shader("Renderer/shaders/BlinnPhong.vert", "Renderer/shaders/BlinnPhong.frag")
+SimpleRenderer::SimpleRenderer(Window* window)
+	: renderWindow(window), camera(window), shader("Renderer/shaders/BlinnPhong.vert", "Renderer/shaders/BlinnPhong.frag")
 {
 }
 
@@ -37,7 +37,7 @@ void SimpleRenderer::Init()
 {
 	// Generate Cube VAO, and VBO
 	float vertices[] = {
-		// positions          // normals           // texture coords
+		// positions          // normals
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,

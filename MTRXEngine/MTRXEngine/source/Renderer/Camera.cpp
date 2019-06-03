@@ -6,8 +6,8 @@
 #include <PrecompiledHeader.h>
 #include "Camera.h"
 
-Camera::Camera()
-	: fov(90), nearPlane(0.01f), farPlane(1000.0f)
+Camera::Camera(Window* window)
+	: renderWindow(window), fov(90), nearPlane(0.01f), farPlane(1000.0f)
 {
 
 }
@@ -19,10 +19,10 @@ void Camera::UpdateCamera(float deltaTime)
 
 glm::mat4 Camera::GetProjectionMatrix()
 {
-	return glm::perspective(fov, width / height, nearPlane, farPlane);
+	return glm::perspective(fov, (float)renderWindow->GetWidth() / (float)renderWindow->GetHeight(), nearPlane, farPlane);
 }
 
 glm::mat4 Camera::GetViewMatrix()
 {
-	//return glm::lookAt();
+	return glm::lookAt(glm::vec3(0.0f, 2.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 }

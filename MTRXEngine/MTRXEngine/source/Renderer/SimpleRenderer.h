@@ -8,10 +8,11 @@
 #include "Shader.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "Window.h"
 
 class SimpleRenderer {
 public:
-	SimpleRenderer();
+	SimpleRenderer(Window* window);
 	~SimpleRenderer();
 
 	void Render(std::vector<Transform>& transforms);
@@ -19,6 +20,7 @@ private:
 	void Init();
 	void BindCube();
 private:
+	Window *renderWindow;
 	Shader shader;
 	Camera camera;
 

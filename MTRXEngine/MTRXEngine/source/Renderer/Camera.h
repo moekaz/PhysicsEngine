@@ -5,16 +5,20 @@
 
 #pragma once
 
+#include "Window.h"
+
 class Camera
 {
 public:
-	Camera();
+	Camera(Window* window);
 
 	void UpdateCamera(float deltaTime);
 
 	glm::mat4 GetProjectionMatrix();
 	glm::mat4 GetViewMatrix();
 private:
+	Window* renderWindow;
+
 	float fov;
 	float nearPlane, farPlane;
 };
