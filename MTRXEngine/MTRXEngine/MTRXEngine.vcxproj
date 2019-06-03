@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/;$(ProjectDir)/source/renderer</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -105,7 +105,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/;$(ProjectDir)/source/renderer</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -125,7 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/;$(ProjectDir)/source/renderer</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -146,7 +146,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/;$(ProjectDir)/source/renderer</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -222,6 +222,7 @@
     <ClCompile Include="source\Renderer\Shader.cpp" />
     <ClCompile Include="source\Renderer\SimpleRenderer.cpp" />
     <ClCompile Include="source\Renderer\Transform.cpp" />
+    <ClCompile Include="source\Renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\headers\colliders\BVHNode.h" />
@@ -275,6 +276,7 @@
     <ClInclude Include="source\headers\utils\CollisionUtil.h" />
     <ClInclude Include="source\headers\utils\PhysicsUtil.h" />
     <ClInclude Include="source\Libraries\glad\include\glad\glad.h" />
+	<ClInclude Include="source\Renderer\Window.h" />
     <ClInclude Include="source\Renderer\Camera.h" />
     <ClInclude Include="source\Renderer\Shader.h" />
     <ClInclude Include="source\Renderer\SimpleRenderer.h" />
