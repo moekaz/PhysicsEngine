@@ -53,7 +53,7 @@ int main()
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow * window, int width, int height) { glViewport(0, 0, width, height); });
 
 	// Set the clear color
-	glClearColor(1.f, 0.f, 0.f, 1.f);
+	glClearColor(0.f, 1.f, 0.f, 1.f);
 
 	// Setup while loop for window
 	while (!glfwWindowShouldClose(window))
