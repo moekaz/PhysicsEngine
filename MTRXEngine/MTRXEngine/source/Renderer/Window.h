@@ -15,6 +15,7 @@ public:
 	inline GLFWwindow* GetWindow() { return window; }
 	inline int GetWidth() { return width; }
 	inline int GetHeight() { return height; }
+	inline float GetAspectRatio() { return (float)width / (float)height; }
 
 	void Update();
 	void InputCheck();
