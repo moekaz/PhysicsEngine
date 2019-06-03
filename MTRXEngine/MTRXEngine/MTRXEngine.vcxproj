@@ -218,6 +218,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\Renderer\Camera.cpp" />
+    <ClCompile Include="source\Renderer\Shader.cpp" />
+    <ClCompile Include="source\Renderer\SimpleRenderer.cpp" />
+    <ClCompile Include="source\Renderer\Transform.cpp" />
     <ClCompile Include="source\Renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +276,15 @@
     <ClInclude Include="source\headers\utils\CollisionUtil.h" />
     <ClInclude Include="source\headers\utils\PhysicsUtil.h" />
     <ClInclude Include="source\Libraries\glad\include\glad\glad.h" />
-    <ClInclude Include="source\Renderer\Window.h" />
+	<ClInclude Include="source\Renderer\Window.h" />
+    <ClInclude Include="source\Renderer\Camera.h" />
+    <ClInclude Include="source\Renderer\Shader.h" />
+    <ClInclude Include="source\Renderer\SimpleRenderer.h" />
+    <ClInclude Include="source\Renderer\Transform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\Renderer\shaders\BlinnPhong.frag" />
+    <None Include="source\Renderer\shaders\BlinnPhong.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

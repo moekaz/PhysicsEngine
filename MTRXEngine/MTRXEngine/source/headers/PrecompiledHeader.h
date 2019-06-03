@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <unordered_map>
 #include <stack>
+#include <fstream>
 
 // SpdLog
 #include <spdlog/spdlog.h>
@@ -25,6 +26,9 @@
 #include <spdlog/sinks/basic_file_sink.h>
 
 // GLM
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/common.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 
