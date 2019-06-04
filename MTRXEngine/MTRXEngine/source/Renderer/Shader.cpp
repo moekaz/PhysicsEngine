@@ -6,9 +6,7 @@
 #include <PrecompiledHeader.h>
 #include "Shader.h"
 
-#include <log/LogManager.h>
-
-Shader::Shader(const char *vertPath, const char *fragPath)
+Shader::Shader(const char* vertPath, const char* fragPath)
 	: vertPath(vertPath), fragPath(fragPath)
 {
 	shaderID = load();
@@ -26,9 +24,15 @@ unsigned int Shader::load()
 	unsigned int vertex = glCreateShader(GL_VERTEX_SHADER);
 	unsigned int fragment = glCreateShader(GL_FRAGMENT_SHADER);
 
+
 	// Variables need to be declared or the character pointers will become dangling pointers
 	std::string vertSourceString = readFile(vertPath);
 	std::string fragSourceString = readFile(fragPath);
+	if (vertSourceString.empty() || fragSourceString.empty())
+	{
+		MTRX_ERROR("Vertex or Fragment shader is empty - failed to compile");
+		return -1;
+	}
 	const char *vertSource = vertSourceString.c_str();
 	const char *fragSource = fragSourceString.c_str();
 

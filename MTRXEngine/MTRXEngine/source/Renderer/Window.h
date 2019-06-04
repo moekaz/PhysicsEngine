@@ -5,6 +5,11 @@
 
 #include <log/LogManager.h>
 
+struct MouseData
+{
+
+};
+
 class Window
 {
 public:
@@ -16,9 +21,12 @@ public:
 	inline int GetWidth() { return width; }
 	inline int GetHeight() { return height; }
 	inline float GetAspectRatio() { return (float)width / (float)height; }
+	inline bool ShouldClose() { return glfwWindowShouldClose(window); }
+	inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
-	void Update();
+	void UpdateBuffers();
 	void InputCheck();
+
 protected:
 	GLFWwindow* window;
 	int width;

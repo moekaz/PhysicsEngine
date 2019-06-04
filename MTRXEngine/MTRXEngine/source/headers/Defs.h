@@ -7,11 +7,13 @@
 #pragma once
 
 namespace mtrx
-{
+{	
 	#define LOGGER_FILE_SIZE 5242880 // Maximum size of logger file 
+	
 	enum class ColliderType : char { Sphere, Box, Capsule, Mesh, ConvexShape, };	// Type of what a collider is 
 	static const float pi = 3.14159265358f;	// The value of pi (close enough)
 	static float gravity = 15.f; // Constant value for gravity (not realistic value but games don't have realistic gravity)
+	static const char* projectDir = (char*)std::filesystem::current_path().c_str(); // Gives us the project dir
 
 	// Struct that holds some information about a spring
 	struct SpringData

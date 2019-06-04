@@ -9,5 +9,11 @@ uniform vec3 viewPos;
 
 void main()
 {
-	FragColour = vec4(WorldNormal, 1.0);
+	vec3 lightDir = normalize(vec3(-0.2, -1.f, -0.2));
+
+	float diffuse = max(dot(-lightDir, WorldNormal), 0.0);
+	vec3 albedo = vec3(1.0, 0.0, 0.0);
+	vec3 ambient = albedo * 0.1f;
+
+	FragColour = vec4((albedo * diffuse) + ambient, 1.0);
 }

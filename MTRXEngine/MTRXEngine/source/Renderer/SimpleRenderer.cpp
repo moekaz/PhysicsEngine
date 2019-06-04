@@ -7,14 +7,13 @@
 #include "SimpleRenderer.h"
 
 SimpleRenderer::SimpleRenderer(Window* window)
-	: renderWindow(window), camera(window), shader("Renderer/shaders/BlinnPhong.vert", "Renderer/shaders/BlinnPhong.frag")
+	: renderWindow(window), camera(window), shader("source/Renderer/shaders/BlinnPhong.vert", "source/Renderer/shaders/BlinnPhong.frag")
 {
+	Init();
 }
 
 SimpleRenderer::~SimpleRenderer()
-{
-
-}
+{}
 
 void SimpleRenderer::Render(std::vector<Transform>& transforms)
 {
@@ -93,6 +92,9 @@ void SimpleRenderer::Init()
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(GL_FLOAT)));
 	glEnableVertexAttribArray(1);
+
+	// GPU State
+	glEnable(GL_DEPTH_TEST);
 }
 
 void SimpleRenderer::BindCube()

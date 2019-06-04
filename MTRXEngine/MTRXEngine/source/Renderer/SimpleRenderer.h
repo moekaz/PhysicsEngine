@@ -16,9 +16,11 @@ public:
 	~SimpleRenderer();
 
 	void Render(std::vector<Transform>& transforms);
+
 private:
 	void Init();
 	void BindCube();
+
 private:
 	Window *renderWindow;
 	Shader shader;

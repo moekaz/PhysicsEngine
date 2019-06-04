@@ -8,11 +8,11 @@
 class Transform
 {
 public:
-	Transform(glm::vec3& position, glm::quat& quaternion, glm::vec3& scale);
-
-	glm::mat4 ConstructModelMatrix();
-private:
+	Transform(const glm::vec3& position, const glm::quat& quaternion, const glm::vec3& scale);
+	
 	glm::vec3 position;
 	glm::quat orientation;
 	glm::vec3 scale;
+
+	glm::mat4 ConstructModelMatrix();
 };

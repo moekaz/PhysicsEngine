@@ -5,6 +5,9 @@
 
 #pragma once
 
+#include <log/LogManager.h>
+#include <Defs.h>
+
 class Shader
 {
 public:
@@ -22,6 +25,7 @@ public:
 	void setUniform4i(const char* name, const glm::ivec4& vector);
 	void setUniformMat3(const char* name, const glm::mat3& matrix);
 	void setUniformMat4(const char* name, const glm::mat4& matrix);
+
 private:
 	int getUniformLocation(const char* name);
 
