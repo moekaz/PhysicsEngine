@@ -23,6 +23,8 @@ public:
 	inline float GetAspectRatio() { return (float)width / (float)height; }
 	inline bool ShouldClose() { return glfwWindowShouldClose(window); }
 	inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
+	inline bool GetKey(char keyCode) { return glfwGetKey(window, keyCode) != GLFW_RELEASE; }
+	inline bool GetKeyDown(char keyCode) { return glfwGetKey(window, keyCode) == GLFW_PRESS; }
 
 	void UpdateBuffers();
 	void InputCheck();
