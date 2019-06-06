@@ -15,7 +15,7 @@ SimpleRenderer::SimpleRenderer(Window* window)
 SimpleRenderer::~SimpleRenderer()
 {}
 
-void SimpleRenderer::Render(std::vector<Transform>& transforms)
+void SimpleRenderer::Render(std::vector<Transform*>& transforms)
 {
 	// Shader setup
 	shader.enable();
@@ -27,7 +27,7 @@ void SimpleRenderer::Render(std::vector<Transform>& transforms)
 
 	// Draw calls
 	for (auto iter = transforms.begin(); iter != transforms.end(); ++iter) {
-		shader.setUniformMat4("modelMatrix", (*iter).ConstructModelMatrix());
+		shader.setUniformMat4("modelMatrix", ConstructModelMatrix(*(*iter)));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 }
@@ -100,4 +100,15 @@ void SimpleRenderer::Init()
 void SimpleRenderer::BindCube()
 {
 	glBindVertexArray(cubeVAO);
+}
+
+glm::mat4 SimpleRenderer::ConstructModelMatrix(const Transform& transform)
+{
+	glm::mat4 translateMatrix = glm::translate(glm::mat4(1.0f), transform.position);
+	glm::mat4 rotateMatrix = glm::toMat4(transform.orientation);
+	glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), transform.scale);
+
+	// ISROT
+	glm::mat4 result = translateMatrix * rotateMatrix * scaleMatrix;
+	return result;
 }

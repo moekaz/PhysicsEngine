@@ -8,6 +8,7 @@
 #include <IUpdateable.h>
 #include <GameTime.h>
 #include <entities/Body.h>
+#include <Transform.h>
 
 namespace mtrx
 {
@@ -16,20 +17,19 @@ namespace mtrx
 	public:
 		// NOT SURE HOW INERTIA TENSORS ARE BEING SET
 
-		Rigidbody(float inverseMass = 0.f, bool iskinematic = false, const glm::vec3& position = glm::vec3());
+		Rigidbody(float inverseMass = 0.f, bool iskinematic = false, const glm::vec3 & position = glm::vec3(), const glm::quat & orientation = glm::quat(), const glm::vec3 & scale = glm::vec3(1, 1, 1));
 		~Rigidbody();	// Destructor
 		
 		// Setters
 		inline void SetAngularDamping(float angularDamping) { this->angularDamping = angularDamping; }
 		inline void SetInverseInertiaTensor(glm::mat3& inertiaTensor) { inverseInertiaTensor = glm::inverse(inertiaTensor); }
-		inline void SetOrientation(glm::quat& orientation) { this->orientation = orientation; }
+		inline void SetOrientation(glm::quat& orientation) { transform.orientation = orientation; }
 		inline void SetRotation(glm::vec3& rotation) { this->rotation = rotation; }
 		inline void SetIsKinematic(bool kinematic) { this->isKinematic = kinematic; }
 
 		// Getters
 		inline glm::mat3& GetInverseInertiaTensor() { return inverseInertiaTensor; }
 		inline float GetAngularDamping() const { return angularDamping; }
-		inline glm::quat& GetOrientation() { return orientation; }
 		inline glm::mat3x4 GetObjToWorldMat() { return objToWorldMat; }
 		inline glm::vec3& GetRotation() { return rotation; }
 		inline bool GetIsKinematic() { return isKinematic; }
@@ -48,12 +48,12 @@ namespace mtrx
 		// Calculate the transformation matrix
 		void CalculateObjToWorldMat();
 		// Add a force at a certain point of the rigidbody (helps in calculating torque forces) PS: point is assumed in world space
-		void AddForceAtPoint(const glm::vec3& force, glm::vec3& point);
+		void AddForceAtPoint(const glm::vec3& force, const glm::vec3& point);
 		// Calculate intrinsic rigidbody data
 		void CalculateBodyData();
 
 	private:
-		glm::quat orientation;	// The orientation of a rigidbody
+		//glm::quat orientation;	// The orientation of a rigidbody
 		glm::vec3 rotation; // Not sure
 		// The inverse inertia tensor is used since it is more useful to calculating the torque generated
 		// Based in object's space and not in world space

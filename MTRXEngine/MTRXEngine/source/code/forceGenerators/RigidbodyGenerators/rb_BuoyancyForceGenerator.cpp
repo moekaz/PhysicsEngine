@@ -3,8 +3,8 @@
 
 namespace mtrx
 {
-	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float density, float volume, float maxPaticleDepth) : liquidProperties(density, volume),
-		maxParticleDepth(maxPaticleDepth)
+	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float volume, float maxPaticleDepth, float liquidHeight, float density) : liquidProperties(density, volume),
+		maxParticleDepth(maxPaticleDepth), liquidHeight(0)
 	{}
 
 	rb_BuoyancyForceGenerator::~rb_BuoyancyForceGenerator()
@@ -23,18 +23,25 @@ namespace mtrx
 			return;
 
 		// Apply some buoyancy force
-		glm::vec3 force;
+		glm::vec3 force = glm::vec3();
 
-		// Partially submerged object
-		if (currentDepth > liquidHeight - maxParticleDepth) // Partially submerged object 
-			force.y = liquidProperties.density * liquidProperties.volume * (liquidHeight + maxParticleDepth - currentDepth) / (2 * maxParticleDepth);
-		else // Completely submerged object
+		if (currentDepth <= liquidHeight - maxParticleDepth)
+		{
 			force.y = liquidProperties.density * liquidProperties.volume;
+		}
+		else
+		{
+			force.y = liquidProperties.density * liquidProperties.volume * (currentDepth - maxParticleDepth - liquidHeight) / (2 * maxParticleDepth);
+		}
+		//if (currentDepth > liquidHeight - maxParticleDepth) // Partially submerged object 
+		//	force.y = liquidProperties.density * liquidProperties.volume * (liquidHeight + maxParticleDepth - currentDepth) / (2 * maxParticleDepth);
+		//else // Completely submerged object
+		//	force.y = liquidProperties.density * liquidProperties.volume;
 
 		// Don't we need to multiply that force by gravity??
-		force.y *= gravity;
+		//force.y *= gravity;
 
 		// Add the resulting force on the particle
-		rb->AddForce(force);
+		rb->AddForce(force * 0.1f);
 	}
 }

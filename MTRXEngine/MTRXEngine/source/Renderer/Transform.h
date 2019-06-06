@@ -13,6 +13,4 @@ public:
 	glm::vec3 position;
 	glm::quat orientation;
 	glm::vec3 scale;
-
-	glm::mat4 ConstructModelMatrix();
 };

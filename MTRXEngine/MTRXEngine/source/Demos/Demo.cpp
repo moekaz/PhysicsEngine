@@ -3,19 +3,32 @@
 #include <Window.h>
 #include <SimpleRenderer.h>
 #include <Transform.h>
+#include <entities/Rigidbody.h>
+#include <forceGenerators/RigidbodyGenerators/rb_GravityForceGenerator.h>
+#include <Defs.h>
+#include <forceGenerators/RigidbodyGenerators/rb_BuoyancyForceGenerator.h>
 
 int main()
 {
 	mtrx::LogManager::init(); // Initialize the logger
 
+	// CREATE A CAMERA WHICH IS UPDATEABLE
+	// Create a window and a renderer
 	Window window = Window("DEMO WINDOW", 800, 600);
 	SimpleRenderer renderer = SimpleRenderer(&window);
 
-	std::vector<Transform> transformsToRender;
+	// Create a bunch of transforms
+	std::vector<Transform*> transformsToRender;
 	float angle = 0.0f;
 	glm::quat orientation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
-	transformsToRender.push_back(Transform(glm::vec3(0.0f, 0.0f, 0.0f), orientation, glm::vec3(1.0f, 1.0f, 1.0f)));
+	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(), glm::quat(), glm::vec3(1, 1, 1));
+	mtrx::rb_GravityForceGenerator gravityGenerator = mtrx::rb_GravityForceGenerator(glm::vec3(0, -mtrx::gravity, 0));
+	mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(3.f, 1.f, 1.5f, 1000.f);
+	
+	transformsToRender.push_back(body1.GetTransform());
+	//transformsToRender.push_back(Transform(glm::vec3(0.0f, 0.0f, 0.0f), orientation, glm::vec3(1.0f, 1.0f, 1.0f)));
 
+	// Game loop
 	while (!window.ShouldClose())
 	{
 		// Check for input
@@ -24,10 +37,29 @@ int main()
 		// Clear the window
 		window.Clear();
 
+		// Update delta time
+		// CHECK EVERY TYPE OF FORCE GENERATOR
+
+		// ADD A FORCE ON A RIGIDBODY and test the nivenebt properly
+
+		// ADD A FORCE AT A POINT TO A RIGIDBODY
+		// TEST INTEGRATION 
+
+		mtrx::GameTime::PhysicsUpdate();
+		glm::vec3 pos = body1.GetPosition();
+		std::cout << "position: " << pos.x << " " << pos.y << " " << pos.z << std::endl;
+
+		//body1.AddForce(glm::vec3(0,0,-10.f));
+		//body1.AddForceAtPoint(glm::vec3(-1.f ,0,-10.f) , body1.GetPosition() + glm::vec3(0.2f, 0, 0));
+		// Update the body and its forces and make sure they work properly 
+		//gravityGenerator.UpdateForces(&body1);
+		//buoyancyGenerator.UpdateForces(&body1);
+		body1.PhysicsUpdate();
+
+		// CHECK FOR COLLISIONS
+
 		// Render
-		transformsToRender[0].orientation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
 		renderer.Render(transformsToRender);
-		angle += 0.01f;
 
 		// Clear buffers and poll
 		window.UpdateBuffers();

@@ -3,7 +3,7 @@
 
 namespace mtrx
 {
-	Body::Body(const glm::vec3& position, const float inverseMass) : position(position), velocity(glm::vec3()), acceleration(glm::vec3()),
+	Body::Body(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale, float inverseMass) : transform(position, orientation, scale), velocity(glm::vec3()), acceleration(glm::vec3()),
 		inverseMass(inverseMass), accumForces(glm::vec3()), linearDamping(1.f)
 	{}
 

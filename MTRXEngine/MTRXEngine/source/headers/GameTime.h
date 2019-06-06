@@ -12,7 +12,7 @@ namespace mtrx
 	class GameTime : public IUpdateable
 	{
 	public:
-		static float deltaTime;	// The delta time between frames
+		static float deltaTime;	// The delta time between frames in seconds
 
 		static void PhysicsUpdate();	// Update the time values
 		static float GetStartTime();	// Get the start time
