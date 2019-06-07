@@ -17,6 +17,8 @@ public:
 
 	void Render(std::vector<Transform*>& transforms);
 	glm::mat4 ConstructModelMatrix(const Transform& transform);
+	
+	inline Camera* GetCamera() { return &camera; }
 
 private:
 	void Init();

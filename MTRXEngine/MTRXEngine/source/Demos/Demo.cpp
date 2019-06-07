@@ -12,7 +12,8 @@ int main()
 {
 	mtrx::LogManager::init(); // Initialize the logger
 
-	// CREATE A CAMERA WHICH IS UPDATEABLE
+	// CREATE A CAMERA WHICH IS UPDATEABLE AND MOEVABLE
+
 	// Create a window and a renderer
 	Window window = Window("DEMO WINDOW", 800, 600);
 	SimpleRenderer renderer = SimpleRenderer(&window);
@@ -57,6 +58,8 @@ int main()
 		body1.PhysicsUpdate();
 
 		// CHECK FOR COLLISIONS
+
+		renderer.GetCamera()->UpdateCamera(mtrx::GameTime::deltaTime);
 
 		// Render
 		renderer.Render(transformsToRender);

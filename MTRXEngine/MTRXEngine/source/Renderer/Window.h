@@ -13,6 +13,11 @@ struct MouseData
 class Window
 {
 public:
+	static double lastX;
+	static double lastY;
+	static double xOffset;
+	static double yOffset;
+
 	Window(const char* windowName, int width = DEFAULT_WINDOW_WIDTH, int height = DEFAULT_WINDOW_HEIGHT);
 	~Window();
 

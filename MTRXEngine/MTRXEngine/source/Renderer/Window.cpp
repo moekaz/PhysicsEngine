@@ -1,6 +1,12 @@
 #include "PrecompiledHeader.h"
 #include "Window.h"
 
+double Window::lastX = 0;
+double Window::lastY = 0;
+double Window::xOffset = 0;
+double Window::yOffset = 0;
+
+
 Window::Window(const char* windowName, int width, int height) : width(width), height(height)
 {
 	if (!glfwInit())
@@ -12,6 +18,7 @@ Window::Window(const char* windowName, int width, int height) : width(width), he
 
 	// Create a window
 	window = glfwCreateWindow(width, height, windowName, nullptr, nullptr);
+	glfwGetCursorPos(window, &Window::lastX, &Window::lastY);
 	if (!window)
 	{
 		MTRX_ERROR("GLFW WINDOW HAS NOT INITIALIZED PROPERLY!!!");
@@ -76,7 +83,10 @@ Window::Window(const char* windowName, int width, int height) : width(width), he
 	// Cursor position callback
 	glfwSetCursorPosCallback(window, [] (GLFWwindow* window, double xpos, double ypos) 
 	{
-
+		Window::xOffset = xpos - Window::lastX;
+		Window::yOffset = Window::lastY - ypos;
+		Window::lastX = xpos;
+		Window::lastY = ypos;
 	});
 
 	// Mouse button callback
