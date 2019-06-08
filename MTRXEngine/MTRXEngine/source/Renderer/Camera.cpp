@@ -14,21 +14,13 @@ Camera::Camera(Window* window, const glm::vec3& position, const glm::vec3& forwa
 void Camera::UpdateCamera(float deltaTime)
 {
 	if (renderWindow->GetKey(GLFW_KEY_W))
-	{
 		position += GetForward() * deltaTime * 2.f;
-	}
 	if (renderWindow->GetKey(GLFW_KEY_A))
-	{
 		position += -GetSide() * deltaTime * 2.f;
-	}
 	if (renderWindow->GetKey(GLFW_KEY_S))
-	{
 		position += -GetForward() * deltaTime * 2.f;
-	}
 	if (renderWindow->GetKey(GLFW_KEY_D))
-	{
 		position += GetSide() * deltaTime * 2.f;
-	}
 
 	if (Window::yOffset != 0.000001)
 	{

@@ -3,7 +3,6 @@
 	Description: Some definitions that are useful
 */
 
-
 #pragma once
 
 namespace mtrx
@@ -31,5 +30,16 @@ namespace mtrx
 		float volume;
 
 		LiquidProperties(float density, float volume) : density(density), volume(volume) {}
+	};
+
+	// Transform struct that holds position orientation and scale
+	struct Transform
+	{
+		glm::vec3 position;
+		glm::quat orientation;
+		glm::vec3 scale;
+		
+		Transform(const glm::vec3& position, const glm::quat& quaternion, const glm::vec3& scale) : position(position), orientation(quaternion), scale(scale) 
+		{}
 	};
 }
