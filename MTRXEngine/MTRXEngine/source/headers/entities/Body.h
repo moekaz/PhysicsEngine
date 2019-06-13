@@ -2,7 +2,7 @@
 #pragma once
 
 #include <IUpdateable.h>
-#include <Transform.h>
+#include <Defs.h>
 
 namespace mtrx
 {

@@ -8,7 +8,6 @@
 #include <IUpdateable.h>
 #include <GameTime.h>
 #include <entities/Body.h>
-#include <Transform.h>
 
 namespace mtrx
 {

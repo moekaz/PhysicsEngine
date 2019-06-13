@@ -7,7 +7,7 @@ double Window::xOffset = 0;
 double Window::yOffset = 0;
 
 
-Window::Window(const char* windowName, int width, int height) : width(width), height(height)
+Window::Window(const char* windowName, int width, int height, float fps, bool vsync) : width(width), height(height), fps(fps)
 {
 	if (!glfwInit())
 	{
@@ -43,8 +43,11 @@ Window::Window(const char* windowName, int width, int height) : width(width), he
 	// Set the clear color
 	glClearColor(0.f, 0.f, 0.f, 1.f);
 
+	// Vsync
+	//SetVsync(vsync);
+
 	// Error callback
-	glfwSetErrorCallback([](int error, const char* description) { MTRX_ERROR("ERROR: " + std::string(description)); });
+	glfwSetErrorCallback([] (int error, const char* description) { MTRX_ERROR("ERROR: " + std::string(description)); });
 
 	// Setup opengl viewport callback for when the window size changes to update the viewport
 	glfwSetFramebufferSizeCallback(window, [] (GLFWwindow* window, int width, int height)
@@ -148,4 +151,14 @@ void Window::UpdateBuffers()
 void Window::InputCheck()
 {
 	// Check for input here
+}
+
+void Window::SetVsync(bool vsync)
+{ 
+	this->vsync = vsync;
+
+	if (vsync)
+		glfwSwapInterval(1);
+	else
+		glfwSwapInterval(0);
 }

@@ -17,6 +17,7 @@ namespace mtrx
 		static void PhysicsUpdate();	// Update the time values
 		static float GetStartTime();	// Get the start time
 		static float GetCurrentTime();	// Get the current time
+		static void Init();
 
 	private:
 		static const float startTime;	// The starting time of the application

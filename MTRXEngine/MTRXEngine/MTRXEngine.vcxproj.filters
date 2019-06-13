@@ -160,9 +160,6 @@
     <ClCompile Include="source\Renderer\SimpleRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Renderer\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Renderer\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -331,9 +328,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Renderer\SimpleRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Renderer\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Renderer\Camera.h">

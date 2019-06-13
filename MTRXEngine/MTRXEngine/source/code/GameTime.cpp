@@ -14,6 +14,13 @@ namespace mtrx
 	float GameTime::prevCurrentTime = 0.f;
 	float GameTime::deltaTime = 0.f;
 
+	void GameTime::Init()
+	{
+		currentTime = GetTime();
+		prevCurrentTime = 0.f;
+		deltaTime = 0.f;
+	}
+
 	// Update 
 	void GameTime::PhysicsUpdate()
 	{

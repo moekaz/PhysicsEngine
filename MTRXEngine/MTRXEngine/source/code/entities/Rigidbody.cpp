@@ -8,8 +8,9 @@
 
 namespace mtrx
 {
-	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale) : Body(position, orientation, scale, mass), isKinematic(isKinematic), 
-		forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0)), angularDamping(1.f)
+	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale) : 
+		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
+		up(glm::vec3(0, 1, 0)), angularDamping(1.f)
 	{}
 
 	Rigidbody::~Rigidbody() {}
@@ -26,10 +27,10 @@ namespace mtrx
 
 		// Is this correct????
 		// Integrate the acceleration to get the velocity
-		velocity = acceleration * GameTime::deltaTime;
+		velocity = acceleration * GameTime::deltaTime * linearDamping;
 		
 		// Drag linear and rotation (should i be doing pow here?? maybe just multiply it instead)
-		velocity *= std::pow(linearDamping, GameTime::deltaTime);
+		//velocity *= std::pow(linearDamping, GameTime::deltaTime);
 
 		transform.position += velocity * GameTime::deltaTime;
 		
@@ -37,10 +38,10 @@ namespace mtrx
 		glm::vec3 angularAcceleration = accumTorque * CalculateIITWorld();
 
 		// Integrate the angular acceleration to get the rotation
-		rotation = angularAcceleration * GameTime::deltaTime;
+		rotation = angularAcceleration * GameTime::deltaTime * angularDamping;
 		
 		// Update rotation
-		rotation *= std::pow(angularDamping, GameTime::deltaTime);
+		//rotation *= std::pow(angularDamping, GameTime::deltaTime);
 
 		// MIGHT BE A PROBLEM !!
 		transform.orientation += 0.5f * transform.orientation * glm::quat(0, rotation * GameTime::deltaTime);

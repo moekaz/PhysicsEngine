@@ -6,7 +6,6 @@
 #pragma once
 
 #include "Shader.h"
-#include "Transform.h"
 #include "Camera.h"
 #include "Window.h"
 
@@ -16,7 +15,7 @@ public:
 	~SimpleRenderer();
 
 	void Render(std::vector<mtrx::Transform*>& transforms);
-	glm::mat4 ConstructModelMatrix(const Transform& transform);
+	glm::mat4 ConstructModelMatrix(const mtrx::Transform& transform);
 	
 	inline Camera* GetCamera() { return &camera; }
 

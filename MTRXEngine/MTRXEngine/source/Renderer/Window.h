@@ -18,7 +18,7 @@ public:
 	static double xOffset;
 	static double yOffset;
 
-	Window(const char* windowName, int width = DEFAULT_WINDOW_WIDTH, int height = DEFAULT_WINDOW_HEIGHT);
+	Window(const char* windowName, int width = DEFAULT_WINDOW_WIDTH, int height = DEFAULT_WINDOW_HEIGHT, float fps = 60, bool vsync = true);
 	~Window();
 
 	// Getters
@@ -27,10 +27,13 @@ public:
 	inline int GetHeight() { return height; }
 	inline float GetAspectRatio() { return (float)width / (float)height; }
 	inline bool ShouldClose() { return glfwWindowShouldClose(window); }
-	inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 	inline bool GetKey(char keyCode) { return glfwGetKey(window, keyCode) != GLFW_RELEASE; }
 	inline bool GetKeyDown(char keyCode) { return glfwGetKey(window, keyCode) == GLFW_PRESS; }
+	inline bool GetIsVsync() { return vsync; }
+	
+	inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
+	void SetVsync(bool vsync);
 	void UpdateBuffers();
 	void InputCheck();
 
@@ -38,5 +41,7 @@ protected:
 	GLFWwindow* window;
 	int width;
 	int height;
+	float fps;
+	bool vsync;
 };
 
