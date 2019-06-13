@@ -79,7 +79,7 @@ namespace mtrx
 
 	void Rigidbody::CalculateBodyData()
 	{
-		// THIS MIGHT BE SMTHG WE DON"T WANT TO BE DOING 
+		// THIS MIGHT BE SMTHG WE DON'T WANT TO BE DOING 
 		// Normalize orientation
 		glm::normalize(transform.orientation);
 

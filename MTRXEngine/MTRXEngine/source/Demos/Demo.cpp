@@ -2,7 +2,6 @@
 #include <log/LogManager.h>
 #include <Window.h>
 #include <SimpleRenderer.h>
-#include <Transform.h>
 #include <entities/Rigidbody.h>
 #include <forceGenerators/RigidbodyGenerators/rb_GravityForceGenerator.h>
 #include <Defs.h>
@@ -19,7 +18,7 @@ int main()
 	SimpleRenderer renderer = SimpleRenderer(&window);
 
 	// Create a bunch of transforms
-	std::vector<Transform*> transformsToRender;
+	std::vector<mtrx::Transform*> transformsToRender;
 	float angle = 0.0f;
 	glm::quat orientation = glm::angleAxis(angle, glm::vec3(0.0f, 1.0f, 0.0f));
 	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(), glm::quat(), glm::vec3(1, 1, 1));
@@ -33,12 +32,11 @@ int main()
 	while (!window.ShouldClose())
 	{
 		// Check for input
-		window.InputCheck();
+		//window.InputCheck();
 
 		// Clear the window
 		window.Clear();
 
-		// Update delta time
 		// CHECK EVERY TYPE OF FORCE GENERATOR
 
 		// ADD A FORCE ON A RIGIDBODY and test the nivenebt properly
@@ -46,11 +44,14 @@ int main()
 		// ADD A FORCE AT A POINT TO A RIGIDBODY
 		// TEST INTEGRATION 
 
+		// Update delta time
 		mtrx::GameTime::PhysicsUpdate();
+
+
 		glm::vec3 pos = body1.GetPosition();
 		std::cout << "position: " << pos.x << " " << pos.y << " " << pos.z << std::endl;
 
-		//body1.AddForce(glm::vec3(0,0,-10.f));
+		body1.AddForce(glm::vec3(0,0,-10.f));
 		//body1.AddForceAtPoint(glm::vec3(-1.f ,0,-10.f) , body1.GetPosition() + glm::vec3(0.2f, 0, 0));
 		// Update the body and its forces and make sure they work properly 
 		//gravityGenerator.UpdateForces(&body1);

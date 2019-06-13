@@ -15,7 +15,7 @@ SimpleRenderer::SimpleRenderer(Window* window)
 SimpleRenderer::~SimpleRenderer()
 {}
 
-void SimpleRenderer::Render(std::vector<Transform*>& transforms)
+void SimpleRenderer::Render(std::vector<mtrx::Transform*>& transforms)
 {
 	// Shader setup
 	shader.enable();
@@ -102,7 +102,7 @@ void SimpleRenderer::BindCube()
 	glBindVertexArray(cubeVAO);
 }
 
-glm::mat4 SimpleRenderer::ConstructModelMatrix(const Transform& transform)
+glm::mat4 SimpleRenderer::ConstructModelMatrix(const mtrx::Transform& transform)
 {
 	glm::mat4 translateMatrix = glm::translate(glm::mat4(1.0f), transform.position);
 	glm::mat4 rotateMatrix = glm::toMat4(transform.orientation);
