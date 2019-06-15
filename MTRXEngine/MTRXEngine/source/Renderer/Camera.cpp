@@ -46,6 +46,7 @@ glm::mat4 Camera::GetViewMatrix()
 	return glm::lookAt(position, position + GetForward(), GetUp());
 }
 
+// THESE SEEM TO BREAK OUR CAMERA MOVEMENTS
 void Camera::Pitch(float angle)
 {
 	glm::quat rotation = glm::angleAxis(angle, GetSide());
