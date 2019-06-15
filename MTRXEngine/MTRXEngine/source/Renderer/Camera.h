@@ -5,7 +5,8 @@
 
 #pragma once
 
-#include "Window.h"
+#include <Window.h>
+#include <Defs.h>
 
 class Camera
 {

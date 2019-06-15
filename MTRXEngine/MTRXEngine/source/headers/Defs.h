@@ -13,6 +13,9 @@ namespace mtrx
 	static const float pi = 3.14159265358f;	// The value of pi (close enough)
 	static float gravity = 15.f; // Constant value for gravity (not realistic value but games don't have realistic gravity)
 	static const char* projectDir = (char*)std::filesystem::current_path().c_str(); // Gives us the project dir
+	static glm::vec3 worldUp = glm::vec3(0.f, 1.f, 0.f);
+	static glm::vec3 worldSide = glm::vec3(1.f, 0.f, 0.f);
+	static glm::vec3 worldForward = glm::vec3(0.f, 0.f, -1.f);
 
 	// Struct that holds some information about a spring
 	struct SpringData

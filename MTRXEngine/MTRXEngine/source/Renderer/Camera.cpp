@@ -26,12 +26,12 @@ void Camera::UpdateCamera(float deltaTime)
 
 	if (Window::yOffset != 0.000001)
 	{
-		Pitch(Window::yOffset * 0.001f);
+		Pitch(Window::yOffset * 0.004f);
 		Window::yOffset = 0;
 	}
 	if (Window::xOffset != 0.000001)
 	{
-		Yaw(-Window::xOffset * 0.001f);
+		Yaw(-Window::xOffset * 0.004f);
 		Window::xOffset = 0;
 	}
 }
@@ -46,7 +46,6 @@ glm::mat4 Camera::GetViewMatrix()
 	return glm::lookAt(position, position + GetForward(), GetUp());
 }
 
-// THESE SEEM TO BREAK OUR CAMERA MOVEMENTS
 void Camera::Pitch(float angle)
 {
 	glm::quat rotation = glm::angleAxis(angle, GetSide());
@@ -55,7 +54,7 @@ void Camera::Pitch(float angle)
 
 void Camera::Yaw(float angle)
 {
-	glm::quat rotation = glm::angleAxis(angle, GetUp());
+	glm::quat rotation = glm::angleAxis(angle, mtrx::worldUp);
 	orientation = rotation * orientation;
 }
 
