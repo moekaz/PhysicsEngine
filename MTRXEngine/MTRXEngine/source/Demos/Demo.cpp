@@ -21,7 +21,7 @@ int main()
 	glm::quat orientation = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Rigidbodies
-	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(0,2.f,0.f), glm::quat(), glm::vec3(1, 1, 1));
+	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(0,2.f,0.f), orientation, glm::vec3(1, 1, 1));
 	float extents[3] = { 1.f, 1.f, 1.f };
 	glm::mat3 it = mtrx::GenerateCuboidIT(1.f, extents);
 	//std::cout << it[0][0] << " " << it[1][1] << " " << it[2][2] << std::endl;
@@ -59,8 +59,9 @@ int main()
 		//buoyancyGenerator.UpdateForces(&body1);
 
 		// ADD A FORCE AT A POINT ON THE RIGIDBODY
-		//body1.AddForceAtPoint(glm::vec3(0.0f ,0,-100.f) , body1.GetPosition() + glm::vec3(1.f, 0, 0));
-		body1.AddTorque(glm::vec3(10.f, 0.f, 0));
+		//body1.AddForceAtPoint(glm::vec3(10.0f, 0.f,0.f) , body1.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
+		//body1.AddTorque(glm::vec3(0.f, 0.f, 10));
+		
 		// CHECK FOR COLLISIONS
 
 		// Update with rigidbody integration 

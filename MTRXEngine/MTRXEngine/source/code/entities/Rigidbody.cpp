@@ -28,9 +28,6 @@ namespace mtrx
 		// Is this correct????
 		// Integrate the acceleration to get the velocity
 		velocity = acceleration * GameTime::deltaTime * linearDamping;
-		
-		// Drag linear and rotation (should i be doing pow here?? maybe just multiply it instead)
-		//velocity *= std::pow(linearDamping, GameTime::deltaTime);
 
 		transform.position += velocity * GameTime::deltaTime;
 		
@@ -39,26 +36,9 @@ namespace mtrx
 
 		// Integrate the angular acceleration to get the rotation
 		rotation = angularAcceleration * GameTime::deltaTime * angularDamping;
-		
-		// Update rotation
-		//rotation *= std::pow(angularDamping, GameTime::deltaTime);
 
-		// MIGHT BE A PROBLEM !!
-		glm::quat rot = glm::quat(0.f, rotation * GameTime::deltaTime);
-		//Quaternion q(0,
-		//	vector.x * scale,
-		//	vector.y * scale,
-		//	vector.z * scale);
-		//q *= *this;
-		//r += q.r * ((real)0.5);
-		//i += q.i * ((real)0.5);
-		//j += q.j * ((real)0.5);
-		//k += q.k * ((real)0.5);
-
-		rot *= transform.orientation;
-		transform.orientation += rot * 0.5f;
-
-		//transform.orientation += 0.5f * transform.orientation * rot * GameTime::deltaTime;
+		//glm::quat rot = glm::quat(0.f, rotation * GameTime::deltaTime);
+		transform.orientation += 0.5f * transform.orientation * glm::quat(0.f, rotation * GameTime::deltaTime);
 
 		// Calculate the body data from the updated positions
 		CalculateBodyData();
