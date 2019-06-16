@@ -37,13 +37,7 @@ namespace mtrx
 		inline bool GetIsKinematic() { return isKinematic; }
 		
 		// Calculate inverse inertia tensor in world space instead of object space  
-		inline glm::mat3 CalculateIITWorld() 
-		{
-			glm::mat3 mat = objToWorldMat * inverseInertiaTensor;
-			std::cout << mat[0][0] << " " << mat[1][1] << " " << mat[2][2] << std::endl;
-
-			return mat; 
-		}
+		inline glm::mat3 CalculateIITWorld() { return objToWorldMat * inverseInertiaTensor; }
 		
 		// Clear accumulators
 		inline void ClearAccumulators();
