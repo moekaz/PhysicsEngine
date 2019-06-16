@@ -7,11 +7,9 @@
 #include "Camera.h"
 
 Camera::Camera(Window* window, const glm::vec3& position, const glm::vec3& forward, const glm::vec3& up)
-	: renderWindow(window), fov(90), nearPlane(0.01f), farPlane(1000.0f), position(position), forward(forward), up(up), 
+	: renderWindow(window), fov(90), nearPlane(0.01f), farPlane(1000.0f), position(position), forward(forward), up(up),
 	side(glm::normalize(glm::cross(forward, up))), orientation(glm::angleAxis(0.f, up))
-{
-	//glfwSetInputMode(window->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-}
+{}
 
 void Camera::UpdateCamera(float deltaTime)
 {

@@ -46,6 +46,9 @@ Window::Window(const char* windowName, int width, int height, float fps, bool vs
 	// Vsync
 	//SetVsync(vsync);
 
+	// Removing the cursor
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	// Error callback
 	glfwSetErrorCallback([] (int error, const char* description) { MTRX_ERROR("ERROR: " + std::string(description)); });
 

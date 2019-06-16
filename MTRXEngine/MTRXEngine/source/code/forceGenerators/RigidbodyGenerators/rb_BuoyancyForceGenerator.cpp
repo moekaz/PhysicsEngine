@@ -3,8 +3,8 @@
 
 namespace mtrx
 {
-	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float volume, float maxPaticleDepth, float liquidHeight, float density) : liquidProperties(density, volume),
-		maxParticleDepth(maxPaticleDepth), liquidHeight(0)
+	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float volumeDisplaced, float maxPaticleDepth, float liquidHeight, float density) : 
+		volumeDisplaced(volumeDisplaced), maxParticleDepth(maxParticleDepth), liquidLevel(liquidHeight), liquidDensity(density)
 	{}
 
 	rb_BuoyancyForceGenerator::~rb_BuoyancyForceGenerator()
@@ -14,34 +14,30 @@ namespace mtrx
 	{
 		// This is wrong now change this 
 
-		// THE ASSUMPTION ATM IS THAT THE UP DIRECTION WE ARE USING IS THE Y AXIS AND THAT OUR LIQUID IS POSITIONED ACCORDINGLY 
-		// IF WE WANT TO CHANGE THAT WE WOULD NEED A NEW UP DIRECTION VECTOR
-
 		// Check if even in liquid or in need of a force first
 		float currentDepth = rb->GetPosition().y;
-		if (currentDepth >= liquidHeight + maxParticleDepth)
+		//if (currentDepth >= liquidLevel + maxParticleDepth)
+			//return;
+		if (currentDepth >= liquidLevel)
 			return;
 
 		// Apply some buoyancy force
-		glm::vec3 force = glm::vec3();
-
-		if (currentDepth <= liquidHeight - maxParticleDepth)
+		glm::vec3 force = glm::vec3(0.f, liquidDensity * volumeDisplaced * gravity, 0.f);
+		float submergenceRatio;
+		if (currentDepth <= liquidLevel - maxParticleDepth)
 		{
-			force.y = liquidProperties.density * liquidProperties.volume;
+			submergenceRatio = 2.f;
+			std::cout << "completely submerged" << std::endl;
 		}
 		else
 		{
-			force.y = liquidProperties.density * liquidProperties.volume * (currentDepth - maxParticleDepth - liquidHeight) / (2 * maxParticleDepth);
+			submergenceRatio = 1.f + (liquidLevel - currentDepth) / (liquidLevel - maxParticleDepth);
+			std::cout << "partially submerged" << std::endl;
 		}
-		//if (currentDepth > liquidHeight - maxParticleDepth) // Partially submerged object 
-		//	force.y = liquidProperties.density * liquidProperties.volume * (liquidHeight + maxParticleDepth - currentDepth) / (2 * maxParticleDepth);
-		//else // Completely submerged object
-		//	force.y = liquidProperties.density * liquidProperties.volume;
-
-		// Don't we need to multiply that force by gravity??
-		//force.y *= gravity;
+		
+		force.y *= submergenceRatio;
 
 		// Add the resulting force on the particle
-		rb->AddForce(force * 0.1f);
+		rb->AddForce(force);
 	}
 }

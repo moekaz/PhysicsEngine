@@ -21,13 +21,24 @@ int main()
 	glm::quat orientation = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Rigidbodies
-	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(), glm::quat(), glm::vec3(1, 1, 1));
+	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(0,2.f,0.f), glm::quat(), glm::vec3(1, 1, 1));
+	float extents[3] = { 1.f, 1.f, 1.f };
+	glm::mat3 it = mtrx::GenerateCuboidIT(1.f, extents);
+	//std::cout << it[0][0] << " " << it[1][1] << " " << it[2][2] << std::endl;
+
+	body1.SetInverseInertiaTensor(mtrx::GenerateCuboidIT(1.f, extents));
+	//glm::mat3 mat = body1.GetInverseInertiaTensor();
+
+	//std::cout << mat[0][0] << " " << mat[1][1] << " " << mat[2][2] << std::endl;
 
 	// Force generators
-	mtrx::rb_GravityForceGenerator gravityGenerator = mtrx::rb_GravityForceGenerator(glm::vec3(0, -mtrx::gravity * 2.f, 0));
-	mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(3.f, 1.f, 1.5f, 1000.f);
+	mtrx::rb_GravityForceGenerator gravityGenerator = mtrx::rb_GravityForceGenerator(glm::vec3(0, -mtrx::gravity, 0));
+	mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(1.f, 1.f, 1.f);
 	
+	mtrx::Transform center = mtrx::Transform(glm::vec3(0, 1.f, 0), glm::quat(), glm::vec3(0.05f, 0.05f, 0.05f));
+
 	transformsToRender.push_back(body1.GetTransform());
+	transformsToRender.push_back(&center);
 
 	mtrx::GameTime::Init();
 
@@ -45,14 +56,11 @@ int main()
 
 		// CHECK EVERY TYPE OF FORCE GENERATOR
 		//gravityGenerator.UpdateForces(&body1);
-		buoyancyGenerator.UpdateForces(&body1);
+		//buoyancyGenerator.UpdateForces(&body1);
 
-		// ADD A FORCE ON A RIGIDBODY and test the nivenebt properly	
-		//body1.AddForce(glm::vec3(0, -200.f, 0.f));
-
-		// ADD A FORCE AT A POINT TO A RIGIDBODY
-		//body1.AddForceAtPoint(glm::vec3(-1.f ,0,-10.f) , body1.GetPosition() + glm::vec3(0.2f, 0, 0));
-
+		// ADD A FORCE AT A POINT ON THE RIGIDBODY
+		//body1.AddForceAtPoint(glm::vec3(0.0f ,0,-100.f) , body1.GetPosition() + glm::vec3(1.f, 0, 0));
+		body1.AddTorque(glm::vec3(10.f, 0.f, 0));
 		// CHECK FOR COLLISIONS
 
 		// Update with rigidbody integration 
@@ -67,7 +75,7 @@ int main()
 
 		// Update delta time
 		mtrx::GameTime::PhysicsUpdate();
-		std::cout << "delta time: " << mtrx::GameTime::deltaTime << std::endl;
+		//std::cout << "delta time: " << mtrx::GameTime::deltaTime << std::endl;
 	}
 
 	return 0;

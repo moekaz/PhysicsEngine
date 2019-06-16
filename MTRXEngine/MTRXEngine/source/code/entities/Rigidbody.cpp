@@ -8,9 +8,9 @@
 
 namespace mtrx
 {
-	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale) : 
+	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale, const glm::mat3& inertiaTensor) : 
 		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
-		up(glm::vec3(0, 1, 0)), angularDamping(1.f)
+		up(glm::vec3(0, 1, 0)), angularDamping(1.f), inverseInertiaTensor(inertiaTensor), accumTorque(glm::vec3()), objToWorldMat(glm::mat3x4(1.0f))
 	{}
 
 	Rigidbody::~Rigidbody() {}
@@ -35,7 +35,7 @@ namespace mtrx
 		transform.position += velocity * GameTime::deltaTime;
 		
 		// Get angular acceleration
-		glm::vec3 angularAcceleration = accumTorque * CalculateIITWorld();
+		glm::vec3 angularAcceleration = accumTorque * inverseInertiaTensor;
 
 		// Integrate the angular acceleration to get the rotation
 		rotation = angularAcceleration * GameTime::deltaTime * angularDamping;
@@ -44,15 +44,27 @@ namespace mtrx
 		//rotation *= std::pow(angularDamping, GameTime::deltaTime);
 
 		// MIGHT BE A PROBLEM !!
-		transform.orientation += 0.5f * transform.orientation * glm::quat(0, rotation * GameTime::deltaTime);
+		glm::quat rot = glm::quat(0.f, rotation * GameTime::deltaTime);
+		//Quaternion q(0,
+		//	vector.x * scale,
+		//	vector.y * scale,
+		//	vector.z * scale);
+		//q *= *this;
+		//r += q.r * ((real)0.5);
+		//i += q.i * ((real)0.5);
+		//j += q.j * ((real)0.5);
+		//k += q.k * ((real)0.5);
+
+		rot *= transform.orientation;
+		transform.orientation += rot * 0.5f;
+
+		//transform.orientation += 0.5f * transform.orientation * rot * GameTime::deltaTime;
 
 		// Calculate the body data from the updated positions
 		CalculateBodyData();
 		
 		// Clear the accumulators
 		ClearAccumulators();
-
-		// Sleep stuff if needed
 	}
 
 	void Rigidbody::ClearAccumulators()

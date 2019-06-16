@@ -14,14 +14,17 @@ namespace mtrx
 	class Rigidbody : public Body
 	{
 	public:
-		// NOT SURE HOW INERTIA TENSORS ARE BEING SET
-
-		Rigidbody(float inverseMass = 0.f, bool iskinematic = false, const glm::vec3 & position = glm::vec3(), const glm::quat & orientation = glm::quat(), const glm::vec3 & scale = glm::vec3(1, 1, 1));
-		~Rigidbody();	// Destructor
+		Rigidbody(float inverseMass = 0.f, bool iskinematic = false, const glm::vec3 & position = glm::vec3(), const glm::quat & orientation = glm::quat(), const glm::vec3 & scale = glm::vec3(1, 1, 1), const glm::mat3& inertiaTensor = glm::mat3(1.0f));
+		~Rigidbody();
 		
 		// Setters
 		inline void SetAngularDamping(float angularDamping) { this->angularDamping = angularDamping; }
-		inline void SetInverseInertiaTensor(glm::mat3& inertiaTensor) { inverseInertiaTensor = glm::inverse(inertiaTensor); }
+		inline void SetInverseInertiaTensor(const glm::mat3& inertiaTensor)
+		{
+			inverseInertiaTensor[0][0] = 1.f / inertiaTensor[0][0];
+			inverseInertiaTensor[1][1] = 1.f / inertiaTensor[1][1];
+			inverseInertiaTensor[2][2] = 1.f / inertiaTensor[2][2];
+		}
 		inline void SetOrientation(glm::quat& orientation) { transform.orientation = orientation; }
 		inline void SetRotation(glm::vec3& rotation) { this->rotation = rotation; }
 		inline void SetIsKinematic(bool kinematic) { this->isKinematic = kinematic; }
@@ -34,7 +37,14 @@ namespace mtrx
 		inline bool GetIsKinematic() { return isKinematic; }
 		
 		// Calculate inverse inertia tensor in world space instead of object space  
-		inline glm::mat3 CalculateIITWorld() { return objToWorldMat * inverseInertiaTensor; }
+		inline glm::mat3 CalculateIITWorld() 
+		{
+			glm::mat3 mat = objToWorldMat * inverseInertiaTensor;
+			std::cout << mat[0][0] << " " << mat[1][1] << " " << mat[2][2] << std::endl;
+
+			return mat; 
+		}
+		
 		// Clear accumulators
 		inline void ClearAccumulators();
 		// Add Torque force
