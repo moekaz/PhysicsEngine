@@ -3,7 +3,7 @@
 
 namespace mtrx
 {
-	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float volumeDisplaced, float maxPaticleDepth, float liquidHeight, float density) : 
+	rb_BuoyancyForceGenerator::rb_BuoyancyForceGenerator(float volumeDisplaced, float maxParticleDepth, float liquidHeight, float density) : 
 		volumeDisplaced(volumeDisplaced), maxParticleDepth(maxParticleDepth), liquidLevel(liquidHeight), liquidDensity(density)
 	{}
 
@@ -12,32 +12,35 @@ namespace mtrx
 
 	void rb_BuoyancyForceGenerator::UpdateForces(Rigidbody* rb)
 	{
-		// This is wrong now change this 
-
-		// Check if even in liquid or in need of a force first
 		float currentDepth = rb->GetPosition().y;
-		//if (currentDepth >= liquidLevel + maxParticleDepth)
-			//return;
-		if (currentDepth >= liquidLevel)
+		if (currentDepth - maxParticleDepth >= liquidLevel)
 			return;
 
 		// Apply some buoyancy force
-		glm::vec3 force = glm::vec3(0.f, liquidDensity * volumeDisplaced * gravity, 0.f);
-		float submergenceRatio;
-		if (currentDepth <= liquidLevel - maxParticleDepth)
+		glm::vec3 force = glm::vec3(0.f, liquidDensity * gravity, 0.f);
+		glm::vec3 dimensions = rb->GetTransform()->scale;
+		float volumeDisplaced = 1.f;
+		centerOfBuoyancy = rb->GetPosition();
+		if (currentDepth + maxParticleDepth <= liquidLevel)
 		{
-			submergenceRatio = 2.f;
+			// Calculate the complete volume of the rigidbody
+			// Assuming a box atm 
+			volumeDisplaced = dimensions.x * dimensions.y * dimensions.z * 2.f;
 			std::cout << "completely submerged" << std::endl;
 		}
 		else
 		{
-			submergenceRatio = 1.f + (liquidLevel - currentDepth) / (liquidLevel - maxParticleDepth);
-			std::cout << "partially submerged" << std::endl;
+			float submergedDepth = (dimensions.y / 2.f) + (liquidLevel - currentDepth);
+			centerOfBuoyancy.y = liquidLevel + submergedDepth / 2;
+			// Calculate the volume of the partially submerged object
+			volumeDisplaced = dimensions.x * dimensions.z * submergedDepth;
+			std::cout << "partially submerged : " << submergedDepth << std::endl;
 		}
 		
-		force.y *= submergenceRatio;
+		// Add the volume displacement to the buoyant force
+		force.y *= volumeDisplaced;
 
-		// Add the resulting force on the particle
-		rb->AddForce(force);
+		// Add the resulting force on the rigidbody
+		rb->AddForceAtPoint(force, centerOfBuoyancy);
 	}
 }

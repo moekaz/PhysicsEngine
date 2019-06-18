@@ -27,23 +27,29 @@ int main()
 	glm::quat orientation = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Rigidbodies
-	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(0,2.f,0.f), orientation, glm::vec3(1, 1, 1));
+	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(0.f, 2.f, 0.f), orientation, glm::vec3(1.f, 1.f, 1.f));
 	float extents[3] = { 1.f, 1.f, 1.f };
 	body1.SetInverseInertiaTensor(mtrx::GenerateCuboidIT(1.f, extents));
-	
+
+	mtrx::Rigidbody artillery;
+
 	// Force generators
 	mtrx::rb_GravityForceGenerator gravityGenerator = mtrx::rb_GravityForceGenerator(glm::vec3(0, -mtrx::gravity, 0));
-	mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(1.f, 1.f, 1.f);
 
-	rbManager.AddRigidbody(&body1);
-	rbManager.AddForceGenerator(&body1, &gravityGenerator);
+	// Fix buoyancy generator
+	mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(0.0001f, 0.5f, 1.f);
+
+	//rbManager.AddRigidbody(&body1);
+	//rbManager.AddForceGenerator(&body1, &gravityGenerator);
+	//rbManager.AddForceGenerator(&body1, &buoyancyGenerator);
 	
 	// This is just a reference transform
-	mtrx::Transform center = mtrx::Transform(glm::vec3(0, 1.f, 0), glm::quat(), glm::vec3(0.05f, 0.05f, 0.05f));
+	mtrx::Transform center = mtrx::Transform(glm::vec3(0, 1.f, 0), glm::quat(), glm::vec3(0.1f, 0.1f, 0.1f));
 
-	transformsToRender.push_back(body1.GetTransform());
+	//transformsToRender.push_back(body1.GetTransform());
 	transformsToRender.push_back(&center);
-
+	transformsToRender.push_back(artillery.GetTransform());
+	
 	mtrx::GameTime::Init();
 
 	// Game loop
@@ -58,8 +64,23 @@ int main()
 		glm::vec3 pos = body1.GetPosition();
 		std::cout << "position: " << pos.x << " " << pos.y << " " << pos.z << std::endl;
 
-		// ADD A FORCE AT A POINT ON THE RIGIDBODY
-		body1.AddForceAtPoint(glm::vec3(10.0f, 0.f, 0.f) , body1.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
+		if (window.GetKeyDown(GLFW_KEY_SPACE))
+		{
+			rbManager.RemoveRigidbody(&artillery);
+			transformsToRender.erase(transformsToRender.begin() + transformsToRender.size() - 1);
+			glm::quat orientation1 = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+			artillery = mtrx::Rigidbody(20.f, false, glm::vec3(-1.f, 0.f, 0.f), orientation1, glm::vec3(1.f, 1.f, 1.f));
+			artillery.SetAngularDamping(0.9f);
+			artillery.SetLinearDamping(0.8f);
+			transformsToRender.push_back(artillery.GetTransform());
+			rbManager.AddRigidbody(&artillery);
+			//rbManager.AddForceGenerator(&artillery, &gravityGenerator);
+			//artillery.SetVelocity(glm::vec3(3, 2, 0));
+			//artillery.SetAcceleration(glm::vec3(0, -2.f, 0));
+
+			// CHECK FORCE APPLICATION AS IT DOESN'T SEEM TO WORK ATM 
+			artillery.AddForceAtPoint(glm::vec3(100.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
+		}
 
 		// CHECK EVERY TYPE OF FORCE GENERATOR
 		// Update rigidbodies force generators and check for collisions

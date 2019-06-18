@@ -11,7 +11,7 @@ namespace mtrx
 	class Body : IUpdateable
 	{
 	public:
-		Body(const glm::vec3& position = glm::vec3(), const glm::quat& orientation = glm::quat(), const glm::vec3& scale = glm::vec3(), const float inverseMass = 0);
+		Body(const glm::vec3& position = glm::vec3(), const glm::quat& orientation = glm::quat(), const glm::vec3& scale = glm::vec3(), const float mass = MAX_MASS);
 		~Body();
 
 		// Add forces
@@ -26,7 +26,7 @@ namespace mtrx
 		inline void SetPosition(const glm::vec3& position) { this->transform.position = position; }
 		inline void SetVelocity(const glm::vec3& velocity) { this->velocity = velocity; }
 		inline void SetAcceleration(const glm::vec3& acceleration) { this->acceleration = acceleration; }
-		inline void SetDamping(const float damping) { this->linearDamping = damping; }
+		inline void SetLinearDamping(const float damping) { this->linearDamping = damping; }
 		void SetMass(const float mass);
 
 		// Getters
@@ -43,7 +43,6 @@ namespace mtrx
 
 	protected:
 		Transform transform; // Transform information
-		//glm::vec3 position; // Position of the particle in space 
 		glm::vec3 velocity; // Velocity of this particle 
 		glm::vec3 acceleration; // Acceleration of this particle
 		glm::vec3 accumForces; // Accumulated forces 

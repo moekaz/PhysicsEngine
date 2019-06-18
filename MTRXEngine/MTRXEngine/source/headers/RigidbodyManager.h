@@ -31,6 +31,13 @@ namespace mtrx
 
 		inline void AddRigidbody(Rigidbody* rb) { rigidbodies.push_back(rb); }
 		inline void AddForceGenerator(Rigidbody* rb, IRigidbodyForceGenerator* forceGenerator) { forceGenerators[rb].AddForceGenerator(forceGenerator); }
+		inline void RemoveForceGenerator(Rigidbody* rb, IRigidbodyForceGenerator* generator) { forceGenerators[rb].RemoveForceGenerator(generator); }
+
+		inline void RemoveRigidbody(Rigidbody* rb) 
+		{
+			rigidbodies.remove(rb); 
+			forceGenerators.erase(rb);
+		}
 
 		virtual void PhysicsUpdate() override;
 		void UpdateRigidbodies();

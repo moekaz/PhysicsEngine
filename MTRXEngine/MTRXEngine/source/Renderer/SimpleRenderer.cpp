@@ -7,7 +7,7 @@
 #include "SimpleRenderer.h"
 
 SimpleRenderer::SimpleRenderer(Window* window)
-	: renderWindow(window), camera(window, glm::vec3(0.f, 0.f, 5.f)), shader("source/Renderer/shaders/BlinnPhong.vert", "source/Renderer/shaders/BlinnPhong.frag")
+	: renderWindow(window), camera(window, glm::vec3(0.f, 0.f, 2.f)), shader("source/Renderer/shaders/BlinnPhong.vert", "source/Renderer/shaders/BlinnPhong.frag")
 {
 	Init();
 }

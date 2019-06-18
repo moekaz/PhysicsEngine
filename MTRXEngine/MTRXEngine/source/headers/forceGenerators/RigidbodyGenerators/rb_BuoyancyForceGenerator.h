@@ -20,7 +20,7 @@ namespace mtrx
 		float maxParticleDepth;
 		glm::vec3 centerOfBuoyancy;	
 
-		rb_BuoyancyForceGenerator(float volume, float maxPaticleDepth, float liquidHeight = 0.f, float density = 1.f);
+		rb_BuoyancyForceGenerator(float volume, float maxPaticleDepth, float liquidHeight = 0.f, float density = 1000.f);
 		~rb_BuoyancyForceGenerator();
 
 		virtual void UpdateForces(Rigidbody* rb) override;

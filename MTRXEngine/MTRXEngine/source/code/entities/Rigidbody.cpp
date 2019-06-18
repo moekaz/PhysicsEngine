@@ -25,11 +25,11 @@ namespace mtrx
 
 		// Get acceleration with accumulated forces and inverse mass
 		//prevAcceleration = acceleration + inverseMass * accumForces;
-		acceleration = accumForces * inverseMass;
+		acceleration += accumForces * inverseMass;
 
 		// Is this correct????
 		// Integrate the acceleration to get the velocity
-		velocity = acceleration * GameTime::deltaTime * linearDamping;
+		velocity += acceleration * GameTime::deltaTime * linearDamping;
 
 		transform.position += velocity * GameTime::deltaTime;
 		
@@ -57,6 +57,12 @@ namespace mtrx
 		accumForces.x = 0;
 		accumForces.y = 0;
 		accumForces.z = 0;
+		//velocity.x = 0;
+		//velocity.y = 0;
+		//velocity.z = 0;
+		//acceleration.x = 0;
+		//acceleration.y = 0;
+		//acceleration.z = 0;
 	}
 
 	void Rigidbody::IntegrateRotation()

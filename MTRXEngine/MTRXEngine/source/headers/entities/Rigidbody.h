@@ -14,7 +14,7 @@ namespace mtrx
 	class Rigidbody : public Body
 	{
 	public:
-		Rigidbody(float inverseMass = 0.f, bool iskinematic = false, const glm::vec3 & position = glm::vec3(), const glm::quat & orientation = glm::quat(), const glm::vec3 & scale = glm::vec3(1, 1, 1), const glm::mat3& inertiaTensor = glm::mat3(1.0f));
+		Rigidbody(float mass = MAX_MASS, bool iskinematic = false, const glm::vec3 & position = glm::vec3(), const glm::quat & orientation = glm::quat(), const glm::vec3 & scale = glm::vec3(1, 1, 1), const glm::mat3& inertiaTensor = glm::mat3(1.0f));
 		~Rigidbody();
 		
 		// Setters
