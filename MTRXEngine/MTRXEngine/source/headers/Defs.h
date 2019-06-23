@@ -11,7 +11,7 @@ namespace mtrx
 	
 	enum class ColliderType : char { Sphere, Box, Capsule, Mesh, ConvexShape, };	// Type of what a collider is 
 	static const float pi = 3.14159265358f;	// The value of pi (close enough)
-	static float gravity = 30.f; // Constant value for gravity (not realistic value but games don't have realistic gravity)
+	static float gravity = 9.81f; // Constant value for gravity (not realistic value but games don't have realistic gravity)
 	static const char* projectDir = (char*)std::filesystem::current_path().c_str(); // Gives us the project dir
 	static glm::vec3 worldUp = glm::vec3(0.f, 1.f, 0.f);
 	static glm::vec3 worldSide = glm::vec3(1.f, 0.f, 0.f);

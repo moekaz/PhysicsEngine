@@ -25,21 +25,19 @@ namespace mtrx
 
 		// Get acceleration with accumulated forces and inverse mass
 		//prevAcceleration = acceleration + inverseMass * accumForces;
-		acceleration += accumForces * inverseMass;
+		acceleration = accumForces * inverseMass;
 
-		// Is this correct????
 		// Integrate the acceleration to get the velocity
 		velocity += acceleration * GameTime::deltaTime * linearDamping;
 
-		transform.position += velocity * GameTime::deltaTime;
-		
 		// Get angular acceleration
 		glm::vec3 angularAcceleration = accumTorque * inverseInertiaTensor;
 
 		// Integrate the angular acceleration to get the rotation
-		rotation = angularAcceleration * GameTime::deltaTime * angularDamping;
+		rotation += angularAcceleration * GameTime::deltaTime * angularDamping;
 
-		//glm::quat rot = glm::quat(0.f, rotation * GameTime::deltaTime);
+		// Modify position and orientation
+		transform.position += velocity * GameTime::deltaTime;
 		transform.orientation += 0.5f * transform.orientation * glm::quat(0.f, rotation * GameTime::deltaTime);
 
 		// Calculate the body data from the updated positions

@@ -50,6 +50,8 @@ int main()
 	transformsToRender.push_back(&center);
 	transformsToRender.push_back(artillery.GetTransform());
 	
+	glfwSetInputMode(window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	mtrx::GameTime::Init();
 
 	// Game loop
@@ -61,7 +63,7 @@ int main()
 		// Clear the window
 		window.Clear();
 
-		glm::vec3 pos = body1.GetPosition();
+		glm::vec3 pos = artillery.GetPosition();
 		std::cout << "position: " << pos.x << " " << pos.y << " " << pos.z << std::endl;
 
 		if (window.GetKeyDown(GLFW_KEY_SPACE))
@@ -69,17 +71,18 @@ int main()
 			rbManager.RemoveRigidbody(&artillery);
 			transformsToRender.erase(transformsToRender.begin() + transformsToRender.size() - 1);
 			glm::quat orientation1 = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-			artillery = mtrx::Rigidbody(20.f, false, glm::vec3(-1.f, 0.f, 0.f), orientation1, glm::vec3(1.f, 1.f, 1.f));
-			artillery.SetAngularDamping(0.9f);
-			artillery.SetLinearDamping(0.8f);
+			artillery = mtrx::Rigidbody(2.f, false, glm::vec3(-1.f, 0.f, 0.f), orientation1, glm::vec3(1.f, 1.f, 1.f));
+			artillery.SetAngularDamping(0.7f);
+			artillery.SetLinearDamping(0.7f);
 			transformsToRender.push_back(artillery.GetTransform());
 			rbManager.AddRigidbody(&artillery);
 			//rbManager.AddForceGenerator(&artillery, &gravityGenerator);
 			//artillery.SetVelocity(glm::vec3(3, 2, 0));
+			
 			//artillery.SetAcceleration(glm::vec3(0, -2.f, 0));
-
+			//artillery.AddForce(glm::vec3(3000.f, 2000.f, 0));
 			// CHECK FORCE APPLICATION AS IT DOESN'T SEEM TO WORK ATM 
-			artillery.AddForceAtPoint(glm::vec3(100.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
+			artillery.AddForceAtPoint(glm::vec3(200.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
 		}
 
 		// CHECK EVERY TYPE OF FORCE GENERATOR
