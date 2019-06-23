@@ -27,14 +27,18 @@ namespace mtrx
 		//prevAcceleration = acceleration + inverseMass * accumForces;
 		acceleration = accumForces * inverseMass;
 
-		// Integrate the acceleration to get the velocity
-		velocity += acceleration * GameTime::deltaTime * linearDamping;
-
 		// Get angular acceleration
 		glm::vec3 angularAcceleration = accumTorque * inverseInertiaTensor;
 
+		// Integrate the acceleration to get the velocity
+		velocity += acceleration * GameTime::deltaTime;
+
 		// Integrate the angular acceleration to get the rotation
-		rotation += angularAcceleration * GameTime::deltaTime * angularDamping;
+		rotation += angularAcceleration * GameTime::deltaTime;
+
+		// Add damping
+		velocity *= linearDamping;
+		rotation *= angularDamping;
 
 		// Modify position and orientation
 		transform.position += velocity * GameTime::deltaTime;
@@ -55,12 +59,6 @@ namespace mtrx
 		accumForces.x = 0;
 		accumForces.y = 0;
 		accumForces.z = 0;
-		//velocity.x = 0;
-		//velocity.y = 0;
-		//velocity.z = 0;
-		//acceleration.x = 0;
-		//acceleration.y = 0;
-		//acceleration.z = 0;
 	}
 
 	void Rigidbody::IntegrateRotation()
@@ -78,7 +76,6 @@ namespace mtrx
 
 	void Rigidbody::CalculateBodyData()
 	{
-		// THIS MIGHT BE SMTHG WE DON'T WANT TO BE DOING 
 		// Normalize orientation
 		glm::normalize(transform.orientation);
 

@@ -72,8 +72,8 @@ int main()
 			transformsToRender.erase(transformsToRender.begin() + transformsToRender.size() - 1);
 			glm::quat orientation1 = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 			artillery = mtrx::Rigidbody(2.f, false, glm::vec3(-1.f, 0.f, 0.f), orientation1, glm::vec3(1.f, 1.f, 1.f));
-			artillery.SetAngularDamping(0.7f);
-			artillery.SetLinearDamping(0.7f);
+			artillery.SetAngularDamping(0.9f);
+			artillery.SetLinearDamping(0.9f);
 			transformsToRender.push_back(artillery.GetTransform());
 			rbManager.AddRigidbody(&artillery);
 			//rbManager.AddForceGenerator(&artillery, &gravityGenerator);
@@ -82,7 +82,7 @@ int main()
 			//artillery.SetAcceleration(glm::vec3(0, -2.f, 0));
 			//artillery.AddForce(glm::vec3(3000.f, 2000.f, 0));
 			// CHECK FORCE APPLICATION AS IT DOESN'T SEEM TO WORK ATM 
-			artillery.AddForceAtPoint(glm::vec3(200.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
+			artillery.AddForceAtPoint(glm::vec3(300.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
 		}
 
 		// CHECK EVERY TYPE OF FORCE GENERATOR
