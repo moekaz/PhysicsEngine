@@ -48,10 +48,12 @@ int main()
 
 	//transformsToRender.push_back(body1.GetTransform());
 	transformsToRender.push_back(&center);
-	transformsToRender.push_back(artillery.GetTransform());
+	//transformsToRender.push_back(artillery.GetTransform());
 	
+	// window options
 	glfwSetInputMode(window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
+	//glfwSwapInterval(0);
+	 
 	mtrx::GameTime::Init();
 
 	// Game loop
@@ -81,7 +83,6 @@ int main()
 			
 			//artillery.SetAcceleration(glm::vec3(0, -2.f, 0));
 			//artillery.AddForce(glm::vec3(3000.f, 2000.f, 0));
-			// CHECK FORCE APPLICATION AS IT DOESN'T SEEM TO WORK ATM 
 			artillery.AddForceAtPoint(glm::vec3(300.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
 		}
 
