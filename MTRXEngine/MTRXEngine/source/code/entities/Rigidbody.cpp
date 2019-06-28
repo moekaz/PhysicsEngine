@@ -12,7 +12,6 @@ namespace mtrx
 		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
 		up(glm::vec3(0, 1, 0)), angularDamping(1.f), inverseInertiaTensor(inertiaTensor), accumTorque(glm::vec3()), objToWorldMat(glm::mat3x4(1.0f)),
 		rotation(glm::vec3())
-	
 	{}
 
 	Rigidbody::~Rigidbody() {}
