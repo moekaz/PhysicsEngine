@@ -9,6 +9,9 @@
 #include <RigidbodyManager.h>
 #include <ParticleManager.h>
 #include <forceGenerators/RigidbodyGenerators/rb_ForceGenerationRegistry.h>
+#include <colliders/BoxCollider.h>
+#include <colliders/SphereCollider.h>
+#include <colliders/CapsuleCollider.h>
 
 int main()
 {
@@ -24,30 +27,42 @@ int main()
 	mtrx::RigidbodyManager rbManager;
 	mtrx::ParticleManager pManager;
 
-	glm::quat orientation = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-
 	// Rigidbodies
+	glm::quat orientation = glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 	mtrx::Rigidbody body1 = mtrx::Rigidbody(1.f, false, glm::vec3(0.f, 2.f, 0.f), orientation, glm::vec3(1.f, 1.f, 1.f));
 	float extents[3] = { 1.f, 1.f, 1.f };
 	body1.SetInverseInertiaTensor(mtrx::GenerateCuboidIT(1.f, extents));
+	mtrx::BoxCollider collider = mtrx::BoxCollider();
 
+	// Second box
+	glm::quat orientation1 = glm::angleAxis(0.0f, glm::vec3(0, 0, 0));
+	mtrx::Rigidbody body2 = mtrx::Rigidbody(1.f, false, glm::vec3(0.f, 2.f, 0.f), orientation1, glm::vec3(1.f, 1.f, 1.f));
+	body1.SetInverseInertiaTensor(mtrx::GenerateCuboidIT(1.f, extents));
+	mtrx::BoxCollider collider1 = mtrx::BoxCollider();
+
+	// Artillery object 
 	mtrx::Rigidbody artillery;
+	mtrx::BoxCollider collider2 = mtrx::BoxCollider();
 
 	// Force generators
 	mtrx::rb_GravityForceGenerator gravityGenerator = mtrx::rb_GravityForceGenerator(glm::vec3(0, -mtrx::gravity, 0));
 
 	// Fix buoyancy generator
-	mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(0.0001f, 0.5f, 1.f);
+	//mtrx::rb_BuoyancyForceGenerator buoyancyGenerator = mtrx::rb_BuoyancyForceGenerator(0.0001f, 0.5f, 1.f);
 
-	//rbManager.AddRigidbody(&body1);
+	rbManager.AddRigidbody(&body1);
+	rbManager.AddRigidbody(&body2);
+
 	//rbManager.AddForceGenerator(&body1, &gravityGenerator);
 	//rbManager.AddForceGenerator(&body1, &buoyancyGenerator);
 	
 	// This is just a reference transform
 	mtrx::Transform center = mtrx::Transform(glm::vec3(0, 1.f, 0), glm::quat(), glm::vec3(0.1f, 0.1f, 0.1f));
 
-	//transformsToRender.push_back(body1.GetTransform());
+	// Add the transforms
+	transformsToRender.push_back(body1.GetTransform());
 	transformsToRender.push_back(&center);
+	transformsToRender.push_back(body2.GetTransform());
 	//transformsToRender.push_back(artillery.GetTransform());
 	
 	// window options
@@ -77,13 +92,14 @@ int main()
 			artillery.SetAngularDamping(0.9f);
 			artillery.SetLinearDamping(0.9f);
 			transformsToRender.push_back(artillery.GetTransform());
+
 			rbManager.AddRigidbody(&artillery);
 			//rbManager.AddForceGenerator(&artillery, &gravityGenerator);
 			//artillery.SetVelocity(glm::vec3(3, 2, 0));
 			
 			//artillery.SetAcceleration(glm::vec3(0, -2.f, 0));
 			//artillery.AddForce(glm::vec3(3000.f, 2000.f, 0));
-			artillery.AddForceAtPoint(glm::vec3(300.0f, 0.f, 0.f), artillery.GetPosition() + glm::vec3(0.5f, 0, -0.5f));
+			artillery.AddForceAtPoint(glm::vec3(0.0f, 0.f, -1000.f), artillery.GetPosition() + glm::vec3(0.0f, 0.5f, 0.0f));
 		}
 
 		// CHECK EVERY TYPE OF FORCE GENERATOR

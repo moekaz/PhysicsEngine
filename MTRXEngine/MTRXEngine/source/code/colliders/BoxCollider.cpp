@@ -14,17 +14,17 @@ namespace mtrx
 	BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(ColliderType::Box, center), halfExtents(glm::vec3(0.5, 0.5, 0.5))
 	{
 		// Setup vertices and mins and maxes
-		//vertices =
-		//{
-		//	new glm::vec3(-0.5 , 0.5 , 0.5),
-		//	new glm::vec3(0.5 , 0.5 , 0.5),
-		//	new glm::vec3(-0.5 , -0.5 , 0.5),
-		//	new glm::vec3(0.5 , -0.5 , 0.5),
-		//	new glm::vec3(-0.5 , 0.5 , -0.5),
-		//	new glm::vec3(0.5 , 0.5 , -0.5),
-		//	new glm::vec3(-0.5 , -0.5 , -0.5),
-		//	new glm::vec3(0.5 , -0.5 , -0.5),
-		//};
+		vertices =
+		{
+			new glm::vec3(-0.5 , 0.5 , 0.5),
+			new glm::vec3(0.5 , 0.5 , 0.5),
+			new glm::vec3(-0.5 , -0.5 , 0.5),
+			new glm::vec3(0.5 , -0.5 , 0.5),
+			new glm::vec3(-0.5 , 0.5 , -0.5),
+			new glm::vec3(0.5 , 0.5 , -0.5),
+			new glm::vec3(-0.5 , -0.5 , -0.5),
+			new glm::vec3(0.5 , -0.5 , -0.5),
+		};
 
 		//min = glm::vec3(-0.5, -0.5, -0.5);	// Minimum positions
 		//max = glm::vec3(0.5, 0.5, 0.5);		// Maximum positions
