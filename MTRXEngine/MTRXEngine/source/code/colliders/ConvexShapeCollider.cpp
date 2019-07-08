@@ -27,9 +27,9 @@ namespace mtrx
 	glm::vec3& ConvexShapeCollider::FarthestPointInDirection(const glm::vec3& direction) const
 	{
 		float maxDot = -std::numeric_limits<float>::infinity();	// Max dot vector
-		glm::vec3* farthest = NULL;	// Farthest vector
+		glm::vec3* farthest = nullptr;	// Farthest vector
 
-		for (unsigned int i = 0; i < vertices.size(); i++)
+		for (unsigned int i = 0; i < vertices.size(); ++i)
 		{
 			float dot = glm::dot(*vertices[i], direction);
 			if (dot > maxDot)
