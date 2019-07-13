@@ -14,7 +14,7 @@ public:
 	SimpleRenderer(Window* window);
 	~SimpleRenderer();
 
-	void Render(std::vector<mtrx::Transform*>& transforms);
+	void Render(std::unordered_set<mtrx::Transform*>& transforms);
 	glm::mat4 ConstructModelMatrix(const mtrx::Transform& transform);
 	
 	inline Camera* GetCamera() { return &camera; }
@@ -23,7 +23,7 @@ private:
 	void Init();
 	void BindCube();
 
-private:
+protected:
 	Window *renderWindow;
 	Shader shader;
 	Camera camera;

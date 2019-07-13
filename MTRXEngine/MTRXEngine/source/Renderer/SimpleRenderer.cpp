@@ -15,7 +15,7 @@ SimpleRenderer::SimpleRenderer(Window* window)
 SimpleRenderer::~SimpleRenderer()
 {}
 
-void SimpleRenderer::Render(std::vector<mtrx::Transform*>& transforms)
+void SimpleRenderer::Render(std::unordered_set<mtrx::Transform*>& transforms)
 {
 	// Shader setup
 	shader.enable();

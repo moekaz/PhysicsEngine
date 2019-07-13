@@ -49,9 +49,12 @@ namespace mtrx
 		return *farthest;
 	}
 
-	std::vector<glm::vec3*>* ConvexShapeCollider::GetVertices()
+	std::vector<glm::vec3*> ConvexShapeCollider::GetVertices()
 	{
+		// TODO: implement this
 		// Get the vertices of the convex shape with change in position and orientation
+		std::vector<glm::vec3*> vertex;
+		return vertex;
 	}
 
 	// Convex shape collision detection

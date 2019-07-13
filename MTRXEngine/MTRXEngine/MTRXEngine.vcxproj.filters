@@ -165,10 +165,13 @@
     <ClCompile Include="source\Demos\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Demos\ProjectileDemos.cpp">
+    <ClCompile Include="source\Demos\CollisionDemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Demos\CollisionDemo.cpp">
+    <ClCompile Include="source\Demos\ProjectileDemo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Demos\PhysicsDemos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -339,6 +342,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Demos\App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Demos\ProjectileDemo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Demos\CollisionDemo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
