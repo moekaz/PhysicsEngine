@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Demos\App.cpp" />
     <ClCompile Include="source\code\colliders\BVHNode.cpp" />
     <ClCompile Include="source\code\colliders\CollisionSystem.cpp" />
     <ClCompile Include="source\code\RigidbodyManager.cpp" />
@@ -211,8 +212,8 @@
     <ClCompile Include="source\code\Tester.cpp" />
     <ClCompile Include="source\code\utils\CollisionUtil.cpp" />
     <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
-    <ClCompile Include="source\Demos\Application.cpp" />
-    <ClCompile Include="source\Demos\Demo.cpp" />
+    <ClCompile Include="source\Demos\CollisionDemo.cpp" />
+    <ClCompile Include="source\Demos\ProjectileDemos.cpp" />
     <ClCompile Include="source\Libraries\glad\src\glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -225,7 +226,7 @@
     <ClCompile Include="source\Renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Demos\Application.h" />
+    <ClInclude Include="source\Demos\App.h" />
     <ClInclude Include="source\headers\colliders\BVHNode.h" />
     <ClInclude Include="source\headers\colliders\CollisionSystem.h" />
     <ClInclude Include="source\headers\IBoundingVolume.h" />
