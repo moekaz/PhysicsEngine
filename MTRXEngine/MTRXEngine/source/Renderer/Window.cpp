@@ -7,7 +7,7 @@ double Window::xOffset = 0;
 double Window::yOffset = 0;
 
 
-Window::Window(const char* windowName, int width, int height, float fps, bool vsync) : width(width), height(height), fps(fps)
+Window::Window(const char* windowName, int width, int height, float fps) : width(width), height(height), fps(fps)
 {
 	if (!glfwInit())
 	{
@@ -43,12 +43,6 @@ Window::Window(const char* windowName, int width, int height, float fps, bool vs
 	// Set the clear color
 	glClearColor(0.f, 0.f, 0.f, 1.f);
 
-	// Vsync
-	//SetVsync(vsync);
-
-	// Removing the cursor
-	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
 	// Error callback
 	glfwSetErrorCallback([] (int error, const char* description) { MTRX_ERROR("ERROR: " + std::string(description)); });
 
@@ -60,31 +54,7 @@ Window::Window(const char* windowName, int width, int height, float fps, bool vs
 
 	// Setup key callback
 	glfwSetKeyCallback(window, [] (GLFWwindow* window, int key, int scancode, int action, int mods)
-	{
-		// If a button is pressed or held
-		if (action != GLFW_RELEASE)
-		{
-			switch (key)
-			{
-				case GLFW_KEY_A:
-				{
-					break;
-				}
-				case GLFW_KEY_D:
-				{
-					break;
-				}
-				case GLFW_KEY_W:
-				{
-					break;
-				}
-				case GLFW_KEY_S:
-				{
-					break;
-				}
-			}
-		}
-	});
+	{});
 
 	// Cursor position callback
 	glfwSetCursorPosCallback(window, [] (GLFWwindow* window, double xpos, double ypos) 
@@ -121,9 +91,7 @@ Window::Window(const char* windowName, int width, int height, float fps, bool vs
 
 	// Scroll callback
 	glfwSetScrollCallback(window, [](GLFWwindow* window, double xOffset, double yOffset) 
-	{
-
-	});
+	{});
 
 	// Cursor enter callback
 	glfwSetCursorEnterCallback(window, [](GLFWwindow* window, int entered)
@@ -149,19 +117,4 @@ void Window::UpdateBuffers()
 {
 	glfwPollEvents();
 	glfwSwapBuffers(window);
-}
-
-void Window::InputCheck()
-{
-	// Check for input here
-}
-
-void Window::SetVsync(bool vsync)
-{ 
-	this->vsync = vsync;
-
-	if (vsync)
-		glfwSwapInterval(1);
-	else
-		glfwSwapInterval(0);
 }
