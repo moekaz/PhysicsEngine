@@ -26,7 +26,10 @@ namespace mtrx
 		inline const ColliderType& GetColliderType() const { return type; }
 		inline const int GetColliderId() const { return colliderId; }
 		inline const bool IsConvex() const { return isConvexShape; }
-
+		
+		// TODO: Implement this
+		inline glm::mat3 GetTransfomrationMatrix() { return glm::mat3(); }
+		
 		// Setters
 		inline void SetPosition(const glm::vec3& center) { transform.position = center; }
 		
