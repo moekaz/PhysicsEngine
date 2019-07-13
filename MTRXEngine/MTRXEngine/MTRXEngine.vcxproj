@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" 
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -212,6 +211,7 @@
     <ClCompile Include="source\code\Tester.cpp" />
     <ClCompile Include="source\code\utils\CollisionUtil.cpp" />
     <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
+    <ClCompile Include="source\Demos\Application.cpp" />
     <ClCompile Include="source\Demos\Demo.cpp" />
     <ClCompile Include="source\Libraries\glad\src\glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -225,6 +225,7 @@
     <ClCompile Include="source\Renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Demos\Application.h" />
     <ClInclude Include="source\headers\colliders\BVHNode.h" />
     <ClInclude Include="source\headers\colliders\CollisionSystem.h" />
     <ClInclude Include="source\headers\IBoundingVolume.h" />
