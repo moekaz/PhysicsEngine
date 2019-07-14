@@ -9,7 +9,7 @@ CollisionDemo::~CollisionDemo()
 
 void CollisionDemo::Update()
 {
-	App::Update();
+	Demo::Update();
 }
 
 void CollisionDemo::InputCheck()

@@ -17,7 +17,7 @@ public:
 	// Physics entity managers
 	mtrx::RigidbodyManager rbManager;
 	mtrx::ParticleManager pManager;
-	bool cursor = false;
+	bool cursor;
 
 	Demo(const char* appName = "DEMO APPLICATION", int width = DEFAULT_WINDOW_WIDTH, int height = DEFAULT_WINDOW_HEIGHT);
 	~Demo();

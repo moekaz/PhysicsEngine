@@ -1,9 +1,10 @@
 #include <PrecompiledHeader.h>
 #include <../Demos/Demo.h>
 
-Demo::Demo(const char* appName, int width, int height) : application(appName, width, height)
+Demo::Demo(const char* appName, int width, int height) : application(appName, width, height), cursor(false)
 {
-	glfwSetInputMode(window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	// TODO: Abstract this in window code 
+	glfwSetInputMode(application.window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 Demo::~Demo()

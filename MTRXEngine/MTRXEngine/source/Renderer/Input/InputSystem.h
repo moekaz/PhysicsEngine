@@ -10,6 +10,12 @@ namespace mtrx
 	class InputSystem
 	{
 	public:
+		// TODO: Add getters and setters for this
+		static double mouseX;
+		static double mouseY;
+		static double xOffset;
+		static double yOffset;
+
 		static void Init();
 		static void Update();
 
@@ -44,9 +50,5 @@ namespace mtrx
 	private:
 		static char keys[MAX_KEYS];
 		static char mouseButtons[MAX_MOUSE_BUTTONS];
-		static double mouseX;
-		static double mouseY;
-		static double xOffset;
-		static double yOffset;
 	};
 }

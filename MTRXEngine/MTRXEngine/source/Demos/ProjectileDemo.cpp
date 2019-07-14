@@ -18,12 +18,12 @@ void ProjectileDemo::Update()
 	};
 	transformsToRender.insert(&center);
 	
-	App::Update();
+	Demo::Update();
 }
 
 void ProjectileDemo::InputCheck()
 {
-	if (window.GetKeyDown(GLFW_KEY_SPACE))
+	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_SPACE))
 	{
 		// Removing the rigidbody also removes the force generators that are linked with this force generator
 		rbManager.RemoveRigidbody(&projectile);
@@ -78,22 +78,22 @@ void ProjectileDemo::InputCheck()
 		transformsToRender.insert(projectile.GetTransform());
 	}
 
-	if (window.GetKeyDown(GLFW_KEY_1))
+	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_1))
 	{
 		projectileType = 1;
 	}
 
-	if (window.GetKeyDown(GLFW_KEY_2))
+	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_2))
 	{
 		projectileType = 2;
 	}	
 	
-	if (window.GetKeyDown(GLFW_KEY_3))
+	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_3))
 	{
 		projectileType = 3;
 	}
 
-	if (window.GetKeyDown(GLFW_KEY_4))
+	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_4))
 	{
 		projectileType = 4;
 	}

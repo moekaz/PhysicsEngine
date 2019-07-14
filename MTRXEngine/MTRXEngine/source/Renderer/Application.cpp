@@ -2,18 +2,7 @@
 #include <Application.h>
 
 Application::Application(const char* appName, int width, int height, int fps) : window(appName, width, height, fps), renderer(&window)
-{
-	// Set the window to the current context
-	glfwMakeContextCurrent(window.GetWindow());
-
-	// Initialize GLAD
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		MTRX_ERROR("COULD NOT INITIALIZE GLAD");
-		glfwTerminate();
-		assert(false);
-	}
-
+{	 
 	// Setup opengl viewport
 	glViewport(0, 0, width, height);
 
