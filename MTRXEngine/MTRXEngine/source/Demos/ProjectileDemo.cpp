@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include <../Demos/ProjectileDemo.h>
 
-ProjectileDemo::ProjectileDemo() : App("PROJECTILE DEMO"), gravityGenerator(glm::vec3(0, -mtrx::gravity, 0)), projectileType(1)
+ProjectileDemo::ProjectileDemo() : Demo("PROJECTILE DEMO"), gravityGenerator(glm::vec3(0, -mtrx::gravity, 0)), projectileType(1)
 {}
 
 ProjectileDemo::~ProjectileDemo()

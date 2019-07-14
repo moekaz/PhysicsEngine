@@ -7,6 +7,7 @@
 
 #include <Window.h>
 #include <Defs.h>
+#include <Input/InputSystem.h>
 
 class Camera
 {

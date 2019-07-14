@@ -8,13 +8,20 @@
 	#include <../Demos/CollisionDemo.h>
 #endif
 
+#include <log/LogManager.h>
+#include <../Renderer/Input/InputSystem.h>
+#include <../Demos/Demo.h>
+
 int main()
 {
 	// Initialize logger 
-	mtrx::LogManager::init();
+	mtrx::LogManager::Init();
+
+	// Initialize Input system
+	mtrx::InputSystem::Init();
 
 	// Demo application that we want to run
-	std::unique_ptr<App> app;
+	std::unique_ptr<Demo> app;
 #if DEMO == 1
 	app = std::make_unique<ProjectileDemo>();
 #elif DEMO == 2

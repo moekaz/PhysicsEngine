@@ -1,11 +1,11 @@
 #pragma once
 
-#include <../Demos/App.h>
+#include <../Demos/Demo.h>
 #include <entities/Rigidbody.h>
 #include <forceGenerators/RigidbodyGenerators/rb_GravityForceGenerator.h>
 #include <Defs.h>
 
-class CollisionDemo : public App
+class CollisionDemo : public Demo
 {
 public:
 	mtrx::Rigidbody projectile;

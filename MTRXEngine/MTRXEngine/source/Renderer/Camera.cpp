@@ -22,16 +22,10 @@ void Camera::UpdateCamera(float deltaTime)
 	if (renderWindow->GetKey(GLFW_KEY_D))
 		position += GetSide() * deltaTime * 2.f;
 
-	if (Window::yOffset != 0.000001)
-	{
-		Pitch((float)Window::yOffset * 0.004f);
-		Window::yOffset = 0;
-	}
-	if (Window::xOffset != 0.000001)
-	{
-		Yaw(-(float)Window::xOffset * 0.004f);
-		Window::xOffset = 0;
-	}
+	if (mtrx::InputSystem::yOffset != 0.000001)
+		Pitch((float)mtrx::InputSystem::yOffset * 0.004f);
+	if (mtrx::InputSystem::xOffset != 0.000001)
+		Yaw(-(float)mtrx::InputSystem::xOffset * 0.004f);
 }
 
 glm::mat4 Camera::GetProjectionMatrix()

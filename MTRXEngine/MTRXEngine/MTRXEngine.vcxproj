@@ -158,7 +158,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\Demos\App.cpp" />
+    <ClCompile Include="source\Renderer\Application.cpp" />
+    <ClCompile Include="source\Renderer\Input\InputSystem.cpp" />
+    <ClCompile Include="source\Demos\Demo.cpp" />
     <ClCompile Include="source\code\colliders\BVHNode.cpp" />
     <ClCompile Include="source\code\colliders\CollisionSystem.cpp" />
     <ClCompile Include="source\code\RigidbodyManager.cpp" />
@@ -230,7 +232,9 @@
     <ClCompile Include="source\Renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Demos\App.h" />
+    <ClInclude Include="source\Renderer\Application.h" />
+    <ClInclude Include="source\Renderer\Input\InputSystem.h" />
+    <ClInclude Include="source\Demos\Demo.h" />
     <ClInclude Include="source\Demos\CollisionDemo.h" />
     <ClInclude Include="source\Demos\ProjectileDemo.h" />
     <ClInclude Include="source\headers\colliders\BVHNode.h" />

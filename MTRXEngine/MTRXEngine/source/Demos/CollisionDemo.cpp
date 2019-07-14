@@ -1,7 +1,7 @@
 #include <PrecompiledHeader.h>
 #include <../Demos/CollisionDemo.h> 
 
-CollisionDemo::CollisionDemo() : App("COLLISION DEMO")
+CollisionDemo::CollisionDemo() : Demo("COLLISION DEMO")
 {}
 
 CollisionDemo::~CollisionDemo()
