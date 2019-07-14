@@ -10,12 +10,15 @@
 
 int main()
 {
+	// Initialize logger 
+	mtrx::LogManager::init();
+
 	// Demo application that we want to run
-	std::shared_ptr<App> app;
+	std::unique_ptr<App> app;
 #if DEMO == 1
-	app = std::make_shared<ProjectileDemo>();
+	app = std::make_unique<ProjectileDemo>();
 #elif DEMO == 2
-	app = std::make_shared<CollisionDemo>();
+	app = std::make_unique<CollisionDemo>();
 #endif
 
 	// Run application

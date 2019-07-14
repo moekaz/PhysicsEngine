@@ -6,11 +6,6 @@
 
 #include <log/LogManager.h>
 
-struct MouseData
-{
-
-};
-
 class Window
 {
 public:

@@ -6,7 +6,6 @@ double Window::lastY = 0;
 double Window::xOffset = 0;
 double Window::yOffset = 0;
 
-
 Window::Window(const char* windowName, int width, int height, float fps) : width(width), height(height), fps(fps)
 {
 	if (!glfwInit())
@@ -32,7 +31,7 @@ Window::Window(const char* windowName, int width, int height, float fps) : width
 	// Initialize GLAD
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		MTRX_ERROR("Could not initialize GLAD");
+		MTRX_ERROR("COULD NOT INITIALIZE GLAD");
 		glfwTerminate();
 		assert(false);
 	}

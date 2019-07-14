@@ -1,12 +1,22 @@
 #include <PrecompiledHeader.h>
-#include <../Demos/App.h>
-#include <colliders/CapsuleCollider.h>
-#include <colliders/BoxCollider.h>
-#include <colliders/SphereCollider.h>
+#include <../Demos/CollisionDemo.h> 
+
+CollisionDemo::CollisionDemo() : App("COLLISION DEMO")
+{}
+
+CollisionDemo::~CollisionDemo()
+{}
+
+void CollisionDemo::Update()
+{
+	App::Update();
+}
+
+void CollisionDemo::InputCheck()
+{}
 
 //int main()
 //{
-//	App app = App("COLLISION DEMOS");
 //
 //	bool started = false;
 //	mtrx::Collider* collider = new mtrx::CapsuleCollider();

@@ -1,6 +1,6 @@
 /*
 	Author: Mohamed Kazma
-	Description: Colliders with a convex shape (We can use SAT for collision with these shapes)
+	Description: Colliders with a convex shape (GJK is what is being used for collision detection)
 */
 
 #pragma once

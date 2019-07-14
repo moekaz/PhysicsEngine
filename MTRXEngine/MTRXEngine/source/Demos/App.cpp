@@ -3,7 +3,6 @@
 
 App::App(const char* appName, int width, int height) : window(appName, width, height), renderer(&window)
 {
-	mtrx::LogManager::init();
 	glfwSetInputMode(window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
@@ -17,6 +16,12 @@ void App::Update()
 		// Basic input checks that will shared by all applications
 		BaseInputCheck();
 		InputCheck();
+
+		// Poll for opengl errors
+		while (GLenum error = glGetError() != GL_NO_ERROR)
+		{
+			MTRX_ERROR("OpenGL error: " + error);
+		}
 
 		// Clear the window
 		window.Clear();

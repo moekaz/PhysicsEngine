@@ -24,12 +24,12 @@ void Camera::UpdateCamera(float deltaTime)
 
 	if (Window::yOffset != 0.000001)
 	{
-		Pitch(Window::yOffset * 0.004f);
+		Pitch((float)Window::yOffset * 0.004f);
 		Window::yOffset = 0;
 	}
 	if (Window::xOffset != 0.000001)
 	{
-		Yaw(-Window::xOffset * 0.004f);
+		Yaw(-(float)Window::xOffset * 0.004f);
 		Window::xOffset = 0;
 	}
 }

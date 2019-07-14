@@ -7,7 +7,8 @@
 #include "SimpleRenderer.h"
 
 SimpleRenderer::SimpleRenderer(Window* window)
-	: renderWindow(window), camera(window, glm::vec3(0.f, 0.f, 2.f)), shader("source/Renderer/shaders/BlinnPhong.vert", "source/Renderer/shaders/BlinnPhong.frag")
+	: renderWindow(window), camera(window, glm::vec3(0.f, 0.f, 2.f)), 
+	shader(std::string(mtrx::shaderDir + "BlinnPhong.vert").c_str(), std::string(mtrx::shaderDir + "BlinnPhong.frag").c_str())
 {
 	Init();
 }

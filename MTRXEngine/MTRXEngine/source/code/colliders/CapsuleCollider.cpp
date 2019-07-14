@@ -11,24 +11,22 @@
 
 namespace mtrx
 {
-	// Constructor
 	CapsuleCollider::CapsuleCollider(const glm::vec3& center, float radii, float height) : Collider(ColliderType::Capsule, center),
 		height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
 	{
 	}
 
-	CapsuleCollider::CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2) : Collider(ColliderType::Capsule)
+	// TODO: Implement this
+	CapsuleCollider::CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2) : Collider(ColliderType::Capsule),
+		height(0), radii(1.f)
 	{
 		// Create a bounding capsule
 		// Dunno if i want to do that
 	}
 
-	// Destructor
 	CapsuleCollider::~CapsuleCollider()
-	{
-	}
+	{}
 
-	// Checks for collisions
 	bool CapsuleCollider::CheckCollision(const Collider& col)
 	{
 		bool collision = false;
@@ -70,7 +68,6 @@ namespace mtrx
 		return collision;
 	}
 
-	// Raycast collision with capsule
 	bool CapsuleCollider::RaycastCollision(const Ray& ray)
 	{
 		return CollisionUtil::RayCapsuleCollision(ray.startPosition, ray.direction, A, B, radii);
