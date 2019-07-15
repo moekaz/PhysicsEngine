@@ -15,13 +15,18 @@ namespace mtrx
 		// Initialize keys and mouse buttons values
 		memset(keys, 0, sizeof(char) * MAX_KEYS);
 		memset(mouseButtons, 0, sizeof(char) * MAX_MOUSE_BUTTONS);
-
-		//glfwGetCursorPos(window, &mtrx::InputSystem::mouseX, &mtrx::InputSystem::mouseY);
 	}
 
 	void InputSystem::Update()
 	{
 		xOffset = yOffset = 0;
+
+		// TODO: Find a better solution
+		for (int i = 0; i < MAX_KEYS; ++i)
+		{
+			if (keys[i] == GLFW_PRESS)
+				keys[i] = GLFW_REPEAT;
+		}
 	}
 
 	void InputSystem::KeyPressedCallback(GLFWwindow* window, int key, int scancode, int action, int mods)

@@ -13,6 +13,7 @@ Camera::Camera(Window* window, const glm::vec3& position, const glm::vec3& forwa
 
 void Camera::UpdateCamera(float deltaTime)
 {
+	// Camera movement
 	if (mtrx::InputSystem::GetKey(GLFW_KEY_W))
 		position += GetForward() * deltaTime * 2.f;
 	if (mtrx::InputSystem::GetKey(GLFW_KEY_A))
@@ -22,10 +23,11 @@ void Camera::UpdateCamera(float deltaTime)
 	if (mtrx::InputSystem::GetKey(GLFW_KEY_D))
 		position += GetSide() * deltaTime * 2.f;
 
+	// Camera rotation
 	if (mtrx::InputSystem::yOffset != 0.000001)
-		Pitch((float)mtrx::InputSystem::yOffset * 0.004f);
+		Pitch((float)mtrx::InputSystem::yOffset * deltaTime);
 	if (mtrx::InputSystem::xOffset != 0.000001)
-		Yaw(-(float)mtrx::InputSystem::xOffset * 0.004f);
+		Yaw(-(float)mtrx::InputSystem::xOffset * deltaTime);
 }
 
 glm::mat4 Camera::GetProjectionMatrix()
