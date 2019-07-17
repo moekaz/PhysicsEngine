@@ -9,6 +9,7 @@ namespace mtrx
 {	
 	#define LOGGER_FILE_SIZE 5242880 // Maximum size of logger file 
 	#define PI 3.14159265358f // Approximation of pi
+	#define WORLD_DIMENSIONS 3 // World dimensions
 
 	static float gravity = 9.81f; // Constant value for gravity (not realistic value but games don't have realistic gravity
 	static std::string projectDir = std::filesystem::current_path().string(); // Gives us the project dir
@@ -54,6 +55,26 @@ namespace mtrx
 		{}
 	};
 
+	// The axes that define an objects world 
+	struct ObjectAxes
+	{
+		union
+		{
+			struct
+			{
+				glm::vec3 forward;
+				glm::vec3 up;
+				glm::vec3 side;
+			};
+
+			glm::vec3 axes[WORLD_DIMENSIONS];
+		};
+
+		inline glm::vec3& operator[](int index) { return axes[index]; }
+		ObjectAxes(const glm::vec3& forward, const glm::vec3& up, const glm::vec3& side) : forward(forward), side(side), up(up) 
+		{}
+	};
+	
 	static glm::mat3 GenerateCuboidIT(float mass, float* extents)
 	{
 		// 1/12 = 0.083333... 

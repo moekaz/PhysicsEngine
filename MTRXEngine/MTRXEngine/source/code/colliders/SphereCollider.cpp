@@ -15,6 +15,7 @@ namespace mtrx
 
 	SphereCollider::SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2) : Collider(ColliderType::Sphere)
 	{
+		// TODO: Rebuild all the collider information that we need 
 		// Create a sphere encapsulating the 2 sphere colliders
 		glm::vec3 difference = collider2.transform.position - collider1.transform.position;
 		float distanceSqr = glm::length2(difference);

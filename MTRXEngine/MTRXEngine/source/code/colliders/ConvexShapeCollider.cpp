@@ -82,4 +82,15 @@ namespace mtrx
 
 		return CollisionUtil::ConvexShapeCollision(*this, convexLine);	// Check with GJK 
 	}
+
+	glm::mat4 ConvexShapeCollider::GetModelMatrix()
+	{
+		glm::mat4 translateMatrix = glm::translate(glm::mat4(1.0f), transform.position);
+		glm::mat4 rotateMatrix = glm::toMat4(transform.orientation);
+		glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), transform.scale);
+
+		// ISROT
+		glm::mat4 result = translateMatrix * rotateMatrix * scaleMatrix;
+		return result;
+	}
 }

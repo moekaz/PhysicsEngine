@@ -32,6 +32,7 @@ private:
 	float fov;
 	float nearPlane, farPlane;
 	
+	// TODO: Have the camera use a transform instead of vec3s and quats
 	glm::vec3 position;
 	glm::vec3 forward; // Normal vector for forward direction of the camera
 	glm::vec3 up; // Normal vector up vector of the camera
