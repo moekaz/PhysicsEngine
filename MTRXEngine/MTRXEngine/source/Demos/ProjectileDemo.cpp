@@ -18,7 +18,10 @@ void ProjectileDemo::Update()
 	};
 	transformsToRender.insert(&center);
 	
-	Demo::Update();
+	while (!application.window.ShouldClose())
+	{
+		Demo::Update();
+	}
 }
 
 void ProjectileDemo::InputCheck()

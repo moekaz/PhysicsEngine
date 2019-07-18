@@ -26,20 +26,18 @@ namespace mtrx
 		SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2);
 		~SphereCollider();
 
+		float GetGrowth(const SphereCollider&);
+
 		virtual bool CheckCollision(const Collider&) override;
 		virtual bool RaycastCollision(const Ray&) override;
 		virtual float GetSize() override;
 
 		virtual inline void SetScale(const glm::vec3& scale) override
 		{
-			// TODO: Check this value
-			// Do i want to make sure that the scale is the same on all dimensions
-			//assert();
-			// Doesn't matter which dimension we use
+			// TODO: Add some documentation about this
+			// Using only x value of the scale
 			Collider::SetScale(scale);
-			radius = 0.5 * scale.x;
+			radius = 0.5f * scale.x;
 		}
-
-		float GetGrowth(const SphereCollider&);
 	};
 }

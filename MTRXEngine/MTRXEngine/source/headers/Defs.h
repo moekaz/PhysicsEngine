@@ -71,7 +71,8 @@ namespace mtrx
 		};
 
 		inline glm::vec3& operator[](int index) { return axes[index]; }
-		ObjectAxes(const glm::vec3& forward, const glm::vec3& up, const glm::vec3& side) : forward(forward), side(side), up(up) 
+		ObjectAxes(const glm::vec3& forward = glm::vec3(0, 0, -1), const glm::vec3& up = glm::vec3(0, 1, 0), const glm::vec3& side = glm::vec3(1, 0, 0)) : 
+			forward(forward), side(side), up(up)
 		{}
 	};
 	

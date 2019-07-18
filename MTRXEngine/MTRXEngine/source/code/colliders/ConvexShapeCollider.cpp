@@ -34,27 +34,26 @@ namespace mtrx
 		float maxDot = -std::numeric_limits<float>::infinity();	// Max dot vector
 		glm::vec3* farthest = nullptr;	// Farthest vector
 
-		for (unsigned int i = 0; i < vertices.size(); ++i)
+		std::vector<glm::vec3*> verts = GetVertices();
+		for (unsigned int i = 0; i < verts.size(); ++i)
 		{
-			float dot = glm::dot(*vertices[i], direction);
+			float dot = glm::dot(*verts[i], direction);
 			if (dot > maxDot)
 			{
 				maxDot = dot;
-				farthest = vertices[i];
+				farthest = verts[i];
 			}
+		}
+
+		// TODO: THIS WILL NOT WORK
+		for (int i = 0; i < verts.size(); ++i)
+		{
+			delete verts[i];
 		}
 
 		// Check that we have a vertex to use
 		assert(farthest);
 		return *farthest;
-	}
-
-	std::vector<glm::vec3*> ConvexShapeCollider::GetVertices()
-	{
-		// TODO: implement this
-		// Get the vertices of the convex shape with change in position and orientation
-		std::vector<glm::vec3*> vertex;
-		return vertex;
 	}
 
 	// Convex shape collision detection
@@ -83,7 +82,7 @@ namespace mtrx
 		return CollisionUtil::ConvexShapeCollision(*this, convexLine);	// Check with GJK 
 	}
 
-	glm::mat4 ConvexShapeCollider::GetModelMatrix()
+	glm::mat4 ConvexShapeCollider::GetModelMatrix() const
 	{
 		glm::mat4 translateMatrix = glm::translate(glm::mat4(1.0f), transform.position);
 		glm::mat4 rotateMatrix = glm::toMat4(transform.orientation);
@@ -92,5 +91,19 @@ namespace mtrx
 		// ISROT
 		glm::mat4 result = translateMatrix * rotateMatrix * scaleMatrix;
 		return result;
+	}
+
+	std::vector<glm::vec3*> ConvexShapeCollider::GetVertices() const
+	{
+		// TODO: THIS IS REALLY UGLY 
+		// Get the vertices of the convex shape with change in position and orientation
+		std::vector<glm::vec3*> vertex;
+		for (auto iter = vertices.begin(); iter != vertices.end(); ++iter)
+		{
+			glm::vec4 vec = glm::vec4(*(*iter), 1) * GetModelMatrix();
+			vertex.push_back(new glm::vec3(vec.x, vec.y, vec.z));
+		}
+
+		return vertex;
 	}
 }

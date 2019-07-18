@@ -8,6 +8,7 @@
 
 namespace mtrx
 {
+	// TODO: Inertia tensor is wrong here
 	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale, const glm::mat3& inertiaTensor) : 
 		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
 		up(glm::vec3(0, 1, 0)), angularDamping(1.f), inverseInertiaTensor(inertiaTensor), accumTorque(glm::vec3()), objToWorldMat(glm::mat3x4(1.0f)),

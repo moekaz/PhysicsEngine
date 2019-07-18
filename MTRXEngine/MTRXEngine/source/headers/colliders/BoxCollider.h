@@ -21,8 +21,9 @@ namespace mtrx
 	public:
 		glm::vec3 halfExtents;
 
-		BoxCollider(const glm::vec3 & = glm::vec3());
-		BoxCollider(const BoxCollider& collider1, const BoxCollider collider2);
+		// TODO: This needs to be updated with transform information and other info
+		BoxCollider(const glm::vec3& = glm::vec3());
+		BoxCollider(const BoxCollider& collider1, const BoxCollider& collider2);
 		~BoxCollider();
 
 		virtual bool CheckCollision(const mtrx::Collider&) override;
@@ -31,9 +32,9 @@ namespace mtrx
 
 		float GetGrowth(const BoxCollider& boxCollider);
 
-		inline const glm::vec3* GetAxes() const { return axes; }
+		inline const glm::vec3* GetAxes() const { return axes.axes; }
 
 	private:
-		glm::vec3 axes[3];
+		ObjectAxes axes;
 	};
 }
