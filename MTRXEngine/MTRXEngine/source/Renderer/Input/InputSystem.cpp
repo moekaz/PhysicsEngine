@@ -3,25 +3,44 @@
 
 namespace mtrx
 {
-	char InputSystem::keys[MAX_KEYS];
-	char InputSystem::mouseButtons[MAX_MOUSE_BUTTONS];
-	double InputSystem::mouseX = 0;
-	double InputSystem::mouseY = 0;
-	double InputSystem::xOffset = 0;
-	double InputSystem::yOffset = 0;
-
-	void InputSystem::Init()
+	InputSystem::InputSystem(Window* window) :
+		window(window)
 	{
 		// Initialize keys and mouse buttons values
 		memset(keys, 0, sizeof(char) * MAX_KEYS);
 		memset(mouseButtons, 0, sizeof(char) * MAX_MOUSE_BUTTONS);
+
+		// Setup key callback
+		glfwSetKeyCallback(window->GetWindow(), mtrx::InputSystem::KeyPressedCallback);
+
+		// Cursor position callback
+		glfwSetCursorPosCallback(window->GetWindow(), mtrx::InputSystem::CursorPositionCallback);
+
+		// Mouse button callback
+		glfwSetMouseButtonCallback(window->GetWindow(), mtrx::InputSystem::MouseButtonPressedCallback);
+
+		// Scroll callback
+		glfwSetScrollCallback(window->GetWindow(), mtrx::InputSystem::ScrollCallback);
+
+		// Cursor enter callback
+		glfwSetCursorEnterCallback(window->GetWindow(), mtrx::InputSystem::CursorEnterCallback);
+
+		// Get cursor position
+		double x, y;
+		glfwGetCursorPos(window->GetWindow(), &x, &y);
+
+		mousePosition.x = x;
+		mousePosition.y = y;
+
+		// Get rid of the cursor
+		ToggleCursor(false);
 	}
 
 	void InputSystem::Update()
 	{
-		xOffset = yOffset = 0;
+		mouseOffset.x = mouseOffset.y = 0;
 
-		// TODO: Find a better solution
+		// TBD: Find a better solution
 		for (int i = 0; i < MAX_KEYS; ++i)
 		{
 			if (keys[i] == GLFW_PRESS)
@@ -31,15 +50,16 @@ namespace mtrx
 
 	void InputSystem::KeyPressedCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
-		keys[key] = action;
+		InputSystem::GetInstance().keys[key] = action;
 	}
 
 	void InputSystem::CursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 	{
-		xOffset = xpos - mouseX;
-		yOffset = mouseY - ypos;
-		mouseX = xpos;
-		mouseY = ypos;
+		InputSystem& input = InputSystem::GetInstance();
+		input.mouseOffset.x = xpos - input.mousePosition.x;
+		input.mouseOffset.y = input.mousePosition.y - ypos;
+		input.mousePosition.x = xpos;
+		input.mousePosition.y = ypos;
 	}
 
 	void InputSystem::MouseButtonPressedCallback(GLFWwindow* window, int button, int action, int mods)

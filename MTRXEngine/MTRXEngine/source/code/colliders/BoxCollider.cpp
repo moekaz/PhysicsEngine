@@ -10,7 +10,12 @@
 
 namespace mtrx
 {
-	BoxCollider::BoxCollider(const glm::vec3& center) : ConvexShapeCollider(ColliderType::Box, center), halfExtents(glm::vec3(0.5, 0.5, 0.5))
+	BoxCollider::BoxCollider(const glm::vec3& center, const glm::quat& orientation, const glm::vec3& scale) : 
+		BoxCollider(Transform(center, orientation, scale))
+	{}
+
+	BoxCollider::BoxCollider(const Transform& transform) :
+		ConvexShapeCollider(ColliderType::Box, transform), halfExtents(glm::vec3(0.5f * transform.scale.x, 0.5f * transform.scale.y, 0.5f * transform.scale.z))
 	{
 		// Vertices of a box
 		vertices =
@@ -26,17 +31,18 @@ namespace mtrx
 		};
 	}
 
-	BoxCollider::BoxCollider(const BoxCollider& collider1, const BoxCollider& collider2)
+	BoxCollider::BoxCollider(const BoxCollider& collider1, const BoxCollider& collider2) : ConvexShapeCollider(ColliderType::Box)
 	{
+		// TBD: Constructor for box collider of box colliders needs to be implemented
 		// Create a bounding box from the 2 other bounding boxes
 	}
 
-	BoxCollider::~BoxCollider() 
+	BoxCollider::~BoxCollider()
 	{}
 
-	// Gives us whether there is a collision occurring
 	bool BoxCollider::CheckCollision(const Collider& col)
 	{
+		// TBD: Collision detection architecture is ugly and needs to be redone
 		bool collision;
 		switch (col.GetColliderType())
 		{

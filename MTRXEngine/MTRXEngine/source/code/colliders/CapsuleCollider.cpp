@@ -11,14 +11,20 @@
 
 namespace mtrx
 {
-	CapsuleCollider::CapsuleCollider(const glm::vec3& center, float radii, float height) : Collider(ColliderType::Capsule, center),
-		height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)), radii(radii)
+	CapsuleCollider::CapsuleCollider(const glm::vec3& center, const glm::quat& orientation, const glm::vec3& scale, float radii, float height) :
+		Collider(ColliderType::Capsule, center, orientation, scale), height(height), A(center - glm::vec3(0, height / 2, 0)),
+		B(center - glm::vec3(0, height / 2, 0)), radii(radii)
 	{}
 
-	// TODO: Implement this
+	CapsuleCollider::CapsuleCollider(const Transform& transform, float radii, float height) :
+		Collider(ColliderType::Capsule, transform), height(height), A(center - glm::vec3(0, height / 2, 0)), B(center - glm::vec3(0, height / 2, 0)),
+		radii(radii)
+	{}
+
 	CapsuleCollider::CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2) : Collider(ColliderType::Capsule),
 		height(0), radii(1.f)
 	{
+		// TBD: Constructor of capsule colliders of capsule colliders still needs to be implemented
 		// Create a bounding capsule
 		// Dunno if i want to do that
 	}
@@ -28,6 +34,7 @@ namespace mtrx
 
 	bool CapsuleCollider::CheckCollision(const Collider& col)
 	{
+		// TBD: Collision detection architecture is ugly and needs to be redone
 		bool collision = false;
 		switch (col.GetColliderType())
 		{

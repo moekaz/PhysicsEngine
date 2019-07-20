@@ -21,8 +21,8 @@ namespace mtrx
 	public:
 		float radius;
 
-		// TODO: add position scale and orientation to constructor 
-		SphereCollider(const glm::vec3& center = glm::vec3(), float radius = 0.5);
+		SphereCollider(const glm::vec3& center = glm::vec3(), const glm::quat& orientation = glm::angleAxis(0.f, worldUp), const glm::vec3& scale = glm::vec3(1, 1, 1), float radius = 0.5);
+		SphereCollider(const glm::vec3& center = glm::vec3(), const Transform& transform = Transform(), float radius = 0.5);
 		SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2);
 		~SphereCollider();
 
@@ -34,8 +34,7 @@ namespace mtrx
 
 		virtual inline void SetScale(const glm::vec3& scale) override
 		{
-			// TODO: Add some documentation about this
-			// Using only x value of the scale
+			// NOTE: ONLY THE X VALUE OF THE SCALE IS USED FOR UPDATING THE SPHERE COLLIDER
 			Collider::SetScale(scale);
 			radius = 0.5f * scale.x;
 		}

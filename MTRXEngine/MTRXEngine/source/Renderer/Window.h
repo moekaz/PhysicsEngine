@@ -21,13 +21,6 @@ public:
 	inline bool ShouldClose() { return glfwWindowShouldClose(window); }
 	
 	inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
-	inline void ToggleCursor(bool cursor) 
-	{
-		if(cursor)
-			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-		else
-			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	}
 
 	void UpdateBuffers();
 

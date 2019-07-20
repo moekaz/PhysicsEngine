@@ -17,21 +17,6 @@ Application::Application(const char* appName, int width, int height, int fps) : 
 	{
 		glViewport(0, 0, width, height);
 	});
-
-	// Setup key callback
-	glfwSetKeyCallback(window.GetWindow(), mtrx::InputSystem::KeyPressedCallback);
-
-	// Cursor position callback
-	glfwSetCursorPosCallback(window.GetWindow(), mtrx::InputSystem::CursorPositionCallback);
-
-	// Mouse button callback
-	glfwSetMouseButtonCallback(window.GetWindow(), mtrx::InputSystem::MouseButtonPressedCallback);
-
-	// Scroll callback
-	glfwSetScrollCallback(window.GetWindow(), mtrx::InputSystem::ScrollCallback);
-
-	// Cursor enter callback
-	glfwSetCursorEnterCallback(window.GetWindow(), mtrx::InputSystem::CursorEnterCallback);
 }
 
 Application::~Application()

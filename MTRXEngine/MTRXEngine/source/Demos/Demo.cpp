@@ -16,12 +16,8 @@ void Demo::Update()
 	BaseInputCheck();
 	InputCheck();
 
-	// TODO: Abstract in application
-	// Poll for opengl errors
-	while (GLenum error = glGetError() != GL_NO_ERROR)
-	{
-		MTRX_ERROR("OpenGL error: " + error);
-	}
+	// Check for opengl errors
+	application.PollOpenGlErrors();
 
 	// Clear the window
 	application.window.Clear();

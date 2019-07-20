@@ -20,8 +20,8 @@ namespace mtrx
 		glm::vec3 B;
 		float height;
 
-		// TODO: Look into Capsule collider parameter information and add position orientation etc...
-		CapsuleCollider(const glm::vec3& center = glm::vec3(), float radii = 0.5f, float height = 1.f);
+		CapsuleCollider(const glm::vec3& center = glm::vec3(), const glm::quat& orientation = glm::angleAxis(0.f, worldUp), const glm::vec3& scale = glm::vec3(1, 1, 1), float radii = 0.5f, float height = 1.f);
+		CapsuleCollider(const Transform& transform = Transform(), float radii = 0.5f, float height = 1.f);
 		CapsuleCollider(const CapsuleCollider& collider1, const CapsuleCollider& collider2);
 		~CapsuleCollider();
 
@@ -33,8 +33,7 @@ namespace mtrx
 
 		virtual inline void SetScale(const glm::vec3& scale) override
 		{
-			// TODO: Implement this
-			// WE are only using x and y values for scales
+			// NOTE: WE ARE ONLY USING THE X AND Y VALUES OF THE SCALE FOR SCALING THE COLLIDER
 			Collider::SetScale(scale);
 			height = 1.f * scale.y;
 			radii = 0.5f * scale.x;
@@ -44,15 +43,19 @@ namespace mtrx
 
 		virtual inline void SetPosition(const glm::vec3& position) override
 		{
-			// TODO: Implement this
+			// TBD: This can be done a whole lot better
+			glm::vec3 difference = position - transform.position;
 			Collider::SetPosition(position);
-			A = transform.position - GetUp() * (height / 2);
-			B = transform.position + GetUp() * (height / 2);
+			A += difference;
+			B += difference;
+
+			//A = transform.position - GetUp() * (height / 2);
+			//B = transform.position + GetUp() * (height / 2);
 		}
 
 		virtual inline void SetRotation(const glm::quat& orientation)
 		{
-			// TODO: Implement this
+			// TBD: Rotation setting for capsule colliders is incorrect it seems
 			Collider::SetRotation(orientation);
 			A = A * transform.orientation;
 			B = B * transform.orientation;

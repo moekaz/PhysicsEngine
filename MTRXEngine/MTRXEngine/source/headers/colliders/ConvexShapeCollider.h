@@ -15,7 +15,8 @@ namespace mtrx
 	public:
 		std::vector<glm::vec3*> vertices;
 
-		ConvexShapeCollider(const ColliderType& colliderType = ColliderType::ConvexShape, const glm::vec3& = glm::vec3());
+		ConvexShapeCollider(const ColliderType& colliderType = ColliderType::ConvexShape, const glm::vec3& center = glm::vec3(), const glm::quat& orientation = glm::angleAxis(0.f, worldUp), const glm::vec3& scale = glm::vec3(1, 1, 1));
+		ConvexShapeCollider(const ColliderType& colliderType = ColliderType::ConvexShape, const Transform& transform = Transform());
 		~ConvexShapeCollider();
 
 		virtual bool CheckCollision(const Collider&) override;

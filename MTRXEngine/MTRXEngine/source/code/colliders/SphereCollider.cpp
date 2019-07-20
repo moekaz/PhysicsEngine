@@ -10,12 +10,16 @@
 
 namespace mtrx
 {
-	SphereCollider::SphereCollider(const glm::vec3& center, float radius) : Collider(ColliderType::Sphere, center), radius(radius) 
+	SphereCollider::SphereCollider(const glm::vec3& center, const glm::quat& orientation, const glm::vec3& scale, float radius) :
+		Collider(ColliderType::Sphere, center, orientation, scale), radius(radius)
+	{}
+
+	SphereCollider::SphereCollider(const glm::vec3& center, const Transform& transform, float radius) : 
+		Collider(ColliderType::Sphere, transform), radius(radius)
 	{}
 
 	SphereCollider::SphereCollider(const SphereCollider& collider1, const SphereCollider& collider2) : Collider(ColliderType::Sphere)
 	{
-		// TODO: Rebuild all the collider information that we need 
 		// Create a sphere encapsulating the 2 sphere colliders
 		glm::vec3 difference = collider2.transform.position - collider1.transform.position;
 		float distanceSqr = glm::length2(difference);
@@ -37,7 +41,6 @@ namespace mtrx
 		}
 		else
 		{
-			// Can we optimize this call out
 			distanceSqr = sqrt(distanceSqr);
 			radius = (distanceSqr + collider1.radius + collider2.radius) * 0.5f;
 
@@ -45,6 +48,8 @@ namespace mtrx
 			if (distanceSqr > 0)
 				transform.position += difference * (radius - collider1.radius) / distanceSqr;
 		}
+
+		transform.scale = glm::vec3(radius * 2, 0.f, 0.f);
 	}
 
 	SphereCollider::~SphereCollider()
@@ -52,6 +57,7 @@ namespace mtrx
 
 	bool SphereCollider::CheckCollision(const Collider& col)
 	{
+		// TBD: Collision detection architecture is ugly and needs to be redone
 		bool isColliding; 
 		switch (col.GetColliderType())
 		{

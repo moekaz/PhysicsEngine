@@ -8,10 +8,15 @@
 
 namespace mtrx
 {
-	ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center) : Collider(colliderType, center, true) 
+	ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center, const glm::quat& orientation, const glm::vec3& scale) : 
+		Collider(colliderType, center, orientation, scale, true) 
 	{}
 
-	ConvexShapeCollider::~ConvexShapeCollider() 
+	ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const Transform& transform) : 
+		Collider(colliderType, transform, true)
+	{}
+
+	ConvexShapeCollider::~ConvexShapeCollider()
 	{
 		for (int i = 0; i < vertices.size(); ++i)
 		{
@@ -45,7 +50,7 @@ namespace mtrx
 			}
 		}
 
-		// TODO: THIS WILL NOT WORK
+		// TBD: THIS WILL NOT WORK
 		for (int i = 0; i < verts.size(); ++i)
 		{
 			delete verts[i];
@@ -59,6 +64,7 @@ namespace mtrx
 	// Convex shape collision detection
 	bool ConvexShapeCollider::CheckCollision(const Collider& col)
 	{
+		// TBD: Collision detection architecture is ugly and needs to be redone
 		if (col.IsConvex())
 		{
 			const ConvexShapeCollider& collider = static_cast<const ConvexShapeCollider&>(col);
@@ -95,7 +101,7 @@ namespace mtrx
 
 	std::vector<glm::vec3*> ConvexShapeCollider::GetVertices() const
 	{
-		// TODO: THIS IS REALLY UGLY 
+		// TBD: THIS IS REALLY UGLY 
 		// Get the vertices of the convex shape with change in position and orientation
 		std::vector<glm::vec3*> vertex;
 		for (auto iter = vertices.begin(); iter != vertices.end(); ++iter)

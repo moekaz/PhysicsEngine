@@ -27,7 +27,7 @@ namespace mtrx
 		inline const int GetColliderId() const { return colliderId; }
 		inline const bool IsConvex() const { return isConvexShape; }
 
-		// TODO: this is a little expensive
+		// TBD: this is a little expensive
 		inline glm::vec3 GetForward() { return glm::normalize(transform.orientation * axes[0]); }
 		inline glm::vec3 GetSide() { return glm::normalize(transform.orientation * axes[1]); }
 		inline glm::vec3 GetUp() { return glm::normalize(transform.orientation * axes[2]); }
@@ -41,10 +41,10 @@ namespace mtrx
 		static int id;
 
 	protected:
-		int colliderId;
-		ColliderType type;
-		bool isConvexShape;
-		Transform transform;
+		int colliderId; // The id of collider
+		ColliderType type; // The collider type
+		bool isConvexShape; // Whether it is a convex shape collider or not
+		Transform transform; // position orientaion and scale of the collider
 		ObjectAxes axes; // The axes that define this collider's world
 	};
 }

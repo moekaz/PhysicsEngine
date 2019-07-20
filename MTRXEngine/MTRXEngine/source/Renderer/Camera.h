@@ -14,9 +14,9 @@ class Camera
 public:
 	Camera(Window* window, const glm::vec3& position = glm::vec3(), const glm::vec3& forward = glm::vec3(0, 0, -1.f), const glm::vec3& up = glm::vec3(0, 1.f, 0));
 
-	inline glm::vec3 GetForward() { return glm::normalize(orientation * forward); }
-	inline glm::vec3 GetSide() { return glm::normalize(orientation * side); }
-	inline glm::vec3 GetUp() { return glm::normalize(orientation * up); }
+	inline glm::vec3 GetForward() { return glm::normalize(transform.orientation * axes.forward); }
+	inline glm::vec3 GetSide() { return glm::normalize(transform.orientation * axes.side); }
+	inline glm::vec3 GetUp() { return glm::normalize(transform.orientation * axes.up); }
 	
 	void UpdateCamera(float deltaTime);
 
@@ -32,10 +32,6 @@ private:
 	float fov;
 	float nearPlane, farPlane;
 	
-	// TODO: Have the camera use a transform instead of vec3s and quats
-	glm::vec3 position;
-	glm::vec3 forward; // Normal vector for forward direction of the camera
-	glm::vec3 up; // Normal vector up vector of the camera
-	glm::vec3 side; // normal vector side vector of camera
-	glm::quat orientation; // Camera orientation
+	mtrx::Transform transform;
+	mtrx::ObjectAxes axes;
 };
