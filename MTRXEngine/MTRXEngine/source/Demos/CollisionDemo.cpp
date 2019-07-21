@@ -13,7 +13,7 @@ CollisionDemo::~CollisionDemo()
 void CollisionDemo::Update()
 {
 	// Thinking about creating a fps shooting demo with collision detection and force generation
-	
+
 	// This is just a reference point in world space
 	mtrx::Transform center =
 	{
@@ -42,12 +42,12 @@ void CollisionDemo::Update()
 	//collider2 = new mtrx::CapsuleCollider(body2.GetPosition());
 
 	// Sphere Colliders
-	//collider1 = new mtrx::SphereCollider(body1.GetPosition());
-	//collider2 = new mtrx::SphereCollider(body2.GetPosition());
+	collider1 = new mtrx::SphereCollider(body1.GetPosition());
+	collider2 = new mtrx::SphereCollider(body2.GetPosition());
 
 	//// Box Colliders
-	collider1 = new mtrx::BoxCollider(body1.GetPosition());
-	collider2 = new mtrx::BoxCollider(body2.GetPosition());
+	//collider1 = new mtrx::BoxCollider(body1.GetPosition());
+	//collider2 = new mtrx::BoxCollider(body2.GetPosition());
 
 	// Rigidbody additions
 	rbManager.AddRigidbody(&body1);
@@ -66,11 +66,11 @@ void CollisionDemo::Update()
 		collider1->SetRotation(body1.GetOrientation());
 		collider2->SetRotation(body2.GetOrientation());
 
-		if (collider1->CheckCollision(*collider2))
-		{
-			// Collision
-			//std::cout << "collision" << std::endl;
-		}
+		//if (collider1->CheckCollision(*collider2))
+		//{
+		//	// Collision
+		//	//std::cout << "collision" << std::endl;
+		//}
 
 		// Update the demo
 		Demo::Update();

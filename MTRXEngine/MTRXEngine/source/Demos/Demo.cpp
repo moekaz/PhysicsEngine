@@ -12,6 +12,9 @@ void Demo::Update()
 	// Update delta time
 	mtrx::GameTime::PhysicsUpdate();
 
+	// Check for opengl errors
+	application.PollOpenGlErrors();
+
 	// Basic input checks that will shared by all applications
 	BaseInputCheck();
 	InputCheck();
@@ -19,16 +22,12 @@ void Demo::Update()
 	// Update application (includes input checks)
 	application.Update(mtrx::GameTime::deltaTime);
 
-	// Check for opengl errors
-	application.PollOpenGlErrors();
-
 	// Clear the window
 	application.window.Clear();
 
 	// Update the rigidbody and the particle system
 	rbManager.PhysicsUpdate();
 	pManager.PhysicsUpdate();
-
 
 	// Update renderer
 	application.renderer.Render(transformsToRender);

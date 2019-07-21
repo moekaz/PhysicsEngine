@@ -14,7 +14,7 @@ namespace mtrx
 		Collider(ColliderType::Sphere, center, orientation, scale), radius(radius)
 	{}
 
-	SphereCollider::SphereCollider(const glm::vec3& center, const Transform& transform, float radius) : 
+	SphereCollider::SphereCollider(const Transform& transform, float radius) : 
 		Collider(ColliderType::Sphere, transform), radius(radius)
 	{}
 

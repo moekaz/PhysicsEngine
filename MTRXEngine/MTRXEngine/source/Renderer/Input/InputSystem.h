@@ -20,6 +20,7 @@ public:
 	// Getters
 	inline const glm::vec2& GetMousePosition() { return mousePosition; }
 	inline const glm::vec2& GetMouseOffset() { return mouseOffset; }
+	inline const glm::vec2& GetMouseScrollOffset() { return mouseScrollOffset; }
 
 	inline bool GetKey(char keyCode)
 	{
@@ -47,10 +48,12 @@ public:
 
 private:
 	Window* window;
+	std::vector<char> keysPressed;
 	char keys[MAX_KEYS];
 	char mouseButtons[MAX_MOUSE_BUTTONS];
 	glm::vec2 mousePosition;
 	glm::vec2 mouseOffset;
+	glm::vec2 mouseScrollOffset;
 
 	InputSystem(Window* window);
 

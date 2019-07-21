@@ -21,8 +21,6 @@ namespace mtrx
 		mtrxLogger->set_pattern("%^[%n] [%l] [%d-%m-%Y %T]: %v %$"); // Set the logger pattern
 
 		spdlog::register_logger(mtrxLogger); // Register the logger that we are using
-
-		MTRX_TRACE("INITIALIZED mtrx LOGGER!!"); // Print out success statement
 	}
 
 	// Create/Update the directory that we want to create our log file in 

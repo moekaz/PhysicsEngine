@@ -26,29 +26,38 @@ InputSystem::InputSystem(Window* window) :
 	// Get cursor position
 	double x, y;
 	glfwGetCursorPos(window->GetWindow(), &x, &y);
-
 	mousePosition.x = (float)x;
 	mousePosition.y = (float)y;
 
 	// Get rid of the cursor
 	ToggleCursor(false);
+
+	// Reserve space for the vector so that it doesn't try to resize 
+	keysPressed.reserve(MAX_KEYS);
 }
 
 void InputSystem::Update()
 {
 	mouseOffset.x = mouseOffset.y = 0;
 
-	// TBD: Find a better solution
-	for (int i = 0; i < MAX_KEYS; ++i)
+	for (int i = 0; i < keysPressed.size(); ++i)
 	{
-		if (keys[i] == GLFW_PRESS)
-			keys[i] = GLFW_REPEAT;
+		if (keys[keysPressed[i]] != GLFW_PRESS)
+			continue;
+
+		keys[keysPressed[i]] = GLFW_REPEAT;
 	}
+	keysPressed.clear();
 }
 
 void InputSystem::KeyPressedCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	InputSystem::GetInstance(nullptr)->keys[key] = action;
+	InputSystem* input = InputSystem::GetInstance(nullptr);
+
+	if (action == GLFW_PRESS)
+		input->keysPressed.push_back(key);
+	
+	input->keys[key] = action;
 }
 
 void InputSystem::CursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
@@ -84,9 +93,7 @@ void InputSystem::MouseButtonPressedCallback(GLFWwindow* window, int button, int
 }
 
 void InputSystem::ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
-{
-
-}
+{}
 
 void InputSystem::CursorEnterCallback(GLFWwindow* window, int entered)
 {
