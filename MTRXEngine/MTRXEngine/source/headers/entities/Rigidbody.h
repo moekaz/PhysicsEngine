@@ -25,7 +25,7 @@ namespace mtrx
 			inverseInertiaTensor[1][1] = 1.f / inertiaTensor[1][1];
 			inverseInertiaTensor[2][2] = 1.f / inertiaTensor[2][2];
 		}
-		inline void SetOrientation(glm::quat& orientation) { transform.orientation = orientation; }
+		inline void SetOrientation(glm::quat& orientation) { transform.SetOrientation(orientation); }
 		inline void SetRotation(glm::vec3& rotation) { this->rotation = rotation; }
 		inline void SetIsKinematic(bool kinematic) { this->isKinematic = kinematic; }
 

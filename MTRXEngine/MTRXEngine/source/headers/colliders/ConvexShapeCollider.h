@@ -7,6 +7,7 @@
 
 #include <colliders/Collider.h>
 #include <utils/CollisionUtil.h>
+#include <math/Transform.h>
 
 namespace mtrx
 {

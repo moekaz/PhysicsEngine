@@ -54,8 +54,8 @@ void CollisionDemo::Update()
 	rbManager.AddRigidbody(&body2);
 
 	// Add the transforms of these rigidbodies
-	transformsToRender.insert(body1.GetTransform());
-	transformsToRender.insert(body2.GetTransform());
+	transformsToRender.insert(&body1.GetTransform());
+	transformsToRender.insert(&body2.GetTransform());
 
 	// Update loop
 	while (!application.window.ShouldClose())
@@ -79,7 +79,7 @@ void CollisionDemo::Update()
 
 void CollisionDemo::InputCheck()
 {
-	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_SPACE))
+	if (application.inputSystem->GetKeyDown(GLFW_KEY_SPACE))
 	{
 		body1.AddForce(glm::vec3(-10, 0, 0));
 		body2.AddForce(glm::vec3(10, 0, 0));

@@ -35,9 +35,3 @@ Window::~Window()
 	// Terminate window
 	glfwDestroyWindow(window);
 }
-
-void Window::UpdateBuffers()
-{
-	glfwPollEvents();
-	glfwSwapBuffers(window);
-}

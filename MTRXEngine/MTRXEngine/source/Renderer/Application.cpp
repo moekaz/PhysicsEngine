@@ -2,7 +2,10 @@
 #include <Application.h>
 
 Application::Application(const char* appName, int width, int height, int fps) : window(appName, width, height, fps), renderer(&window)
-{	 
+{	
+	inputSystem = InputSystem::GetInstance(&window);
+	camera = renderer.GetCamera();
+
 	// Setup opengl viewport
 	glViewport(0, 0, width, height);
 
@@ -21,3 +24,23 @@ Application::Application(const char* appName, int width, int height, int fps) : 
 
 Application::~Application()
 {}
+
+void Application::Update(float deltaTime)
+{
+	// Camera movement
+	if (inputSystem->GetKey(GLFW_KEY_W))
+		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() + camera->GetForward() * deltaTime * 2.f);
+	if (inputSystem->GetKey(GLFW_KEY_A))
+		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() - camera->GetSide() * deltaTime * 2.f);
+	if (inputSystem->GetKey(GLFW_KEY_S))
+		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() - camera->GetForward() * deltaTime * 2.f);
+	if (inputSystem->GetKey(GLFW_KEY_D))
+		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() + camera->GetSide() * deltaTime * 2.f);
+
+	// Camera rotation
+	const glm::vec2& offset = inputSystem->GetMouseOffset();
+	if (offset.x != 0.000001)
+		camera->Pitch(offset.x * deltaTime);
+	if (offset.y != 0.000001)
+		camera->Yaw(-offset.y * deltaTime);
+}

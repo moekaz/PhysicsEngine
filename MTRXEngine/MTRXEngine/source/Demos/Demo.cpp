@@ -15,6 +15,9 @@ void Demo::Update()
 	// Basic input checks that will shared by all applications
 	BaseInputCheck();
 	InputCheck();
+	
+	// Update application (includes input checks)
+	application.Update(mtrx::GameTime::deltaTime);
 
 	// Check for opengl errors
 	application.PollOpenGlErrors();
@@ -26,12 +29,12 @@ void Demo::Update()
 	rbManager.PhysicsUpdate();
 	pManager.PhysicsUpdate();
 
+
 	// Update renderer
-	application.renderer.GetCamera()->UpdateCamera(mtrx::GameTime::deltaTime);
 	application.renderer.Render(transformsToRender);
 
 	// Update input system
-	mtrx::InputSystem::Update();
+	application.inputSystem->Update();
 
 	// PS: You want to have all logic and that stuff before this call 
 	// Clear buffers and poll
@@ -40,10 +43,10 @@ void Demo::Update()
 
 void Demo::BaseInputCheck()
 {
-	if (mtrx::InputSystem::GetKeyDown(GLFW_KEY_G))
+	if (application.inputSystem->GetKeyDown(GLFW_KEY_G))
 	{
 		cursor = !cursor;
-		application.window.ToggleCursor(cursor);
+		application.inputSystem->ToggleCursor(cursor);
 	}
 }
 

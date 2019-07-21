@@ -9,10 +9,15 @@ class Application
 public:
 	Window window;
 	SimpleRenderer renderer;
-	
+	InputSystem* inputSystem;
+	Camera* camera;
+
 	Application(const char* appName = "MTRX", int width = DEFAULT_WINDOW_WIDTH, int height = DEFAULT_WINDOW_HEIGHT, int fps = DEFAULT_FPS);
 	~Application();
 	
+	// TBD: Refactor all the updates to include delta time instead instead of using static 
+	void Update(float deltaTime);
+
 	// Getters
 	inline void PollOpenGlErrors()
 	{

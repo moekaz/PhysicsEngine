@@ -42,8 +42,8 @@ namespace mtrx
 		rotation *= angularDamping;
 
 		// Modify position and orientation
-		transform.position += velocity * GameTime::deltaTime;
-		transform.orientation += 0.5f * transform.orientation * glm::quat(0.f, rotation * GameTime::deltaTime);
+		transform.SetPosition(velocity * GameTime::deltaTime);
+		transform.SetOrientation(0.5f * transform.GetOrientation() * glm::quat(0.f, rotation * GameTime::deltaTime));
 
 		// Calculate the body data from the updated positions
 		CalculateBodyData();
@@ -69,7 +69,7 @@ namespace mtrx
 	{
 		// Point is assumed to be in world space 
 		glm::vec3 pt = point;
-		pt -= transform.position;
+		pt -= transform.GetPosition();
 
 		accumForces += force;
 		accumTorque += glm::cross(pt, force);
@@ -78,7 +78,7 @@ namespace mtrx
 	void Rigidbody::CalculateBodyData()
 	{
 		// Normalize orientation
-		glm::normalize(transform.orientation);
+		glm::normalize(transform.GetOrientation());
 
 		// Calculate the object to world transform
 		CalculateObjToWorldMat();
@@ -89,18 +89,21 @@ namespace mtrx
 	
 	void Rigidbody::CalculateObjToWorldMat()
 	{
+		glm::quat& orientation = transform.GetOrientation();
+		glm::vec3& position = transform.GetPosition();
+
 		// i,j,k -> x,y,z
-		objToWorldMat[0][0] = 1 - 2 * transform.orientation.y * transform.orientation.y - 2 * transform.orientation.z * transform.orientation.z;
-		objToWorldMat[0][1] = 2 * transform.orientation.x * transform.orientation.y - 2 * transform.orientation.w * transform.orientation.z;
-		objToWorldMat[0][2] = 2 * transform.orientation.x * transform.orientation.z + 2 * transform.orientation.w * transform.orientation.y;
-		objToWorldMat[0][3] = transform.position.x;
-		objToWorldMat[1][0] = 2 * transform.orientation.x * transform.orientation.y + 2 * transform.orientation.w * transform.orientation.z;
-		objToWorldMat[1][1] = 1 - 2 * transform.orientation.x * transform.orientation.x - 2 * transform.orientation.z * transform.orientation.z;
-		objToWorldMat[1][2] = 2 * transform.orientation.y * transform.orientation.z - 2 * transform.orientation.w * transform.orientation.x;
-		objToWorldMat[1][3] = transform.position.y;
-		objToWorldMat[2][0] = 2 * transform.orientation.x * transform.orientation.z - 2 * transform.orientation.w * transform.orientation.y;
-		objToWorldMat[2][1] = 2 * transform.orientation.y * transform.orientation.z + 2 * transform.orientation.w * transform.orientation.x;
-		objToWorldMat[2][2] = 1 - 2 * transform.orientation.x * transform.orientation.x - 2 * transform.orientation.y * transform.orientation.y;
-		objToWorldMat[2][3] = transform.position.z;
+		objToWorldMat[0][0] = 1 - 2 * orientation.y * orientation.y - 2 * orientation.z * orientation.z;
+		objToWorldMat[0][1] = 2 * orientation.x * orientation.y - 2 * orientation.w * orientation.z;
+		objToWorldMat[0][2] = 2 * orientation.x * orientation.z + 2 * orientation.w * orientation.y;
+		objToWorldMat[0][3] = position.x;
+		objToWorldMat[1][0] = 2 * orientation.x * orientation.y + 2 * orientation.w * orientation.z;
+		objToWorldMat[1][1] = 1 - 2 * orientation.x * orientation.x - 2 * orientation.z * orientation.z;
+		objToWorldMat[1][2] = 2 * orientation.y * orientation.z - 2 * orientation.w * orientation.x;
+		objToWorldMat[1][3] = position.y;
+		objToWorldMat[2][0] = 2 * orientation.x * orientation.z - 2 * orientation.w * orientation.y;
+		objToWorldMat[2][1] = 2 * orientation.y * orientation.z + 2 * orientation.w * orientation.x;
+		objToWorldMat[2][2] = 1 - 2 * orientation.x * orientation.x - 2 * orientation.y * orientation.y;
+		objToWorldMat[2][3] = position.z;
 	}
 }

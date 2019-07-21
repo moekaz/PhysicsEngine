@@ -43,18 +43,6 @@ namespace mtrx
 		{}
 	};
 
-	// Transform struct that holds position orientation and scale
-	struct Transform
-	{
-		glm::vec3 position;
-		glm::quat orientation;
-		glm::vec3 scale;
-
-		Transform(const glm::vec3& position = glm::vec3(), const glm::quat& quaternion = glm::angleAxis(0.f, worldUp), const glm::vec3& scale = glm::vec3(1, 1, 1)) : 
-			position(position), orientation(quaternion), scale(scale)
-		{}
-	};
-
 	// The axes that define an objects world 
 	struct ObjectAxes
 	{

@@ -15,7 +15,7 @@ namespace mtrx
 	{}
 
 	BoxCollider::BoxCollider(const Transform& transform) :
-		ConvexShapeCollider(ColliderType::Box, transform), halfExtents(glm::vec3(0.5f * transform.scale.x, 0.5f * transform.scale.y, 0.5f * transform.scale.z))
+		ConvexShapeCollider(ColliderType::Box, transform), halfExtents(glm::vec3(0.5f * transform.GetScale().x, 0.5f * transform.GetScale().y, 0.5f * transform.GetScale().z))
 	{
 		// Vertices of a box
 		vertices =
@@ -31,7 +31,7 @@ namespace mtrx
 		};
 	}
 
-	BoxCollider::BoxCollider(const BoxCollider& collider1, const BoxCollider& collider2) : ConvexShapeCollider(ColliderType::Box)
+	BoxCollider::BoxCollider(const BoxCollider& collider1, const BoxCollider& collider2) : ConvexShapeCollider(ColliderType::Box, Transform())
 	{
 		// TBD: Constructor for box collider of box colliders needs to be implemented
 		// Create a bounding box from the 2 other bounding boxes
@@ -50,7 +50,7 @@ namespace mtrx
 			{
 				std::cout << "Box Sphere collision detection" << std::endl;
 				const mtrx::SphereCollider& collider = static_cast<const mtrx::SphereCollider&>(col);
-				collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), transform.position, collider.radius, axes.axes, halfExtents);
+				collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), transform.GetPosition(), collider.radius, axes.axes, halfExtents);
 				break;
 			}
 			case ColliderType::Box:
@@ -64,7 +64,7 @@ namespace mtrx
 			{
 				std::cout << "Box Capsule collision detection" << std::endl;
 				const mtrx::CapsuleCollider& collider = static_cast<const mtrx::CapsuleCollider&>(col);
-				collision = CollisionUtil::BoxCapsuleCollision(transform.position, collider.GetPosition(), collider.A, collider.B, collider.radii, axes.axes, halfExtents);
+				collision = CollisionUtil::BoxCapsuleCollision(transform.GetPosition(), collider.GetPosition(), collider.A, collider.B, collider.radii, axes.axes, halfExtents);
 				break;
 			}
 			case ColliderType::Mesh:
@@ -85,7 +85,7 @@ namespace mtrx
 	// Raycast with box colliders
 	bool BoxCollider::RaycastCollision(const Ray& ray)
 	{
-		return CollisionUtil::RayBoxCollision(ray.startPosition, ray.direction, transform.position, axes.axes, halfExtents);
+		return CollisionUtil::RayBoxCollision(ray.startPosition, ray.direction, transform.GetPosition(), axes.axes, halfExtents);
 	}
 
 	float BoxCollider::GetSize()

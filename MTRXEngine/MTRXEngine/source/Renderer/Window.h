@@ -5,7 +5,6 @@
 #define DEFAULT_FPS 60
 
 #include <log/LogManager.h>
-#include <Input/InputSystem.h>
 
 class Window
 {
@@ -22,12 +21,16 @@ public:
 	
 	inline void Clear() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }
 
-	void UpdateBuffers();
+	inline void UpdateBuffers()
+	{
+		glfwPollEvents();
+		glfwSwapBuffers(window);
+	}
 
 protected:
 	GLFWwindow* window;
 	int width;
 	int height;
-	float fps;
+	int fps;
 };
 

@@ -1,83 +1,78 @@
 #pragma once
 
-#include <log/LogManager.h>
 #include <Window.h>
 
-namespace mtrx
+#define MAX_KEYS 256 // Max number of buttons
+#define MAX_MOUSE_BUTTONS 20 // Max number of mouse buttons
+#define MAX_JOYSTICK_KEYS 20 // Max number of joystick keys 
+
+class InputSystem
 {
-	#define MAX_KEYS 256 // Max number of buttons
-	#define MAX_MOUSE_BUTTONS 20 // Max number of mouse buttons
-	#define MAX_JOYSTICK_KEYS 20 // Max number of joystick keys 
-
-	// TBD: Might want to make this a singleton instead 
-	class InputSystem
+public:
+	static InputSystem* GetInstance(Window* window)
 	{
-	public:
-		static InputSystem& GetInstance(Window* window)
+		static InputSystem inputSystem(window);
+		return &inputSystem;
+	}
+
+	void Update();
+
+	// Getters
+	inline const glm::vec2& GetMousePosition() { return mousePosition; }
+	inline const glm::vec2& GetMouseOffset() { return mouseOffset; }
+
+	inline bool GetKey(char keyCode)
+	{
+		if (!isKey(keyCode))
+			return false;
+
+		return keys[keyCode] != GLFW_RELEASE;
+	}
+
+	inline bool GetKeyDown(char keyCode)
+	{
+		if (!isKey(keyCode))
+			return false;
+
+		return keys[keyCode] == GLFW_PRESS;
+	}
+
+	inline void ToggleCursor(bool cursor)
+	{
+		if (cursor)
+			glfwSetInputMode(window->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		else
+			glfwSetInputMode(window->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
+
+private:
+	Window* window;
+	char keys[MAX_KEYS];
+	char mouseButtons[MAX_MOUSE_BUTTONS];
+	glm::vec2 mousePosition;
+	glm::vec2 mouseOffset;
+
+	InputSystem(Window* window);
+
+	// We should not be able to modify this input system 
+	InputSystem(const InputSystem&) = delete;
+	void operator=(const InputSystem&) = delete;
+
+	static inline bool isKey(char keyCode)
+	{
+		if (keyCode < 0 || keyCode >= MAX_KEYS)
 		{
-			static InputSystem inputSystem(window);
-			return inputSystem;
+			MTRX_ERROR("Key does not exist");
+			return false;
 		}
 
-	    void Update();
+		return true;
+	}
 
-		// Getters
-		inline const glm::vec2& GetMousePosition() { return mousePosition; }
-		inline const glm::vec2& GetMouseOffset() { return mouseOffset; }
-
-		inline bool GetKey(char keyCode)
-		{
-			if (!isKey(keyCode))
-				return false;
-
-			return keys[keyCode] != GLFW_RELEASE;
-		}
-
-		inline bool GetKeyDown(char keyCode)
-		{
-			if (!isKey(keyCode))
-				return false;
-
-			return keys[keyCode] == GLFW_PRESS;
-		}
-
-		inline void ToggleCursor(bool cursor)
-		{
-			if (cursor)
-				glfwSetInputMode(window->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-			else
-				glfwSetInputMode(window->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-		}
-
-	private:
-		Window* window;
-		char keys[MAX_KEYS];
-		char mouseButtons[MAX_MOUSE_BUTTONS];
-		glm::vec2 mousePosition;
-		glm::vec2 mouseOffset;
-
-		InputSystem(Window* window);
-
-		// We should not be able to modify this input system 
-		InputSystem(const InputSystem&) = delete;
-		void operator=(const InputSystem&) = delete;
-
-		static inline bool isKey(char keyCode)
-		{
-			if (keyCode < 0 || keyCode >= MAX_KEYS)
-			{
-				MTRX_ERROR("Key does not exist");
-				return false;
-			}
-
-			return true;
-		}
-
-		// GLFW Callbacks
-		static void KeyPressedCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
-		static void MouseButtonPressedCallback(GLFWwindow* window, int button, int action, int mods);
-		static void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
-		static void CursorEnterCallback(GLFWwindow* window, int entered);
-	};
-}
+	// GLFW Callbacks
+	static void KeyPressedCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+	static void MouseButtonPressedCallback(GLFWwindow* window, int button, int action, int mods);
+	static void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
+	static void CursorEnterCallback(GLFWwindow* window, int entered);
+};

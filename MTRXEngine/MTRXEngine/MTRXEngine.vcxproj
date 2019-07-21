@@ -216,7 +216,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PrecompiledHeader.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="source\code\Ray.cpp" />
-    <ClCompile Include="source\code\Tester.cpp" />
     <ClCompile Include="source\code\utils\CollisionUtil.cpp" />
     <ClCompile Include="source\code\utils\PhysicsUtil.cpp" />
     <ClCompile Include="source\Demos\CollisionDemo.cpp">
@@ -488,6 +487,7 @@
     <ClInclude Include="source\Renderer\Camera.h" />
     <ClInclude Include="source\Renderer\Shader.h" />
     <ClInclude Include="source\Renderer\SimpleRenderer.h" />
+    <ClInclude Include="source\headers\math\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source\Libraries\glm\glm\detail\func_common.inl" />

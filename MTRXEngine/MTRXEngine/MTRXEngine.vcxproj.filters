@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\code\Tester.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\code\GJK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -951,6 +948,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Libraries\glm\glm\detail\type_vec4.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\math\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

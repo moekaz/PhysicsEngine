@@ -37,14 +37,14 @@ namespace mtrx
 			Collider::SetScale(scale);
 			height = 1.f * scale.y;
 			radii = 0.5f * scale.x;
-			A = transform.position - GetUp() * (height / 2);
-			B = transform.position + GetUp() * (height / 2);
+			A = transform.GetPosition() - GetUp() * (height / 2);
+			B = transform.GetPosition() + GetUp() * (height / 2);
 		}
 
 		virtual inline void SetPosition(const glm::vec3& position) override
 		{
 			// TBD: This can be done a whole lot better
-			glm::vec3 difference = position - transform.position;
+			glm::vec3 difference = position - transform.GetPosition();
 			Collider::SetPosition(position);
 			A += difference;
 			B += difference;
@@ -57,8 +57,8 @@ namespace mtrx
 		{
 			// TBD: Rotation setting for capsule colliders is incorrect it seems
 			Collider::SetRotation(orientation);
-			A = A * transform.orientation;
-			B = B * transform.orientation;
+			A = A * transform.GetOrientation();
+			B = B * transform.GetOrientation();
 		}
 	};
 }

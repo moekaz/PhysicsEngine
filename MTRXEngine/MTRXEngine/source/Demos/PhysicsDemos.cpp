@@ -14,12 +14,6 @@
 
 int main()
 {
-	// Initialize logger 
-	mtrx::LogManager::Init();
-
-	// Initialize Input system
-	mtrx::InputSystem::Init();
-
 	// Demo application that we want to run
 	std::unique_ptr<Demo> app;
 #if DEMO == 1
