@@ -11,33 +11,20 @@ Camera::Camera(Window* window, const glm::vec3& position, const glm::vec3& forwa
 	axes(forward, up, glm::normalize(glm::cross(forward, up)))
 {}
 
-glm::mat4 Camera::GetProjectionMatrix()
-{
-	return glm::perspective(fov, renderWindow->GetAspectRatio(), nearPlane, farPlane);
-}
-
-glm::mat4 Camera::GetViewMatrix()
-{
-	return glm::lookAt(transform.GetPosition(), transform.GetPosition() + GetForward(), GetUp());
-}
-
 void Camera::Pitch(float angle)
 {
 	glm::quat rotation = glm::angleAxis(angle, GetSide());
-	glm::quat& orientation = transform.GetOrientation();
-	orientation = rotation * orientation;
+	transform.Rotate(rotation);
 }
 
 void Camera::Yaw(float angle)
 {
 	glm::quat rotation = glm::angleAxis(angle, mtrx::worldUp);
-	glm::quat& orientation = transform.GetOrientation();
-	orientation = rotation * orientation;
+	transform.Rotate(rotation);
 }
 
 void Camera::Roll(float angle)
 {
 	glm::quat rotation = glm::angleAxis(angle, GetForward());
-	glm::quat& orientation = transform.GetOrientation();
-	orientation = rotation * orientation;
+	transform.Rotate(rotation);
 }

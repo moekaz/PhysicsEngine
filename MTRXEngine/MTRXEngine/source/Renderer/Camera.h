@@ -20,8 +20,10 @@ public:
 	inline glm::vec3 GetUp() { return glm::normalize(transform.GetOrientation() * axes.up); }
 	inline mtrx::Transform& GetTransform() { return transform; }
 
-	glm::mat4 GetProjectionMatrix();
-	glm::mat4 GetViewMatrix();
+	// Camera matrix calculations
+	inline glm::mat4 GetProjectionMatrix() { return glm::perspective(fov, renderWindow->GetAspectRatio(), nearPlane, farPlane); }
+	inline glm::mat4 GetViewMatrix() { return glm::lookAt(transform.GetPosition(), transform.GetPosition() + GetForward(), GetUp()); }
+
 	void Pitch(float angle);
 	void Yaw(float angle);
 	void Roll(float angle);

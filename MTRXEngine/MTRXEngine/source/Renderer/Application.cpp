@@ -29,18 +29,19 @@ void Application::Update(float deltaTime)
 {
 	// Camera movement
 	if (inputSystem->GetKey(GLFW_KEY_W))
-		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() + camera->GetForward() * deltaTime * 2.f);
+		camera->GetTransform().Translate(camera->GetForward() * deltaTime * 2.f);
 	if (inputSystem->GetKey(GLFW_KEY_A))
-		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() - camera->GetSide() * deltaTime * 2.f);
+		camera->GetTransform().Translate(-camera->GetSide() * deltaTime * 2.f);
 	if (inputSystem->GetKey(GLFW_KEY_S))
-		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() - camera->GetForward() * deltaTime * 2.f);
+		camera->GetTransform().Translate(-camera->GetForward() * deltaTime * 2.f);
 	if (inputSystem->GetKey(GLFW_KEY_D))
-		camera->GetTransform().SetPosition(camera->GetTransform().GetPosition() + camera->GetSide() * deltaTime * 2.f);
+		camera->GetTransform().Translate(camera->GetSide() * deltaTime * 2.f);
 
 	// Camera rotation
 	const glm::vec2& offset = inputSystem->GetMouseOffset();
-	if (offset.x != 0.000001)
-		camera->Pitch(offset.x * deltaTime);
+
 	if (offset.y != 0.000001)
-		camera->Yaw(-offset.y * deltaTime);
+		camera->Pitch(offset.y * deltaTime);
+	if (offset.x != 0.000001)
+		camera->Yaw(-offset.x * deltaTime);
 }

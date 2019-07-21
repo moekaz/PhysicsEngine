@@ -33,7 +33,6 @@ namespace mtrx
 		// Simplex GJK logic loop
 		for (int i = 0; i < MAX_NUM_ITERATIONS; ++i)
 		{
-			std::cout << "index" << i << std::endl;
 			glm::vec3 a = convexCollider1.Support(convexCollider2, searchDirection); // Get the next point
 			if (glm::dot(a, searchDirection) < 0) return false;	// We cannot have a collision
 			else if (UpdateSimplex(simplex, searchDirection, a)) return true; // Update the simplex and set a new direction vector

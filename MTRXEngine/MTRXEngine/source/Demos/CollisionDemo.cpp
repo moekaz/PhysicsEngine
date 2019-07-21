@@ -69,7 +69,7 @@ void CollisionDemo::Update()
 		if (collider1->CheckCollision(*collider2))
 		{
 			// Collision
-			std::cout << "collision" << std::endl;
+			//std::cout << "collision" << std::endl;
 		}
 
 		// Update the demo
