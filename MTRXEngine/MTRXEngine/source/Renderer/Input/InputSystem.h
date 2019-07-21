@@ -56,6 +56,7 @@ private:
 	glm::vec2 mouseScrollOffset;
 
 	InputSystem(Window* window);
+	~InputSystem();
 
 	// We should not be able to modify this input system 
 	InputSystem(const InputSystem&) = delete;

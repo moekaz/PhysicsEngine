@@ -36,6 +36,9 @@ InputSystem::InputSystem(Window* window) :
 	keysPressed.reserve(MAX_KEYS);
 }
 
+InputSystem::~InputSystem()
+{}
+
 void InputSystem::Update()
 {
 	mouseOffset.x = mouseOffset.y = 0;

@@ -28,8 +28,10 @@ namespace mtrx
 		inline const int GetColliderId() const { return colliderId; }
 		inline const bool IsConvex() const { return isConvexShape; }
 
-		// TBD: this is a little expensive
-		inline glm::vec3 GetForward() { return glm::normalize(transform.GetOrientation() * axes[0]); }
+		inline glm::vec3 GetForward() 
+		{
+			return glm::normalize(transform.GetOrientation() * axes[0]); 
+		}
 		inline glm::vec3 GetSide() { return glm::normalize(transform.GetOrientation() * axes[1]); }
 		inline glm::vec3 GetUp() { return glm::normalize(transform.GetOrientation() * axes[2]); }
 

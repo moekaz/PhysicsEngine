@@ -43,22 +43,17 @@ namespace mtrx
 
 		virtual inline void SetPosition(const glm::vec3& position) override
 		{
-			// TBD: This can be done a whole lot better
 			glm::vec3 difference = position - transform.GetPosition();
 			Collider::SetPosition(position);
 			A += difference;
 			B += difference;
-
-			//A = transform.position - GetUp() * (height / 2);
-			//B = transform.position + GetUp() * (height / 2);
 		}
 
 		virtual inline void SetRotation(const glm::quat& orientation)
 		{
-			// TBD: Rotation setting for capsule colliders is incorrect it seems
 			Collider::SetRotation(orientation);
-			A = A * transform.GetOrientation();
-			B = B * transform.GetOrientation();
+			A = transform.GetPosition() - GetUp() * (height / 2);
+			B = transform.GetPosition() + GetUp() * (height / 2);
 		}
 	};
 }
