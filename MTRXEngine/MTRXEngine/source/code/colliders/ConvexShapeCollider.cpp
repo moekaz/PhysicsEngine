@@ -77,7 +77,7 @@ namespace mtrx
 	bool ConvexShapeCollider::RaycastCollision(const Ray& ray)
 	{
 		// A ray is a convex shape if we use it as a line
-		glm::vec3 rayEndPoint = glm::normalize(ray.direction) * MAX_RAY_SIZE;	// Get the end point of the ray
+		glm::vec3 rayEndPoint = glm::fastNormalize(ray.direction) * MAX_RAY_SIZE;	// Get the end point of the ray
 		ConvexShapeCollider convexLine = ConvexShapeCollider(ColliderType::ConvexShape, rayEndPoint - ray.startPosition);	// Setup the convex shape
 		glm::vec3 start = ray.startPosition;
 

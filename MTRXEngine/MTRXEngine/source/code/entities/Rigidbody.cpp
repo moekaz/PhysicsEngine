@@ -78,6 +78,7 @@ namespace mtrx
 	void Rigidbody::CalculateBodyData()
 	{
 		// Normalize orientation
+		// TBD: fast normalize for quaternions
 		glm::normalize(transform.GetOrientation());
 
 		// Calculate the object to world transform
