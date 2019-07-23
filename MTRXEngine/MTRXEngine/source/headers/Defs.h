@@ -58,12 +58,23 @@ namespace mtrx
 			glm::vec3 axes[WORLD_DIMENSIONS];
 		};
 
+
 		inline glm::vec3& operator[](int index) { return axes[index]; }
 		ObjectAxes(const glm::vec3& forward = glm::vec3(0, 0, -1), const glm::vec3& up = glm::vec3(0, 1, 0), const glm::vec3& side = glm::vec3(1, 0, 0)) : 
 			forward(forward), side(side), up(up)
 		{}
 	};
 	
+	// Simplest shape that can encapsulate a point in 3d space
+	class Simplex
+	{
+	public:
+		glm::vec3* b;
+		glm::vec3* c;
+		glm::vec3* d;
+		unsigned char size;
+	};
+
 	static glm::mat3 GenerateCuboidIT(float mass, float* extents)
 	{
 		// 1/12 = 0.083333... 

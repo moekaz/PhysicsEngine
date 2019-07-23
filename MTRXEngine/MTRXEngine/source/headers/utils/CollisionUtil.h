@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include <math/Simplex.h>
 #include <GJK.h>
 #include <utils/PhysicsUtil.h>
 

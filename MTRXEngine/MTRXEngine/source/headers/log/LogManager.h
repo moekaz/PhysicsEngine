@@ -8,6 +8,7 @@
 
 #define LOG_FILE_DIR "MTRXLogs\\" // Directory where log file will be created in
 
+// TBD: DECIDE WHAT TO DO WITH LOGGER IN RELEASE MODE
 // Macros for API calls to log information
 #define MTRX_WARN(...) mtrx::LogManager::GetInstance().warn(__VA_ARGS__)
 #define MTRX_INFO(...) mtrx::LogManager::GetInstance().info(__VA_ARGS__)
@@ -47,7 +48,5 @@ namespace mtrx
 		// We do not want to the logger to be modifiable
 		LogManager(const LogManager&) = delete; 
 		void operator=(const LogManager&) = delete;
-
-	protected:
 	};
 }
