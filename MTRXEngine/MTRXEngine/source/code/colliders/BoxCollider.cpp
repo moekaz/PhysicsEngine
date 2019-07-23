@@ -90,7 +90,8 @@ namespace mtrx
 
 	float BoxCollider::GetSize()
 	{
-		return 0.f;
+		// length * breadth * height
+		return halfExtents[0] * halfExtents[1] * halfExtents[2] * 8;
 	}
 
 	float BoxCollider::GetGrowth(const BoxCollider& boxCollider)
