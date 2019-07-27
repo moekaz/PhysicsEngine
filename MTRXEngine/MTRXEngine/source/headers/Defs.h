@@ -66,9 +66,8 @@ namespace mtrx
 	};
 	
 	// Simplest shape that can encapsulate a point in 3d space
-	class Simplex
+	struct Simplex
 	{
-	public:
 		glm::vec3* b;
 		glm::vec3* c;
 		glm::vec3* d;

@@ -10,6 +10,8 @@
 // TBD: WE CAN OPTIMIZE THIS SOME MORE MAYBE
 namespace mtrx
 {
+	Simplex GJK::simplex;
+
 	bool GJK::Collision(const ConvexShapeCollider& convexCollider1, const ConvexShapeCollider& convexCollider2)
 	{
 		simplex.b = simplex.c = simplex.d = nullptr; // Reset simplex
@@ -33,10 +35,10 @@ namespace mtrx
 		// Simplex GJK logic loop
 		for (int i = 0; i < MAX_NUM_ITERATIONS; ++i)
 		{
-			glm::vec3 a = convexCollider1.Support(convexCollider2, searchDirection); // Get the next point
-			if (glm::dot(a, searchDirection) < 0)	// We cannot have a collision
+			glm::vec3* a = &convexCollider1.Support(convexCollider2, searchDirection); // Get the next point
+			if (glm::dot(*a, searchDirection) < 0)	// We cannot have a collision
 				return false;
-			else if (UpdateSimplex(simplex, searchDirection, a))	// Update the simplex and set a new direction vector
+			else if (UpdateSimplex(simplex, searchDirection, *a))	// Update the simplex and set a new direction vector
 				return true;
 		}
 		

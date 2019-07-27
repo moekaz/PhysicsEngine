@@ -21,7 +21,7 @@ void CollisionDemo::Update()
 		glm::angleAxis(0.f, mtrx::worldUp),
 		glm::vec3(0.1f, 0.1f, 0.1f),
 	};
-	transformsToRender.insert(&center);
+	this->transformsToRender.insert(&center);
 
 	glm::quat orientation1 = glm::angleAxis(0.f, mtrx::worldUp);
 	glm::quat orientation2 = glm::angleAxis(0.f, mtrx::worldUp);
@@ -42,20 +42,20 @@ void CollisionDemo::Update()
 	//collider2 = new mtrx::CapsuleCollider(body2.GetPosition());
 
 	// Sphere Colliders
-	collider1 = new mtrx::SphereCollider(body1.GetPosition());
-	collider2 = new mtrx::SphereCollider(body2.GetPosition());
+	//collider1 = new mtrx::SphereCollider(body1.GetPosition());
+	//collider2 = new mtrx::SphereCollider(body2.GetPosition());
 
-	//// Box Colliders
-	//collider1 = new mtrx::BoxCollider(body1.GetPosition());
-	//collider2 = new mtrx::BoxCollider(body2.GetPosition());
+	// Box Colliders
+	collider1 = new mtrx::BoxCollider(body1.GetPosition());
+	collider2 = new mtrx::BoxCollider(body2.GetPosition());
 
 	// Rigidbody additions
 	rbManager.AddRigidbody(&body1);
 	rbManager.AddRigidbody(&body2);
 
 	// Add the transforms of these rigidbodies
-	transformsToRender.insert(&body1.GetTransform());
-	transformsToRender.insert(&body2.GetTransform());
+	this->transformsToRender.insert(&body1.GetTransform());
+	this->transformsToRender.insert(&body2.GetTransform());
 
 	// Update loop
 	while (!application.window.ShouldClose())
@@ -66,11 +66,11 @@ void CollisionDemo::Update()
 		collider1->SetRotation(body1.GetOrientation());
 		collider2->SetRotation(body2.GetOrientation());
 
-		//if (collider1->CheckCollision(*collider2))
-		//{
-		//	// Collision
-		//	//std::cout << "collision" << std::endl;
-		//}
+		if (collider1->CheckCollision(*collider2))
+		{
+			// Collision
+			std::cout << "collision" << std::endl;
+		}
 
 		// Update the demo
 		Demo::Update();

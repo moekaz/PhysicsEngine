@@ -105,7 +105,7 @@ namespace mtrx
 		// Convex Shape convex shape collision detection 
 		bool ConvexShapeCollision(const mtrx::ConvexShapeCollider& convexCollider1, const mtrx::ConvexShapeCollider& convexCollider2)
 		{
-			return mtrx::GJK::GJKCollision(convexCollider1, convexCollider2);
+			return mtrx::GJK::Collision(convexCollider1, convexCollider2);
 		}
 
 		// Ray sphere collision detection

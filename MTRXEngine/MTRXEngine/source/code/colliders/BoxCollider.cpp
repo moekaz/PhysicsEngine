@@ -15,7 +15,8 @@ namespace mtrx
 	{}
 
 	BoxCollider::BoxCollider(const Transform& transform) :
-		ConvexShapeCollider(ColliderType::Box, transform), halfExtents(glm::vec3(0.5f * transform.GetScale().x, 0.5f * transform.GetScale().y, 0.5f * transform.GetScale().z))
+		ConvexShapeCollider(ColliderType::Box, transform), 
+		halfExtents(glm::vec3(0.5f * transform.GetScale().x, 0.5f * transform.GetScale().y, 0.5f * transform.GetScale().z))
 	{
 		// Vertices of a box
 		vertices =
@@ -29,6 +30,13 @@ namespace mtrx
 			new glm::vec3(-0.5, -0.5, -0.5),
 			new glm::vec3(0.5, -0.5, -0.5),
 		};
+
+
+		transformedVertices.resize(vertices.size());
+		for (int i = 0; i < vertices.size(); ++i)
+		{
+			transformedVertices[i] = new glm::vec3();
+		}
 	}
 
 	BoxCollider::BoxCollider(const BoxCollider& collider1, const BoxCollider& collider2) : ConvexShapeCollider(ColliderType::Box, Transform())

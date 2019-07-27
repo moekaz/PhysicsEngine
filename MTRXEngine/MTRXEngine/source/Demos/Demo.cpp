@@ -26,6 +26,8 @@ void Demo::Update()
 	application.window.Clear();
 
 	// Update the rigidbody and the particle system
+
+	// TBD: fix timestep
 	rbManager.PhysicsUpdate();
 	pManager.PhysicsUpdate();
 

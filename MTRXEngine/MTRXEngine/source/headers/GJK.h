@@ -14,6 +14,7 @@
 
 #include <utils/PhysicsUtil.h>
 #include <log/LogManager.h>
+#include <Defs.h>
 
 namespace mtrx
 {

@@ -200,7 +200,6 @@
     <ClCompile Include="source\code\entities\Rigidbody.cpp" />
     <ClCompile Include="source\code\log\LogManager.cpp" />
     <ClCompile Include="source\code\math\Mat3.cpp" />
-    <ClCompile Include="source\code\math\Simplex.cpp" />
     <ClCompile Include="source\code\math\Vector3D.cpp" />
     <ClCompile Include="source\code\ParticleCollision.cpp" />
     <ClCompile Include="source\code\GameTime.cpp" />
@@ -471,7 +470,6 @@
     <ClInclude Include="source\headers\entities\Rigidbody.h" />
     <ClInclude Include="source\headers\log\LogManager.h" />
     <ClInclude Include="source\headers\math\Mat3.h" />
-    <ClInclude Include="source\headers\math\Simplex.h" />
     <ClInclude Include="source\headers\math\Vector3D.h" />
     <ClInclude Include="source\headers\ParticleCollision.h" />
     <ClInclude Include="source\headers\Defs.h" />

@@ -9,11 +9,11 @@
 namespace mtrx
 {
 	ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const glm::vec3& center, const glm::quat& orientation, const glm::vec3& scale) : 
-		Collider(colliderType, center, orientation, scale, true) 
+		Collider(colliderType, center, orientation, scale, true), transformModified(true)
 	{}
 
 	ConvexShapeCollider::ConvexShapeCollider(const ColliderType& colliderType, const Transform& transform) : 
-		Collider(colliderType, transform, true)
+		Collider(colliderType, transform, true), transformModified(true)
 	{}
 
 	ConvexShapeCollider::~ConvexShapeCollider()
@@ -21,39 +21,34 @@ namespace mtrx
 		for (int i = 0; i < vertices.size(); ++i)
 		{
 			delete vertices[i];
+			delete transformedVertices[i];
 		}
 	}
 
 	// Used for GJK collision
 	glm::vec3 ConvexShapeCollider::Support(const ConvexShapeCollider& convexCollider, const glm::vec3& direction) const
 	{
-		glm::vec3& p1 = FarthestPointInDirection(direction);
-		glm::vec3& p2 = convexCollider.FarthestPointInDirection(-direction);
+		const glm::vec3& p1 = FarthestPointInDirection(direction);
+		const glm::vec3& p2 = convexCollider.FarthestPointInDirection(-direction);
 		glm::vec3 p3 = p1 - p2;
 		return p3;
 	}
 
 	// Return farthest point with respect to a certain direction
-	glm::vec3& ConvexShapeCollider::FarthestPointInDirection(const glm::vec3& direction) const
+	const glm::vec3& ConvexShapeCollider::FarthestPointInDirection(const glm::vec3& direction) const
 	{
 		float maxDot = -std::numeric_limits<float>::infinity();	// Max dot vector
-		glm::vec3* farthest = nullptr;	// Farthest vector
+		const glm::vec3* farthest = nullptr;	// Farthest vector
 
-		std::vector<glm::vec3*> verts = GetVertices();
-		for (unsigned int i = 0; i < verts.size(); ++i)
+		const std::vector<glm::vec3*>* verts = GetVertices();
+		for (unsigned int i = 0; i < (*verts).size(); ++i)
 		{
-			float dot = glm::dot(*verts[i], direction);
+			float dot = glm::dot(*(*verts)[i], direction);
 			if (dot > maxDot)
 			{
 				maxDot = dot;
-				farthest = verts[i];
+				farthest = (*verts)[i];
 			}
-		}
-
-		// TBD: THIS WILL NOT WORK
-		for (int i = 0; i < verts.size(); ++i)
-		{
-			delete verts[i];
 		}
 
 		// Check that we have a vertex to use
@@ -99,17 +94,22 @@ namespace mtrx
 		return result;
 	}
 
-	std::vector<glm::vec3*> ConvexShapeCollider::GetVertices() const
+	const std::vector<glm::vec3*>* ConvexShapeCollider::GetVertices() const
 	{
-		// TBD: THIS IS REALLY UGLY 
-		// Get the vertices of the convex shape with change in position and orientation
-		std::vector<glm::vec3*> vertex;
-		for (auto iter = vertices.begin(); iter != vertices.end(); ++iter)
+		// If the collider was not modified no need to redo transform operation
+		//if (!transformModified)
+		//	return &transformedVertices;
+
+		glm::mat4 modelMatrix = GetModelMatrix();
+		for (int i = 0; i < vertices.size(); ++i)
 		{
-			glm::vec4 vec = glm::vec4(*(*iter), 1) * GetModelMatrix();
-			vertex.push_back(new glm::vec3(vec.x, vec.y, vec.z));
+			// TBD: WE CAN MAKE THIS A GLM::VEC4 ARRAY INSTEAD 
+			glm::vec4 vec = glm::vec4(*vertices[i], 1.f) * modelMatrix;
+			transformedVertices[i]->x = vec.x;
+			transformedVertices[i]->y = vec.y;
+			transformedVertices[i]->z = vec.z;
 		}
 
-		return vertex;
+		return &transformedVertices;
 	}
 }

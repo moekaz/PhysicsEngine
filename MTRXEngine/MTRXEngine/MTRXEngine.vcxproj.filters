@@ -57,9 +57,6 @@
     <ClCompile Include="source\code\math\Mat3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\code\math\Simplex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\code\math\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,9 +225,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\headers\math\Mat3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\headers\math\Simplex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\headers\math\Vector3D.h">

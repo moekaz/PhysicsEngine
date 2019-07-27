@@ -42,8 +42,8 @@ namespace mtrx
 		rotation *= angularDamping;
 
 		// Modify position and orientation
-		transform.SetPosition(velocity * GameTime::deltaTime);
-		transform.SetOrientation(0.5f * transform.GetOrientation() * glm::quat(0.f, rotation * GameTime::deltaTime));
+		transform.Translate(velocity * GameTime::deltaTime);
+		transform.GetOrientation() += 0.5f * transform.GetOrientation() * glm::quat(0.f, rotation * GameTime::deltaTime);
 
 		// Calculate the body data from the updated positions
 		CalculateBodyData();
@@ -78,7 +78,7 @@ namespace mtrx
 	void Rigidbody::CalculateBodyData()
 	{
 		// Normalize orientation
-		glm::normalize(transform.GetOrientation());
+		transform.SetOrientation(glm::normalize(transform.GetOrientation()));
 
 		// Calculate the object to world transform
 		CalculateObjToWorldMat();
