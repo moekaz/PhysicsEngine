@@ -37,13 +37,13 @@ namespace mtrx
 			Collider::SetScale(scale);
 			height = 1.f * scale.y;
 			radii = 0.5f * scale.x;
-			A = transform.GetPosition() - GetUp() * (height / 2);
-			B = transform.GetPosition() + GetUp() * (height / 2);
+			A = GetPosition() - GetUp() * (height / 2);
+			B = GetPosition() + GetUp() * (height / 2);
 		}
 
 		virtual inline void SetPosition(const glm::vec3& position) override
 		{
-			glm::vec3 difference = position - transform.GetPosition();
+			glm::vec3 difference = position - GetPosition();
 			Collider::SetPosition(position);
 			A += difference;
 			B += difference;
@@ -52,8 +52,8 @@ namespace mtrx
 		virtual inline void SetRotation(const glm::quat& orientation)
 		{
 			Collider::SetRotation(orientation);
-			A = transform.GetPosition() - GetUp() * (height / 2);
-			B = transform.GetPosition() + GetUp() * (height / 2);
+			A = GetPosition() - GetUp() * (height / 2);
+			B = GetPosition() + GetUp() * (height / 2);
 		}
 	};
 }

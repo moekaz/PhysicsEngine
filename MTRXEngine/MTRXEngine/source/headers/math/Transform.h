@@ -27,6 +27,7 @@ namespace mtrx
 		inline const glm::quat& GetOrientation() const { return orientation; }
 		inline const glm::vec3& GetScale() const { return scale; }
 
+		// Non-const getters
 		inline glm::vec3& GetPosition() { return position; }
 		inline glm::quat& GetOrientation() { return orientation; }
 		inline glm::vec3& GetScale() { return scale; }

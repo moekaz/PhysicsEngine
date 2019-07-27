@@ -108,7 +108,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)/source/headers;$(ProjectDir)/source/Libraries/glm;$(ProjectDir)/source/Libraries/spdlog/include/;$(ProjectDir)/source/Libraries/glfw/include/;$(ProjectDir)/source/Libraries/glad/include/;$(ProjectDir)/source/renderer</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)/source/Libraries/glfw/lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

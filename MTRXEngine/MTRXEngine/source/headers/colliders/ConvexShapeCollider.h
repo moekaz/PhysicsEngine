@@ -24,12 +24,12 @@ namespace mtrx
 		virtual bool RaycastCollision(const Ray&) override;
 
 		// Vertices and model matrices
-		const std::vector<glm::vec3*>* GetVertices() const;
-		glm::mat4 GetModelMatrix() const;
+		std::vector<glm::vec3*>* GetVertices();
+		glm::mat4 GetModelMatrix();
 
 		// Used for GJK minkowski sum calculations
-		glm::vec3 Support(const ConvexShapeCollider&, const glm::vec3&) const;
-		const glm::vec3& FarthestPointInDirection(const glm::vec3&) const;
+		glm::vec3 Support(ConvexShapeCollider&, const glm::vec3&);
+		glm::vec3& FarthestPointInDirection(const glm::vec3&);
 
 		virtual inline void SetPosition(const glm::vec3& pos) override { Collider::SetPosition(pos); transformModified = true; }
 		virtual inline void SetScale(const glm::vec3& scale) override { Collider::SetScale(scale); transformModified = true; }

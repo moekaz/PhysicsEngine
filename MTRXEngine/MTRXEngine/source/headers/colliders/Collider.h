@@ -24,6 +24,8 @@ namespace mtrx
 
 		// Getters
 		inline const glm::vec3& GetPosition() const { return transform.GetPosition(); }
+		inline const glm::vec3& GetScale() const { return transform.GetScale(); }
+		inline const glm::quat& GetOrientation() const { return transform.GetOrientation(); }
 		inline const ColliderType& GetColliderType() const { return type; }
 		inline const int GetColliderId() const { return colliderId; }
 		inline const bool IsConvex() const { return isConvexShape; }
@@ -39,12 +41,12 @@ namespace mtrx
 	
 	private:
 		static int id;
+		Transform transform; // position orientaion and scale of the collider
 
 	protected:
 		int colliderId; // The id of collider
 		ColliderType type; // The collider type
 		bool isConvexShape; // Whether it is a convex shape collider or not
-		Transform transform; // position orientaion and scale of the collider
 		ObjectAxes axes; // The axes that define this collider's world
 	};
 }
