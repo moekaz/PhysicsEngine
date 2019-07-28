@@ -37,7 +37,7 @@ namespace mtrx
 		// Setters
 		virtual inline void SetPosition(const glm::vec3& center) { transform.SetPosition(center); }
 		virtual inline void SetScale(const glm::vec3& scale) { transform.SetScale(scale); }
-		virtual inline void SetRotation(const glm::quat& orientation) { transform.SetOrientation(orientation); }
+		virtual inline void SetOrientation(const glm::quat& orientation) { transform.SetOrientation(orientation); }
 	
 	private:
 		static int id;

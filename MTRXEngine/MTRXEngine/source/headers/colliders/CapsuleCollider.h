@@ -51,7 +51,7 @@ namespace mtrx
 
 		virtual inline void SetRotation(const glm::quat& orientation)
 		{
-			Collider::SetRotation(orientation);
+			Collider::SetOrientation(orientation);
 			A = GetPosition() - GetUp() * (height / 2);
 			B = GetPosition() + GetUp() * (height / 2);
 		}

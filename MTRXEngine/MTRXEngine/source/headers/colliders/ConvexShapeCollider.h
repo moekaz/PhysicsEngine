@@ -33,7 +33,7 @@ namespace mtrx
 
 		virtual inline void SetPosition(const glm::vec3& pos) override { Collider::SetPosition(pos); transformModified = true; }
 		virtual inline void SetScale(const glm::vec3& scale) override { Collider::SetScale(scale); transformModified = true; }
-		virtual inline void SetRotation(const glm::quat& quat) override { Collider::SetRotation(quat); transformModified = true; }
+		virtual inline void SetOrientation(const glm::quat& quat) override { Collider::SetOrientation(quat); transformModified = true; }
 
 	protected:
 		std::vector<glm::vec3*> transformedVertices;

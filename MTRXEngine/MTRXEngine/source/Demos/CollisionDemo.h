@@ -11,15 +11,17 @@
 
 class CollisionDemo : public Demo
 {
-public:
-	mtrx::Rigidbody body1;
-	mtrx::Rigidbody body2;
-	mtrx::Collider* collider1;
-	mtrx::Collider* collider2;
+public:	
+	std::vector<mtrx::Rigidbody*> worldRbs;
+	std::vector<mtrx::Collider*> worldColliders;
+	std::vector<mtrx::Rigidbody*> bulletRbs;
+	std::vector<mtrx::Collider*> bulletColliders;
 
 	CollisionDemo();
 	~CollisionDemo();
 
 	virtual void Update() override;
 	virtual void InputCheck() override;
+
+	void Shoot();
 };
