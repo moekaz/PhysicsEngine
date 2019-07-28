@@ -56,33 +56,33 @@ namespace mtrx
 		{
 			case ColliderType::Sphere:
 			{
-				std::cout << "Box Sphere collision detection" << std::endl;
+				//std::cout << "Box Sphere collision detection" << std::endl;
 				const SphereCollider& collider = static_cast<const SphereCollider&>(col);
 				collision = CollisionUtil::SphereBoxCollision(collider.GetPosition(), GetPosition(), collider.radius, axes.axes, halfExtents);
 				break;
 			}
 			case ColliderType::Box:
 			{
-				std::cout << "Box Box collision detection" << std::endl;
+				//std::cout << "Box Box collision detection" << std::endl;
 				BoxCollider& collider = static_cast<BoxCollider&>(const_cast<Collider&>(col));
 				collision = CollisionUtil::BoxBoxCollision(*this, collider);
 				break;
 			}
 			case ColliderType::Capsule:
 			{
-				std::cout << "Box Capsule collision detection" << std::endl;
+				//std::cout << "Box Capsule collision detection" << std::endl;
 				const mtrx::CapsuleCollider& collider = static_cast<const mtrx::CapsuleCollider&>(col);
 				collision = CollisionUtil::BoxCapsuleCollision(GetPosition(), collider.GetPosition(), collider.A, collider.B, collider.radii, axes.axes, halfExtents);
 				break;
 			}
 			case ColliderType::Mesh:
 			{
-				std::cout << "Box Mesh collision detection not implemented yet" << std::endl;
+				//std::cout << "Box Mesh collision detection not implemented yet" << std::endl;
 				break;
 			}
 			default:
 			{
-				std::cout << "HOUSTON WE HAVE A PROBLEM" << std::endl;
+				//std::cout << "HOUSTON WE HAVE A PROBLEM" << std::endl;
 				collision = false;
 			}
 		}

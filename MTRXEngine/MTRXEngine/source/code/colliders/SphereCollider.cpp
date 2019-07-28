@@ -67,28 +67,28 @@ namespace mtrx
 		{
 			case ColliderType::Sphere:
 			{
-				std::cout << "SPHERE SPHERE COLLISON DETECTION" << std::endl;
+				//std::cout << "SPHERE SPHERE COLLISON DETECTION" << std::endl;
 				const SphereCollider& collider = static_cast<const SphereCollider&>(col);
 				isColliding = CollisionUtil::SphereSphereCollision(GetPosition(), collider.GetPosition(), radius, collider.radius);
 				break;
 			}
 			case ColliderType::Box:
 			{
-				std::cout << "SPHERE BOX COLLISION DETECTION" << std::endl;
+				//std::cout << "SPHERE BOX COLLISION DETECTION" << std::endl;
 				const BoxCollider& collider = static_cast<const BoxCollider&>(col);
 				isColliding = CollisionUtil::SphereBoxCollision(GetPosition(), collider.GetPosition(), radius, collider.GetAxes(), collider.halfExtents);
 				break;
 			}
 			case ColliderType::Capsule:
 			{
-				std::cout << "SPHERE CAPSULE COLLISION DETECTION" << std::endl;
+				//std::cout << "SPHERE CAPSULE COLLISION DETECTION" << std::endl;
 				const CapsuleCollider& collider = static_cast<const CapsuleCollider&>(col);
 				isColliding = CollisionUtil::SphereCapsuleCollision(GetPosition(), collider.GetPosition(), radius, collider.radii, collider.A, collider.B);
 				break;
 			}
 			case ColliderType::Mesh:
 			{
-				std::cout << "SPHERE MESH COLLISION DETECTION" << std::endl;
+				//std::cout << "SPHERE MESH COLLISION DETECTION" << std::endl;
 				break;
 			}
 			default:

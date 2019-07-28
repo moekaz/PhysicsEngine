@@ -10,10 +10,10 @@ namespace mtrx
 {
 	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale, const glm::mat3& inertiaTensor) : 
 		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
-		up(glm::vec3(0, 1, 0)), angularDamping(1.f), accumTorque(glm::vec3()), objToWorldMat(glm::mat3x4(1.0f)),
-		rotation(glm::vec3())
+		up(glm::vec3(0, 1, 0)), angularDamping(1.f), accumTorque(glm::vec3()), rotation(glm::vec3())
 	{
 		SetInverseInertiaTensor(inertiaTensor);
+		CalculateObjToWorldMat();
 	}
 
 	Rigidbody::~Rigidbody() {}
@@ -29,7 +29,9 @@ namespace mtrx
 		acceleration = accumForces * inverseMass;
 
 		// Get angular acceleration
-		glm::vec3 angularAcceleration = accumTorque * inverseInertiaTensor;
+		// TBD: IS THIS CORRECT??
+		glm::mat3 mat = CalculateIITWorld();
+		glm::vec3 angularAcceleration = accumTorque * CalculateIITWorld();
 
 		// Integrate the acceleration to get the velocity
 		velocity += acceleration * GameTime::deltaTime;
@@ -82,13 +84,12 @@ namespace mtrx
 
 		// Calculate the object to world transform
 		CalculateObjToWorldMat();
-		
-		// Calculate inverse inertia tensor in world coordinates
-		CalculateIITWorld();
 	}
 	
 	void Rigidbody::CalculateObjToWorldMat()
 	{
+
+		// TBD: Look into this thing
 		glm::quat& orientation = transform.GetOrientation();
 		glm::vec3& position = transform.GetPosition();
 

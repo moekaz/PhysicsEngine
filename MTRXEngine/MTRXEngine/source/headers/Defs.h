@@ -77,9 +77,9 @@ namespace mtrx
 	static glm::mat3 GenerateCuboidIT(float mass, float* extents)
 	{
 		// 1/12 = 0.083333... 
-		return glm::mat3(glm::vec3(0.0833333333f * mass * (extents[1] * extents[1] + extents[2] * extents[2])),
-			glm::vec3(0.0833333333f * mass * (extents[0] * extents[0] + extents[2] * extents[2])),
-			glm::vec3(0.0833333333f * mass * (extents[0] * extents[0] + extents[1] * extents[1])));
+		return glm::mat3(0.0833333333f * mass * (extents[1] * extents[1] + extents[2] * extents[2]), 0, 0,
+			0, 0.0833333333f * mass * (extents[0] * extents[0] + extents[2] * extents[2]), 0,
+			0, 0, 0.0833333333f * mass * (extents[0] * extents[0] + extents[1] * extents[1]));
 	}
 
 	// More inertia tensors TBA 

@@ -3,56 +3,36 @@
 
 CollisionDemo::CollisionDemo() : Demo("COLLISION DEMO")
 {
-	// Setup the world with a bunch of objects
-	// This is just a reference point in world space
-	mtrx::Transform center =
+
+	// Create game obstacles  
+	int numObstacles = 20;
+	srand(0);
+	for (int i = 0; i < numObstacles; ++i)
 	{
-		glm::vec3(0, 0, 0),
-		glm::angleAxis(0.f, mtrx::worldUp),
-		glm::vec3(0.1f, 0.1f, 0.1f),
-	};
-	this->transformsToRender.insert(&center);
+		float extents[3] = { 1, 1, 1 };
+		float mass = 2.f;
+		glm::quat orientation1 = glm::angleAxis(0.f, mtrx::worldUp);
+		
+		float x = rand() % 50;
+		float y = rand() % 50;
+		float z = rand() % 50;
 
-	glm::quat orientation1 = glm::angleAxis(0.f, mtrx::worldUp);
-	glm::quat orientation2 = glm::angleAxis(150.f, glm::vec3(0, 1, 0));
+		mtrx::Rigidbody* body = new mtrx::Rigidbody(mass, false, glm::vec3(x, y, z), orientation1, glm::vec3(extents[0], extents[1], extents[2]), mtrx::GenerateCuboidIT(mass, extents));
+		mtrx::Collider* collider = new mtrx::BoxCollider(body->GetPosition());
+		body->SetAngularDamping(0.8f);
+		body->SetLinearDamping(0.99f);
 
-	float mass1 = 1.f;
-	float mass2 = 1.f;
+		// Capusle collider
+		//collider1 = new mtrx::CapsuleCollider(body1.GetPosition());
 
-	float extents[3] = { 1, 1, 1 };
+		// Sphere Colliders
+		//collider1 = new mtrx::SphereCollider(body1.GetPosition());
 
-	// Rigidbody declaration 
-	mtrx::Rigidbody* body1 = new mtrx::Rigidbody(mass1, false, glm::vec3(2, 0, 0), orientation1, glm::vec3(extents[0], extents[1], extents[2]));
-	body1->SetInverseInertiaTensor(mtrx::GenerateCuboidIT(mass1, extents));
-	mtrx::Rigidbody* body2 = new mtrx::Rigidbody(mass2, false, glm::vec3(-2, 0, 0), orientation2, glm::vec3(extents[0], extents[1], extents[2]));
-	body2->SetInverseInertiaTensor(mtrx::GenerateCuboidIT(mass2, extents));
-
-
-	// Capsule Colliders
-	//collider1 = new mtrx::CapsuleCollider(body1.GetPosition());
-	//collider2 = new mtrx::CapsuleCollider(body2.GetPosition());
-
-	// Sphere Colliders
-	//collider1 = new mtrx::SphereCollider(body1.GetPosition());
-	//collider2 = new mtrx::SphereCollider(body2.GetPosition());
-
-	// Box Colliders
-	mtrx::Collider* collider1 = new mtrx::BoxCollider(body1->GetPosition());
-	mtrx::Collider* collider2 = new mtrx::BoxCollider(body2->GetPosition());
-
-	worldRbs.push_back(body1);
-	worldRbs.push_back(body2);
-
-	worldColliders.push_back(collider1);
-	worldColliders.push_back(collider2);
-
-	// Rigidbody additions
-	rbManager.AddRigidbody(body1);
-	rbManager.AddRigidbody(body2);
-
-	// Add the transforms of these rigidbodies
-	transformsToRender.insert(&body1->GetTransform());
-	transformsToRender.insert(&body2->GetTransform());
+		worldRbs.push_back(body);
+		worldColliders.push_back(collider);
+		rbManager.AddRigidbody(body);
+		transformsToRender.insert(&body->GetTransform());
+	}
 }
 
 CollisionDemo::~CollisionDemo()
@@ -61,6 +41,14 @@ CollisionDemo::~CollisionDemo()
 void CollisionDemo::Update()
 {
 	// Thinking about creating a fps shooting demo with collision detection and force generation
+		// This is just a reference point in world space
+	mtrx::Transform center =
+	{
+		glm::vec3(),
+		glm::angleAxis(0.f, mtrx::worldUp),
+		glm::vec3(0.1f, 0.1f, 0.1f),
+	};
+	transformsToRender.insert(&center);
 
 	// Update loop
 	while (!application.window.ShouldClose())
@@ -72,30 +60,40 @@ void CollisionDemo::Update()
 			bulletColliders[i]->SetOrientation(bulletRbs[i]->GetOrientation());
 		}
 
+		for (int i = 0; i < bulletRbs.size(); ++i)
+		{
+			worldColliders[i]->SetPosition(worldRbs[i]->GetPosition());
+			worldColliders[i]->SetOrientation(worldRbs[i]->GetOrientation());
+		}
+
 		// Check for collision 
 		for (int i = 0; i < bulletColliders.size(); ++i)
 		{
 			for (int j = 0; j < worldColliders.size(); ++j)
 			{
-				if (bulletColliders[i]->CheckCollision(*worldColliders[i]))
+				if (bulletColliders[i]->CheckCollision(*worldColliders[j]))
 				{
 					// Collision
 					std::cout << "collision" << std::endl;
 					mtrx::Rigidbody* bullet = bulletRbs[i];
 					mtrx::Collider* collider = bulletColliders[i];
 
-					worldRbs[j]->AddForceAtPoint(bulletRbs[i]->GetVelocity(), bulletRbs[i]->GetPosition());
+					//glm::vec3 vec = glm::normalize(bullet->GetVelocity()) * 4000.f;
+					//std::cout << vec.x << " " << vec.y << " " << vec.z << std::endl;
+					worldRbs[j]->AddForceAtPoint(bullet->GetVelocity() * 800.f, bullet->GetPosition());
+					//worldRbs[j]->AddForceAtPoint(bullet->GetVelocity() * 1000.f, worldRbs[j]->GetPosition() + glm::vec3(-0.2,0.1, 0.3));
 
-					rbManager.RemoveRigidbody(bulletRbs[i]);
-					transformsToRender.erase(&bulletRbs[i]->GetTransform());					
-					bulletRbs.erase(bulletRbs.begin() + i);
-					bulletColliders.erase(bulletColliders.begin() + i);
-					
+					rbManager.RemoveRigidbody(bullet);
+					transformsToRender.erase(&bullet->GetTransform());
+
+
 					delete bullet;
 					delete collider;
+					bulletRbs.erase(bulletRbs.begin() + i);
+					bulletColliders.erase(bulletColliders.begin() + i);
 
 					--i;
-					continue;
+					break;
 				}
 			}
 		}
@@ -119,7 +117,7 @@ void CollisionDemo::Shoot()
 {
 	// We are shooting a bullet like an fps game
 	
-	float extents[3] = {1, 1, 1};
+	float extents[3] = {0.1f, 0.1f, 0.1f};
 	float mass = 1.f;
 	glm::vec3 forward = application.camera->GetForward();
 	mtrx::Rigidbody* bullet = new mtrx::Rigidbody(mass, false, application.camera->GetTransform().GetPosition() + forward * 0.5f, glm::angleAxis(0.f, mtrx::worldUp), glm::vec3(0.1, 0.1, 0.1), mtrx::GenerateCuboidIT(mass, extents));
