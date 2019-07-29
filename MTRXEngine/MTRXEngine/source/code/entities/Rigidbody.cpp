@@ -9,8 +9,7 @@
 namespace mtrx
 {
 	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale, const glm::mat3& inertiaTensor) : 
-		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), 
-		up(glm::vec3(0, 1, 0)), angularDamping(1.f), accumTorque(glm::vec3()), rotation(glm::vec3())
+		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0)), angularDamping(1.f), accumTorque(glm::vec3()), rotation(glm::vec3())
 	{
 		SetInverseInertiaTensor(inertiaTensor);
 		CalculateObjToWorldMat();
@@ -28,9 +27,8 @@ namespace mtrx
 		//prevAcceleration = acceleration + inverseMass * accumForces;
 		acceleration = accumForces * inverseMass;
 
-		// Get angular acceleration
 		// TBD: IS THIS CORRECT??
-		glm::mat3 mat = CalculateIITWorld();
+		// Get angular acceleration
 		glm::vec3 angularAcceleration = accumTorque * CalculateIITWorld();
 
 		// Integrate the acceleration to get the velocity
@@ -67,6 +65,19 @@ namespace mtrx
 	void Rigidbody::IntegrateRotation()
 	{}
 
+	void Rigidbody::SetInverseInertiaTensor(const glm::mat3& inertiaTensor)
+	{
+		inverseInertiaTensor[0][0] = 1.f / inertiaTensor[0][0];
+		inverseInertiaTensor[0][1] = 0;
+		inverseInertiaTensor[0][2] = 0;
+		inverseInertiaTensor[1][0] = 0;
+		inverseInertiaTensor[1][1] = 1.f / inertiaTensor[1][1];
+		inverseInertiaTensor[1][2] = 0;
+		inverseInertiaTensor[2][0] = 0;
+		inverseInertiaTensor[2][1] = 0;
+		inverseInertiaTensor[2][2] = 1.f / inertiaTensor[2][2];
+	}
+
 	void Rigidbody::AddForceAtPoint(const glm::vec3& force, const glm::vec3& point)
 	{
 		// Point is assumed to be in world space 
@@ -88,7 +99,6 @@ namespace mtrx
 	
 	void Rigidbody::CalculateObjToWorldMat()
 	{
-
 		// TBD: Look into this thing
 		glm::quat& orientation = transform.GetOrientation();
 		glm::vec3& position = transform.GetPosition();

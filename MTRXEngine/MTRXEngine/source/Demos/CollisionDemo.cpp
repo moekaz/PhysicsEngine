@@ -60,7 +60,7 @@ void CollisionDemo::Update()
 			bulletColliders[i]->SetOrientation(bulletRbs[i]->GetOrientation());
 		}
 
-		for (int i = 0; i < bulletRbs.size(); ++i)
+		for (int i = 0; i < worldRbs.size(); ++i)
 		{
 			worldColliders[i]->SetPosition(worldRbs[i]->GetPosition());
 			worldColliders[i]->SetOrientation(worldRbs[i]->GetOrientation());
@@ -80,7 +80,7 @@ void CollisionDemo::Update()
 
 					//glm::vec3 vec = glm::normalize(bullet->GetVelocity()) * 4000.f;
 					//std::cout << vec.x << " " << vec.y << " " << vec.z << std::endl;
-					worldRbs[j]->AddForceAtPoint(bullet->GetVelocity() * 800.f, bullet->GetPosition());
+					worldRbs[j]->AddForceAtPoint(glm::fastNormalize(bullet->GetVelocity()) * 1500.f, bullet->GetPosition());
 					//worldRbs[j]->AddForceAtPoint(bullet->GetVelocity() * 1000.f, worldRbs[j]->GetPosition() + glm::vec3(-0.2,0.1, 0.3));
 
 					rbManager.RemoveRigidbody(bullet);
