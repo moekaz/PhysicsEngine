@@ -62,12 +62,8 @@ namespace mtrx
 		glm::vec3 accumTorque; // Accumulated torque
 		float angularDamping; // Between 0-1
 		bool isKinematic;
-		glm::vec3 prevAcceleration;
 
-		// TBD: Clean this up
 		// Space vectors 
-		glm::vec3 forward;
-		glm::vec3 side;
-		glm::vec3 up;
+		ObjectAxes axes;
 	};
 }

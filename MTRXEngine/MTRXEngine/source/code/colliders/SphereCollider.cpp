@@ -24,7 +24,6 @@ namespace mtrx
 		const glm::vec3& position1 = collider1.GetPosition();
 		const glm::vec3& position2 = collider2.GetPosition();
 
-		//TBD: Might want to look at this
 		glm::vec3 difference = position2 - position1;
 		float distanceSqr = glm::length2(difference);
 		float diffRadius = collider1.radius - collider2.radius;

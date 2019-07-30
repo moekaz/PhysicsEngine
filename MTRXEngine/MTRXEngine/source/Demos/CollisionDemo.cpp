@@ -50,56 +50,59 @@ void CollisionDemo::Update()
 	};
 	transformsToRender.insert(&center);
 
+	float accumulator = 0.f;
+	float currentTime = mtrx::GameTime::GetTime();
+	float dt = 0.01666666666f; // 60 fps of physics calculations
+
 	// Update loop
 	while (!application.window.ShouldClose())
 	{
-		// Update colliders
-		for (int i = 0; i < bulletRbs.size(); ++i)
+		// TBD: This is incorrect and needs to be done differently
+		while (accumulator >= dt)
 		{
-			bulletColliders[i]->SetPosition(bulletRbs[i]->GetPosition());
-			bulletColliders[i]->SetOrientation(bulletRbs[i]->GetOrientation());
-		}
-
-		for (int i = 0; i < worldRbs.size(); ++i)
-		{
-			worldColliders[i]->SetPosition(worldRbs[i]->GetPosition());
-			worldColliders[i]->SetOrientation(worldRbs[i]->GetOrientation());
-		}
-
-		// Check for collision 
-		for (int i = 0; i < bulletColliders.size(); ++i)
-		{
-			for (int j = 0; j < worldColliders.size(); ++j)
+			// Update colliders
+			for (int i = 0; i < bulletRbs.size(); ++i)
 			{
-				if (bulletColliders[i]->CheckCollision(*worldColliders[j]))
+				bulletColliders[i]->SetPosition(bulletRbs[i]->GetPosition());
+				bulletColliders[i]->SetOrientation(bulletRbs[i]->GetOrientation());
+			}
+
+			for (int i = 0; i < worldRbs.size(); ++i)
+			{
+				worldColliders[i]->SetPosition(worldRbs[i]->GetPosition());
+				worldColliders[i]->SetOrientation(worldRbs[i]->GetOrientation());
+			}
+
+			// Check for collision 
+			for (int i = 0; i < bulletColliders.size(); ++i)
+			{
+				for (int j = 0; j < worldColliders.size(); ++j)
 				{
+					if (!bulletColliders[i]->CheckCollision(*worldColliders[j]))
+						continue;
+
 					// Collision
 					std::cout << "collision" << std::endl;
 					mtrx::Rigidbody* bullet = bulletRbs[i];
 					mtrx::Collider* collider = bulletColliders[i];
 
-					//glm::vec3 vec = glm::normalize(bullet->GetVelocity()) * 4000.f;
-					//std::cout << vec.x << " " << vec.y << " " << vec.z << std::endl;
 					worldRbs[j]->AddForceAtPoint(glm::fastNormalize(bullet->GetVelocity()) * 1500.f, bullet->GetPosition());
-					//worldRbs[j]->AddForceAtPoint(bullet->GetVelocity() * 1000.f, worldRbs[j]->GetPosition() + glm::vec3(-0.2,0.1, 0.3));
 
 					rbManager.RemoveRigidbody(bullet);
 					transformsToRender.erase(&bullet->GetTransform());
-
-
-					delete bullet;
-					delete collider;
 					bulletRbs.erase(bulletRbs.begin() + i);
 					bulletColliders.erase(bulletColliders.begin() + i);
 
+					delete bullet;
+					delete collider;
 					--i;
 					break;
 				}
 			}
-		}
 
-		// Update the demo
-		Demo::Update();
+			// Update the demo
+			Demo::Update();
+		}
 	}
 }
 

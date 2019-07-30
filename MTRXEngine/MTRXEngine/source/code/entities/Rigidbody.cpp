@@ -9,7 +9,8 @@
 namespace mtrx
 {
 	Rigidbody::Rigidbody(float mass, bool isKinematic, const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale, const glm::mat3& inertiaTensor) : 
-		Body(position, orientation, scale, mass), isKinematic(isKinematic), forward(glm::vec3(0, 0, -1)), side(glm::vec3(1, 0, 0)), up(glm::vec3(0, 1, 0)), angularDamping(1.f), accumTorque(glm::vec3()), rotation(glm::vec3())
+		Body(position, orientation, scale, mass), isKinematic(isKinematic), axes(glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)),
+		angularDamping(1.f), accumTorque(glm::vec3()), rotation(glm::vec3())
 	{
 		SetInverseInertiaTensor(inertiaTensor);
 		CalculateObjToWorldMat();
@@ -24,10 +25,8 @@ namespace mtrx
 			return;
 
 		// Get acceleration with accumulated forces and inverse mass
-		//prevAcceleration = acceleration + inverseMass * accumForces;
 		acceleration = accumForces * inverseMass;
 
-		// TBD: IS THIS CORRECT??
 		// Get angular acceleration
 		glm::vec3 angularAcceleration = accumTorque * CalculateIITWorld();
 
@@ -99,7 +98,6 @@ namespace mtrx
 	
 	void Rigidbody::CalculateObjToWorldMat()
 	{
-		// TBD: Look into this thing
 		glm::quat& orientation = transform.GetOrientation();
 		glm::vec3& position = transform.GetPosition();
 

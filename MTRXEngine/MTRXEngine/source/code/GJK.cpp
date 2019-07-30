@@ -7,7 +7,6 @@
 #include <GJK.h>
 #include <colliders/ConvexShapeCollider.h>
 
-// TBD: WE CAN OPTIMIZE THIS SOME MORE MAYBE
 namespace mtrx
 {
 	Simplex GJK::simplex;
