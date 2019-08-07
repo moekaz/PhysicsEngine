@@ -6,7 +6,7 @@ CollisionDemo::CollisionDemo() : Demo("COLLISION DEMO")
 
 	// Create game obstacles  
 	int numObstacles = 20;
-	srand(0);
+	srand(time(0));
 	for (int i = 0; i < numObstacles; ++i)
 	{
 		float extents[3] = { 1, 1, 1 };
@@ -119,7 +119,6 @@ void CollisionDemo::InputCheck()
 void CollisionDemo::Shoot()
 {
 	// We are shooting a bullet like an fps game
-	
 	float extents[3] = {0.1f, 0.1f, 0.1f};
 	float mass = 1.f;
 	glm::vec3 forward = application.camera->GetForward();
