@@ -15,13 +15,14 @@ A basic C++ based physics engine which uses some libraries like GLM, SPDLOG, GLA
 
 ## Book Sources
 These are some of the books that i have used as inspiration:
+	
 	Real-Time Collision Detection - Christer Ericson
 	Game Physics Engine Development - Ian Millington
 	Game Engine Architecture - Jason Gregory
 
 ## Fixing timesteps:
 	https://web.archive.org/web/20180321070852/https://.gafferongames.com/post/fix_your_timestep
-	
+
 ## GJK implementation sources:
 	https://caseymuratori.com/blog_0003
 	http://www.dyn4j.org/2010/04/gjk-gilbert-johnson-keerthi/#gjk-minkowski
