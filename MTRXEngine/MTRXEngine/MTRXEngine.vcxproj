@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\code\mtrxDynamicWorld.cpp" />
     <ClCompile Include="source\Libraries\glad\src\glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -229,6 +230,7 @@
     <ClCompile Include="source\Renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\headers\mtrxDynamicWorld.h" />
     <ClInclude Include="source\Libraries\glad\include\glad\glad.h" />
     <ClInclude Include="source\Libraries\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="source\Libraries\glfw\include\GLFW\glfw3.h" />
