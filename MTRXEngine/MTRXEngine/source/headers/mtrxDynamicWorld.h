@@ -1,14 +1,20 @@
 #pragma once
 
-class mtrxDynamicWorld
+#include <RigidbodyManager.h>
+#include <ParticleManager.h>
+
+namespace mtrx
 {
-public:
-	mtrxDynamicWorld();
-	~mtrxDynamicWorld();
+	class mtrxDynamicWorld
+	{
+	public:
+		mtrxDynamicWorld();
+		~mtrxDynamicWorld();
 
-	Update();
+		void Update();
 
-private:
-	RigidbodyManager m_rbManager;
-	ParticleManager m_pManager;
-};
+	private:
+		RigidbodyManager m_rbManager;
+		ParticleManager m_pManager;
+	};
+}

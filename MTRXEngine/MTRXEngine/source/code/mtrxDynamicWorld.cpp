@@ -1,14 +1,17 @@
-
+#include <PrecompiledHeader.h>
 #include <mtrxDynamicWorld.h>
 
-mtrxDynamicWorld::mtrxDynamicWorld()
+namespace mtrx
 {
-}
+	mtrxDynamicWorld::mtrxDynamicWorld()
+	{}
 
-mtrxDynamicWorld::~mtrxDynamicWorld()
-{}
+	mtrxDynamicWorld::~mtrxDynamicWorld()
+	{}
 
-mtrxDynamicWorld::Update()
-{
-	m_rbManager.PhysicsUpdate();
+	void mtrxDynamicWorld::Update()
+	{
+		m_rbManager.PhysicsUpdate();
+		m_pManager.PhysicsUpdate();
+	}
 }
