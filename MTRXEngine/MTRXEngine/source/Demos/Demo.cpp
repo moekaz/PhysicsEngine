@@ -19,7 +19,10 @@ void Demo::Update()
 	BaseInputCheck();
 	InputCheck();
 
+	// TBD: Abstract this
 	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
 	
 	// Update application (includes input checks)
 	application.Update(mtrx::GameTime::deltaTime);

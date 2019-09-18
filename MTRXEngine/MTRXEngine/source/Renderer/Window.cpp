@@ -41,8 +41,8 @@ Window::Window(const char* windowName, int width, int height, int fps) : width(w
 Window::~Window()
 {
 	// Terminate ImGui
-	ImGui_ImplGlfw_Shutdown();
 	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 
 	// Terminate window
