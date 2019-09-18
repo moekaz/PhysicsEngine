@@ -1,10 +1,9 @@
 
 #pragma once
 
-class ImGUILayer
+class ImGuiLayer
 {
 public:
-
 private:
 };
 
