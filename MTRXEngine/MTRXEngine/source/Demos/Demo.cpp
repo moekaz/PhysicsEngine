@@ -18,6 +18,8 @@ void Demo::Update()
 	// Basic input checks that will shared by all applications
 	BaseInputCheck();
 	InputCheck();
+
+	ImGui_ImplOpenGL3_NewFrame();
 	
 	// Update application (includes input checks)
 	application.Update(mtrx::GameTime::deltaTime);

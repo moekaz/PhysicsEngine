@@ -39,9 +39,11 @@ void Application::Update(float deltaTime)
 
 	// Camera rotation
 	const glm::vec2& offset = inputSystem->GetMouseOffset();
-
 	if (offset.y != 0.000001)
 		camera->Pitch(offset.y * deltaTime);
 	if (offset.x != 0.000001)
 		camera->Yaw(-offset.x * deltaTime);
+
+	// Normalize the orientation TBD: Optimize this
+	camera->GetTransform().SetOrientation(glm::normalize(camera->GetTransform().GetOrientation()));
 }

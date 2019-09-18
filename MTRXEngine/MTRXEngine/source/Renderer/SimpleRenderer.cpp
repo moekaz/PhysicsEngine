@@ -31,6 +31,10 @@ void SimpleRenderer::Render(std::unordered_set<mtrx::Transform*>& transforms)
 		shader.setUniformMat4("modelMatrix", ConstructModelMatrix(*(*iter)));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
+
+	// Render ImGui UI
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void SimpleRenderer::Init()

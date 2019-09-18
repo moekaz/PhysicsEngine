@@ -28,10 +28,23 @@ Window::Window(const char* windowName, int width, int height, int fps) : width(w
 		glfwTerminate();
 		assert(false);
 	}
+
+	// Initialize ImGui
+	ImGui::CreateContext();
+	ImGui_ImplGlfw_InitForOpenGL(window, false);
+	ImGui_ImplOpenGL3_Init();
+
+	// Setup style
+	ImGui::StyleColorsDark();
 }
 
 Window::~Window()
 {
+	// Terminate ImGui
+	ImGui_ImplGlfw_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui::DestroyContext();
+
 	// Terminate window
 	glfwDestroyWindow(window);
 }
