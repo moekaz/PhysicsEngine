@@ -32,6 +32,8 @@ Window::Window(const char* windowName, int width, int height, int fps) : width(w
 
 	// Initialize UILayer of the window
 	UILayer::Init(this);
+	
+	glfwSwapInterval(1);
 }
 
 Window::~Window()
