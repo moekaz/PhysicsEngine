@@ -32,10 +32,8 @@ void SimpleRenderer::Render(std::unordered_set<mtrx::Transform*>& transforms)
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 
-	// TBD: Abstract this
-	// Render ImGui UI
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	// Render UI Layer
+	UILayer::Render();
 }
 
 void SimpleRenderer::Init()

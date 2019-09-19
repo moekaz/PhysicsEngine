@@ -32,8 +32,8 @@ InputSystem::InputSystem(Window* window) :
 	mousePosition.x = (float)x;
 	mousePosition.y = (float)y;
 
-	// Get rid of the cursor
-	ToggleCursor(false);
+	// Disable the cursor
+	SetCursor(false);
 
 	// Reserve space for the vector so that it doesn't try to resize 
 	keysPressed.reserve(MAX_KEYS);

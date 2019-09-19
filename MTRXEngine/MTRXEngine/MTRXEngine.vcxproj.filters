@@ -186,9 +186,6 @@
     <ClCompile Include="source\Libraries\imgui\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImGUILayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Libraries\imgui\imgui_impl_glfw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -196,6 +193,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Libraries\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\UILayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\UIPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Renderer\ProjectileDemoUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -980,9 +986,6 @@
     <ClInclude Include="source\Libraries\imgui\imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImGUILayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\Libraries\imgui\imgui_impl_glfw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -999,6 +1002,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Libraries\imgui\imgui_impl_opengl3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\UILayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\UIPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Renderer\ProjectileDemoUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

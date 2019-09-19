@@ -19,11 +19,6 @@ void Demo::Update()
 	BaseInputCheck();
 	InputCheck();
 
-	// TBD: Abstract this
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-	
 	// Update application (includes input checks)
 	application.Update(mtrx::GameTime::deltaTime);
 
@@ -31,7 +26,6 @@ void Demo::Update()
 	application.window.Clear();
 
 	// Update the rigidbody and the particle system
-
 	// TBD: fix timestep
 	rbManager.PhysicsUpdate();
 	pManager.PhysicsUpdate();
@@ -42,6 +36,9 @@ void Demo::Update()
 	// Update input system
 	application.inputSystem->Update();
 
+	// Update the UI layer's frame
+	UILayer::UpdateFrame();
+
 	// PS: You want to have all logic and that stuff before this call 
 	// Clear buffers and poll
 	application.window.UpdateBuffers();
@@ -51,8 +48,7 @@ void Demo::BaseInputCheck()
 {
 	if (application.inputSystem->GetKeyDown(GLFW_KEY_G))
 	{
-		cursor = !cursor;
-		application.inputSystem->ToggleCursor(cursor);
+		application.inputSystem->ToggleCursor();
 	}
 }
 

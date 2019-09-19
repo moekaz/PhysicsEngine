@@ -1,8 +1,10 @@
 #include <PrecompiledHeader.h>
 #include <../Demos/ProjectileDemo.h>
 
-ProjectileDemo::ProjectileDemo() : Demo("PROJECTILE DEMO"), gravityGenerator(glm::vec3(0, -mtrx::gravity, 0)), projectileType(1)
-{}
+ProjectileDemo::ProjectileDemo() : Demo("PROJECTILE DEMO", 1366, 768), gravityGenerator(glm::vec3(0, -mtrx::gravity, 0)), projectileType(1)
+{
+	UILayer::AddUIPanel(new ProjectileDemoUI("Projectile Demo", glm::vec2(300, 200), &projectileType));
+}
 
 ProjectileDemo::~ProjectileDemo()
 {}
