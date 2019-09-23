@@ -7,6 +7,8 @@
 
 namespace mtrx
 {	
+	#define SQR(x) x * x // Easy way of squaring
+	
 	#define LOGGER_FILE_SIZE 5242880 // Maximum size of logger file 
 	#define PI 3.14159265358f // Approximation of pi
 	#define WORLD_DIMENSIONS 3 // World dimensions
