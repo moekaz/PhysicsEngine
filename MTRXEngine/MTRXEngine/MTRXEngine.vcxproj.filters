@@ -221,9 +221,6 @@
     <ClInclude Include="source\headers\GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\headers\IUpdateable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\headers\PrecompiledHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1011,6 +1008,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Renderer\ProjectileDemoUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\headers\IIntegratable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
