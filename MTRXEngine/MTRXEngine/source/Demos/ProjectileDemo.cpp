@@ -63,6 +63,7 @@ void ProjectileDemo::InputCheck()
 				// Fireball
 				float mass = 4.f;
 				float extents[] = { 0.5f, 0.5f, 0.5f };
+
 				projectile = mtrx::Rigidbody(mass, false, glm::vec3(-40.f, 1.f, 0.f), glm::angleAxis(0.f, mtrx::worldUp), glm::vec3(0.5f, 0.5f, 0.5f), mtrx::GenerateCuboidIT(mass, extents));
 				projectile.AddForce(glm::vec3(3000.f, 200.f, 0));
 				//projectile.SetAcceleration(glm::vec3(0, 100.f, 0));

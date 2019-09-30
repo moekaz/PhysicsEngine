@@ -10,7 +10,7 @@ Demo::~Demo()
 void Demo::Update()
 {
 	// Update delta time
-	mtrx::GameTime::PhysicsUpdate();
+	mtrx::GameTime::Update();
 
 	// Check for opengl errors
 	application.PollOpenGlErrors();
@@ -27,7 +27,8 @@ void Demo::Update()
 
 	// Update the rigidbody and the particle system
 	// TBD: fix timestep
-	rbManager.PhysicsUpdate();
+	// TBH: The api should be changed here
+	rbManager.Integrate(mtrx::GameTime::deltaTime);
 	pManager.PhysicsUpdate();
 
 	// Update renderer
